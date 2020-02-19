@@ -1,0 +1,9 @@
+.card.story-card {
+  margin: 1rem 1rem 1rem 1rem;
+  width: 20rem;
+  font-size: 2rem;
+  box-shadow: 5px 8px 18px -10px rgba(107, 105, 107, 1);
+  border-radius: 1rem;
+}
+
+@import "./../../../../node_modules/bootstrap/scss/bootstrap.scss";

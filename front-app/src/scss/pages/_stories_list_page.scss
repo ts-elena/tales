@@ -1,0 +1,11 @@
+.stories-list {
+  display: flex;
+  justify-content: center;
+
+  .stories-list__container {
+    margin: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+  }
+}

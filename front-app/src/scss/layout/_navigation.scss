@@ -1,0 +1,14 @@
+.navigation {
+  font-size: 17px;
+  background-color: $color-grey-ligth;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .navigation__link {
+    margin: 5px 5px;
+    float: left;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}

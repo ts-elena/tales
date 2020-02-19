@@ -1,0 +1,58 @@
+[
+  { "character": "Girl_1", "line": "Bettie Sophie, I just closed the shop." },
+  { "character": "Girl_1", "line": "I thought you were coming?" },
+  {
+    "character": "Bettie_Sophie",
+    "line": "I have to finish this. I hope you enjoy."
+  },
+  { "character": "Girl_1", "line": "OK, I'm off." },
+  {
+    "character": "Girl_1",
+    "line": "Let's go girls.Wait up! Isn't anything wrong with my dress, is it? Check it out! Howl's castle is there."
+  },
+  {
+    "character": "Girl_2",
+    "line": "Yeah? The castle? Where? It's over there! Wow! So close!"
+  },
+  { "character": "Girl_3", "line": "Oh, my...I wonder if Howl is in town." },
+  {
+    "character": "Girl_1",
+    "line": "Oh, it's gone! It just hidden in the mist.Didn't you see those battle ships just passed in front of the window?"
+  },
+  {
+    "character": "Girl_2",
+    "line": "Have you heard of a girl, Martha, lives in South town? Her heart was stolen by Howl."
+  },
+  {
+    "character": "Girl_3",
+    "line": "I'm scared...Don't worry. He won´t go after yours."
+  },
+  { "character": "Girl_1", "line": "Come on, girls! Hurry up!" },
+  { "character": "Girl_2", "line": "How do you know that?" },
+  {
+    "character": "Girl_3",
+    "line": "Hey, you, little mouse. Are you looking for something?"
+  },
+  { "character": "Mouse_Moving_Castle", "line": "No, sir. Nothing." },
+  {
+    "character": "Girl_1",
+    "line": "Then, how about having a cup of tea with us?"
+  },
+  { "character": "Mouse_Moving_Castle", "line": "No thanks. I'm in a hurry" },
+  { "character": "Girl_2", "line": "She is really a little mouse!" },
+  {
+    "character": "Mouse_Moving_Castle",
+    "line": "Yes..how old are you? You live in this town?"
+  },
+  { "character": "Girl_2", "line": "Please let me go!" },
+  {
+    "character": "Girl_3",
+    "line": "You scared her, it´s because of your mustache mate."
+  },
+  {
+    "character": "Mouse_Moving_Castle",
+    "line": "She is cute especially when she gets angry."
+  },
+  { "character": "Mouse_Moving_Castle", "line": "There you are." },
+  { "character": "Howl", "line": "I was looking for you!" }
+]
