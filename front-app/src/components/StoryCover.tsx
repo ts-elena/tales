@@ -9,10 +9,9 @@ interface StoryProps {
 }
 
 const StoryCover: React.FC<StoryProps> = props => {
-  function clickHandler() {}
   return (
     <Link to={"/stories/" + props.id}>
-      <Card className="story-card" onClick={clickHandler}>
+      <Card className="story-card">
         <Card.Img variant="top" src={props.image} />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>

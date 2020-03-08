@@ -1,18 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StoryCover from "../components/StoryCover";
-import StoriesData from "../mocked_data/story_cover.json";
+import { getStoriesCovers } from "./../Utils/WebRequests";
+import { stringify } from "querystring";
 
+interface StoryCover {
+  name: string;
+  image: string;
+  id: string;
+}
 const StoriesListPage: React.FC = () => {
-  function clicker() {}
+  const [storyCover, setStoryCover] = useState([]);
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    fetch(`http://localhost:3000/stories-covers`, { signal: signal })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => setStoryCover(data))
+      .catch(error => error);
+    return () => {
+      abortController.abort();
+    };
+  }, []);
 
   return (
     <div className="stories-list">
       <div className="stories-list__container">
-        {StoriesData.map(story => {
-          return (
-            <StoryCover name={story.name} image={story.image} id={story.id} />
-          );
-        })}
+        {storyCover.map((story: StoryCover) => (
+          <StoryCover
+            key={story.id}
+            id={story.id}
+            name={story.name}
+            image={story.image}
+          />
+        ))}
       </div>
     </div>
   );

@@ -3,5 +3,8 @@
 @import "./vendors/customizations/custom-styles";
 @import "./base/typography";
 @import "./base/utilities";
+@import "./components/avatar.scss";
+@import "./components/character-line";
 @import "./layout/navigation";
 @import "./pages/stories_list_page";
+@import "./pages/story";

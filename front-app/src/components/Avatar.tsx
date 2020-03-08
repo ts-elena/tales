@@ -5,9 +5,9 @@ interface Avatar {
 }
 const CharacterLine: React.FC<Avatar> = props => {
   return (
-    <div className="avatar">
-      <img src={props.image} alt="avatar" />
-    </div>
+    <span className="avatar">
+      <img src={props.image} alt="avatar" className="avatar__image" />
+    </span>
   );
 };
 

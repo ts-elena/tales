@@ -1,11 +1,26 @@
-import React, { useState } from "react";
-import StoryData from "../mocked_data/Characters.json";
+import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
+import Word from "./Word";
 
-const CharacterLine: React.FC = () => {
+interface CharacterLine {
+  lineText: string;
+  imageLink: string;
+}
+const CharacterLine: React.FC<CharacterLine> = props => {
+  const [lineWords, setLineWords] = useState([" "]);
+
+  useEffect(() => {
+    setLineWords(props.lineText.split(" "));
+  }, [props.lineText]);
+
   return (
     <div className="character-line">
-      <Avatar image={StoryData[0].avatar_link} />
+      <Avatar image={props.imageLink} />
+      <span className="character-line__text">
+        {lineWords.map((word: string) => {
+          return <Word word={word} />;
+        })}
+      </span>
     </div>
   );
 };
