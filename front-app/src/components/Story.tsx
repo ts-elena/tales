@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CharacterLine from "./CharacterLine";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 interface IStory {
   line: string;
@@ -8,7 +9,7 @@ interface IStory {
 }
 
 interface ICharacter {
-  character: string;
+  [character: string]: string;
 }
 
 interface IParamTypes {
@@ -17,48 +18,42 @@ interface IParamTypes {
 
 const Story: React.FC = (IStoryProps, IStoryState) => {
   const [characters, setCharacters] = useState<Array<ICharacter>>([]);
-  const [storyLines, setStoryLines] = useState<Array<Object>>([]);
+  const [storyLines, setStoryLines] = useState<Array<IStory>>([]);
 
   let { id } = useParams<IParamTypes>();
 
   useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
-    fetch("http://localhost:3000/characters", { signal: signal })
-      .then(response => {
-        return response.json();
-      })
-      .then(resp => {
-        setCharacters(resp);
-      })
-      .catch(error => error)
-      .then(() =>
-        fetch("http://localhost:3000/stories")
-          .then(response => {
-            return response.json();
-          })
-          .then(resp => {
-            setStoryLines(resp[id]);
-          })
-          .catch(error => error)
-      );
-    return () => {
-      abortController.abort();
+    const fetchData = async () => {
+      await Promise.all([
+        (async () => {
+          const { data } = await axios.get("http://localhost:3000/characters");
+          setCharacters(data);
+        })(),
+        (async () => {
+          const { data } = await axios.get("http://localhost:3000/stories");
+          setStoryLines(data[id]);
+        })()
+      ]);
     };
+
+    fetchData();
   }, []);
 
-  function findCharacterAvatarLink(characterName: string): any {
-    let avatarLink: any = "";
+  function findCharacterAvatarLink(characterName: string): string {
+    let avatarLink: string = "";
     try {
-      avatarLink = characters.filter((element: any) =>
+      let avatarLinkSearchResult = characters.find((element: any) =>
         element.hasOwnProperty(characterName)
-      )[0];
+      );
+      avatarLinkSearchResult
+        ? (avatarLink = avatarLinkSearchResult[characterName])
+        : (avatarLink = "Not found");
     } catch (e) {
       console.log(
-        "error during searching. Seems there's no key " + characterName
+        "Error during the search. Seems there's no key " + characterName
       );
     }
-    return Object.values(avatarLink)[0];
+    return avatarLink;
   }
 
   return (

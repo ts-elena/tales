@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import StoryCover from "../components/StoryCover";
-import { getStoriesCovers } from "./../Utils/WebRequests";
-import { stringify } from "querystring";
 
 interface StoryCover {
   name: string;

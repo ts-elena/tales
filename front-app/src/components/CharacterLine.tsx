@@ -1,26 +1,65 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
-import Word from "./Word";
+import InteractiveElement from "./InteractiveLineElement";
+import LineElement from "./LineElement";
 
 interface CharacterLine {
   lineText: string;
   imageLink: string;
 }
 const CharacterLine: React.FC<CharacterLine> = props => {
-  const [lineWords, setLineWords] = useState([" "]);
+  const [lineWords, setLineWords] = useState<JSX.Element[]>();
+
+  function createLine() {
+    let wordsWithPunctuation = props.lineText.split(" ");
+    let wordWithNoPunctuationExpression = new RegExp(/\b\w+/);
+    let wordsWithPunctuationExpression = new RegExp(
+      /\b\w+[!'\\#$%&'()*+,.-./:;<=>?@\\[\\\]^_‘{|}~]/
+    );
+    let punctuationMarks = new RegExp(/[^\w\s\n\t]/);
+    let wordsWithApostrofies = new RegExp(/(?=\S*['-])([a-zA-Z'-]+)/);
+    let lineElements = [];
+
+    for (let word of wordsWithPunctuation) {
+      if (wordsWithApostrofies.test(word)) {
+        lineElements.push(
+          <InteractiveElement
+            word={word.match(wordsWithApostrofies)?.[0] + " "}
+          />
+        );
+        setLineWords(lineElements);
+      } else if (wordsWithPunctuationExpression.test(word)) {
+        lineElements.push(
+          <InteractiveElement
+            word={word.match(wordWithNoPunctuationExpression)?.[0]}
+          />
+        );
+        lineElements.push(
+          <LineElement word={word.match(punctuationMarks)?.[0] + " "} />
+        );
+        setLineWords(lineElements);
+      } else if (
+        wordWithNoPunctuationExpression.test(word) &&
+        !wordsWithPunctuationExpression.test(word)
+      ) {
+        lineElements.push(
+          <InteractiveElement
+            word={word.match(wordWithNoPunctuationExpression)?.[0] + " "}
+          />
+        );
+        setLineWords(lineElements);
+      }
+    }
+  }
 
   useEffect(() => {
-    setLineWords(props.lineText.split(" "));
-  }, [props.lineText]);
+    createLine();
+  }, []);
 
   return (
     <div className="character-line">
       <Avatar image={props.imageLink} />
-      <span className="character-line__text">
-        {lineWords.map((word: string) => {
-          return <Word word={word} />;
-        })}
-      </span>
+      <span className="character-line__text">{lineWords}</span>
     </div>
   );
 };
