@@ -1,14 +1,19 @@
 .navigation {
-  font-size: 17px;
-  background-color: $color-grey-ligth;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-family: "Baloo 2", cursive;
+  font-size: 2.3rem;
+  height: 4rem;
+  border-bottom: 1px solid $color-grey-ligth;
+  background-color: $color-white;
+  padding: 1rem;
 
-  .navigation__link {
-    margin: 5px 5px;
-    float: left;
-    text-decoration: none;
-    text-transform: uppercase;
+  .navigation-link-box {
+    .navigation-link-box__link {
+      margin: 1rem 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
   }
 }

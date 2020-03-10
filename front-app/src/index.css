@@ -7183,19 +7183,43 @@ body {
 
 .character-line {
   font-size: 2rem;
-  margin: 1rem; }
+  margin: 3.5rem; }
   .character-line .character-line__text {
-    margin: inherit; }
+    margin: 1rem; }
+  .character-line .interactive-word__hover {
+    border-bottom: 2px dotted #777;
+    cursor: pointer; }
+
+.story-cover {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 3rem;
+  width: 20rem; }
+  .story-cover .story-cover__image img {
+    border-radius: 1rem; }
+  .story-cover .story-cover__text {
+    margin: 1rem 0 1rem 0;
+    line-height: 2.5rem;
+    color: #1b1b1b;
+    text-align: center;
+    font-family: "Baloo 2", cursive;
+    font-size: 2.5rem;
+    width: 20rem;
+    font-size: 2rem; }
 
 .navigation {
-  font-size: 17px;
-  background-color: #eee;
-  list-style: none;
-  padding: 0;
-  margin: 0; }
-  .navigation .navigation__link {
-    margin: 5px 5px;
-    float: left;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-family: "Baloo 2", cursive;
+  font-size: 2.3rem;
+  height: 4rem;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+  padding: 1rem; }
+  .navigation .navigation-link-box .navigation-link-box__link {
+    margin: 1rem 1rem;
     text-decoration: none;
     text-transform: uppercase; }
 
@@ -7206,7 +7230,7 @@ body {
     margin: 2rem;
     display: flex;
     flex-wrap: wrap;
-    width: 50vw; }
+    width: 55vw; }
 
 .story-page {
   margin-left: 30vw;

@@ -1,8 +1,13 @@
 .character-line {
   font-size: 2rem;
-  margin: 1rem;
+  margin: 3.5rem;
 
   .character-line__text {
-    margin: inherit;
+    margin: 1rem;
+  }
+
+  .interactive-word__hover {
+    border-bottom: 2px dotted $color-grey-dark;
+    cursor: pointer;
   }
 }

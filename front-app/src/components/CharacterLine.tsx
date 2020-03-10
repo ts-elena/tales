@@ -11,16 +11,18 @@ const CharacterLine: React.FC<CharacterLine> = props => {
   const [lineWords, setLineWords] = useState<JSX.Element[]>();
 
   function createLine() {
-    let wordsWithPunctuation = props.lineText.split(" ");
+    let wordsSplitedBySpace = props.lineText.split(" ");
+
     let wordWithNoPunctuationExpression = new RegExp(/\b\w+/);
     let wordsWithPunctuationExpression = new RegExp(
       /\b\w+[!'\\#$%&'()*+,.-./:;<=>?@\\[\\\]^_‘{|}~]/
     );
     let punctuationMarks = new RegExp(/[^\w\s\n\t]/);
     let wordsWithApostrofies = new RegExp(/(?=\S*['-])([a-zA-Z'-]+)/);
+
     let lineElements = [];
 
-    for (let word of wordsWithPunctuation) {
+    for (let word of wordsSplitedBySpace) {
       if (wordsWithApostrofies.test(word)) {
         lineElements.push(
           <InteractiveElement
@@ -32,9 +34,7 @@ const CharacterLine: React.FC<CharacterLine> = props => {
         lineElements.push(
           <InteractiveElement
             word={word.match(wordWithNoPunctuationExpression)?.[0]}
-          />
-        );
-        lineElements.push(
+          />,
           <LineElement word={word.match(punctuationMarks)?.[0] + " "} />
         );
         setLineWords(lineElements);
