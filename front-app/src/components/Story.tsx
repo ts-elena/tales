@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getStoryData } from "./../Utils/WebRequests";
 import CharacterLine from "./CharacterLine";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -29,9 +30,10 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
           const { data } = await axios.get("http://localhost:3000/characters");
           setCharacters(data);
         })(),
-        (async () => {
-          const { data } = await axios.get("http://localhost:3000/stories");
-          setStoryLines(data[id]);
+        (() => {
+          getStoryData(id).then(response => {
+            setStoryLines(response);
+          });
         })()
       ]);
     };

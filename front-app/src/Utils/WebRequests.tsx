@@ -1,16 +1,16 @@
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-export function getStoriesData(abortController: AbortController): [] {
-  const signal = abortController.signal;
-  fetch(`localhost:3000/stories`, { signal: signal })
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    })
-    .catch(error => {
-      return error;
-    });
-  return [];
+export async function getStoryData(id: string) {
+  const { data } = await axios.get("http://localhost:3000/stories");
+  return data[id];
+}
+
+export async function getTranslation(textToTranslate: string) {
+  const { data } = await axios.get(
+    `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200315T160048Z.dedf3bba1e50b1e2.a64656b485b813cf25d248e159d64421bf78ebc9&text=${textToTranslate}&lang=en-ru`
+  );
+  return data["text"];
 }
 
 export function getStoriesCovers(abortController: AbortController) {

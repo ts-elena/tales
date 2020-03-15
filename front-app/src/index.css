@@ -7183,12 +7183,19 @@ body {
 
 .character-line {
   font-size: 2rem;
-  margin: 3.5rem; }
+  margin: 3.5rem;
+  display: flex; }
   .character-line .character-line__text {
-    margin: 1rem; }
-  .character-line .interactive-word__hover {
-    border-bottom: 2px dotted #777;
-    cursor: pointer; }
+    margin: 1rem;
+    display: flex; }
+
+.hint {
+  background-color: black;
+  font-weight: 500; }
+
+.interactive-element .interactive-element__word--hover {
+  border-bottom: 2px dotted #777;
+  cursor: pointer; }
 
 .story-cover {
   display: flex;
