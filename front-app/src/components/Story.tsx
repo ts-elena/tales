@@ -20,6 +20,7 @@ interface IParamTypes {
 const Story: React.FC = (IStoryProps, IStoryState) => {
   const [characters, setCharacters] = useState<Array<ICharacter>>([]);
   const [storyLines, setStoryLines] = useState<Array<IStory>>([]);
+  const [lineIndex, setLineIndex] = useState<number>(0);
 
   let { id } = useParams<IParamTypes>();
 

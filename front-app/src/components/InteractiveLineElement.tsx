@@ -1,49 +1,65 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { getTranslation } from "./../Utils/WebRequests";
 import Hint from "./Hint";
 
+interface axesValues {
+  x: string;
+  y: string;
+}
 const InteractiveLineElement: React.FC<any> = props => {
   const [isHintVisible, setIsHintVisible] = useState<boolean>(false);
-  const [positionLeft, setPositionLeft] = useState<string>("0");
-  const [positionTop, setPositionTop] = useState<string>("0");
+  const [hintText, setHintText] = useState<string>("");
+  const [test, setTest] = useState<axesValues>();
 
   const interactiveElementRef = useRef<HTMLSpanElement>(null);
 
   const hintStyles = {
     position: "absolute",
     right: "auto",
-    left: positionLeft + "px",
-    top: positionTop + "px"
+    left: test?.x + "px",
+    top: test?.y + "px"
   } as React.CSSProperties;
 
   const positionHint = () => {
     const wordPosition = interactiveElementRef.current?.getBoundingClientRect();
-    const width = wordPosition?.width ? wordPosition?.width / 2 : 0;
-    const x = wordPosition?.left ? wordPosition.x : 0;
-    const y = wordPosition?.top ? wordPosition.y - 30 : 0;
-    setPositionLeft(x.toString());
-    setPositionTop(y.toString());
+    const axesValues = {
+      x: (wordPosition?.left ? wordPosition.x : 0).toString(),
+      y: (wordPosition?.top ? wordPosition.y - 30 : 0).toString()
+    };
+    setTest(axesValues);
   };
 
-  const handleMouseEnter = () => {
+  let filterTimeout: NodeJS.Timeout;
+
+  function revealHint() {
     positionHint();
     setIsHintVisible(true);
+  }
+
+  const handleMouseEnter = () => {
+    if (hintText === "") {
+      filterTimeout = setInterval(() => {
+        getTranslation(props.word).then(data => setHintText(data[0]));
+        revealHint();
+        clearInterval(filterTimeout);
+      }, 500);
+    } else {
+      revealHint();
+    }
   };
 
   const handleMouseLeave = () => {
+    clearInterval(filterTimeout);
     setIsHintVisible(false);
   };
 
   return (
-    <span
-      className="interactive-element"
-      onMouseEnter={() => handleMouseEnter()}
-      onMouseLeave={() => handleMouseLeave()}
-    >
+    <span className="interactive-element">
       {isHintVisible && (
         <Hint
           className="interactive-element__hint"
           style={hintStyles}
-          textToTranslate={props.word}
+          hintText={hintText}
         />
       )}
       <span
@@ -53,6 +69,8 @@ const InteractiveLineElement: React.FC<any> = props => {
             : "interactive-element__word"
         }
         ref={interactiveElementRef}
+        onMouseLeave={() => handleMouseLeave()}
+        onMouseEnter={() => handleMouseEnter()}
       >
         {props.word}
       </span>
