@@ -1,9 +1,7 @@
 import React, { useState } from "react";
+import { IAvatar } from "./../Utils/Interfaces";
 
-interface Avatar {
-  image: string;
-}
-const CharacterLine: React.FC<Avatar> = props => {
+const CharacterLine: React.FC<IAvatar> = props => {
   return (
     <span className="avatar">
       <img src={props.image} alt="avatar" className="avatar__image" />

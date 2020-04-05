@@ -10,8 +10,15 @@
   padding: 1rem;
 
   .navigation-link-box {
+    display: flex;
+
     .navigation-link-box__link {
-      margin: 1rem 1rem;
+      .link_icon {
+        width: 3.3rem;
+        margin: 0.5rem 0.5rem 1rem 1rem;
+      }
+
+      margin: 0 1rem;
       text-decoration: none;
       text-transform: uppercase;
     }

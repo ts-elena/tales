@@ -7189,6 +7189,15 @@ body {
     margin: 1rem;
     display: flex; }
 
+.green_button {
+  font-size: 2.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-family: inherit;
+  border: none;
+  background-color: #acd6a2;
+  color: #5e5d5d; }
+
 .hint {
   background-color: black;
   font-weight: 500; }
@@ -7215,6 +7224,11 @@ body {
     width: 20rem;
     font-size: 2rem; }
 
+.content_footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 30vw 10vw; }
+
 .navigation {
   display: flex;
   align-content: center;
@@ -7225,10 +7239,15 @@ body {
   border-bottom: 1px solid #e5e5e5;
   background-color: #fff;
   padding: 1rem; }
-  .navigation .navigation-link-box .navigation-link-box__link {
-    margin: 1rem 1rem;
-    text-decoration: none;
-    text-transform: uppercase; }
+  .navigation .navigation-link-box {
+    display: flex; }
+    .navigation .navigation-link-box .navigation-link-box__link {
+      margin: 0 1rem;
+      text-decoration: none;
+      text-transform: uppercase; }
+      .navigation .navigation-link-box .navigation-link-box__link .link_icon {
+        width: 3.3rem;
+        margin: 0.5rem 0.5rem 1rem 1rem; }
 
 .stories-list {
   display: flex;
@@ -7240,5 +7259,5 @@ body {
     width: 55vw; }
 
 .story-page {
-  margin-left: 30vw;
+  margin: 0 10vw 0 30vw;
   max-height: 30rem; }

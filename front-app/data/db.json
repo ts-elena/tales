@@ -52,16 +52,22 @@
   "stories": {
     "moving-castle-opening": [
       {
+        "illustration": "images/IJustClosedTheShop.jpg",
         "character": "Girl_1",
         "line": "Bettie Sophie, I just closed the shop."
       },
-      { "character": "Girl_1", "line": "I thought you were coming?" },
+      {
+        "illustration": "images/YouShoulComeToo.jpg",
+        "character": "Girl_1",
+        "line": "I thought you were coming?"
+      },
       {
         "character": "Bettie_Sophie",
         "line": "I have to finish this. I hope you enjoy."
       },
       { "character": "Girl_1", "line": "OK, I'm off." },
       {
+        "illustration": "images/LookItsHowlsCastle2.jpg",
         "character": "Girl_1",
         "line": "Let's go girls. Wait up! Isn't anything wrong with my dress, is it? Check it out! Howl's castle is there."
       },
@@ -70,6 +76,7 @@
         "line": "Yeah? The castle? Where? It's over there! Wow! So close!"
       },
       {
+        "illustration": "images/IWonderIfHowlsInTown.jpg",
         "character": "Girl_3",
         "line": "Oh, my... I wonder if Howl is in town."
       },
@@ -82,40 +89,49 @@
         "line": "Have you heard of a girl, Martha, who lives in South town? Her heart was stolen by Howl."
       },
       {
+        "illustration": "images/HeIsNotGoingToWantYours.jpg",
         "character": "Girl_3",
         "line": "I'm scared... Don't worry. He won't go after yours."
       },
       { "character": "Girl_1", "line": "Come on, girls! Hurry up!" },
-      { "character": "Girl_2", "line": "How do you know that?" },
       {
-        "character": "Girl_3",
+        "illustration": "images/BettieLeaves.jpg",
+        "character": "Soldier_1",
         "line": "Hey, you, little mouse. Are you looking for something?"
       },
-      { "character": "Mouse_Moving_Castle", "line": "No, sir. Nothing." },
       {
-        "character": "Girl_1",
+        "illustration": "images/HeyThereLittleMouse.jpg",
+        "character": "Bettie_Sophie",
+        "line": "No, sir. Nothing."
+      },
+      {
+        "character": "Soldier_2",
         "line": "Then, how about having a cup of tea with us?"
       },
       {
-        "character": "Mouse_Moving_Castle",
+        "character": "Bettie_Sophie",
         "line": "No thanks. I'm in a hurry"
       },
-      { "character": "Girl_2", "line": "She is really a little mouse!" },
+      { "character": "Soldier_2", "line": "She is really a little mouse!" },
       {
-        "character": "Mouse_Moving_Castle",
+        "illustration": "images/HowOldAreYou.jpg",
+        "character": "Soldier_1",
         "line": "Yes.. How old are you? You live in this town?"
       },
-      { "character": "Girl_2", "line": "Please let me go!" },
+      { "character": "Bettie_Sophie", "line": "Please let me go!" },
       {
-        "character": "Girl_3",
+        "character": "Soldier_2",
         "line": "You scared her, it's because of your mustache mate."
       },
       {
-        "character": "Mouse_Moving_Castle",
+        "character": "Soldier_1",
         "line": "She is cute especially when she gets angry."
       },
-      { "character": "Mouse_Moving_Castle", "line": "There you are." },
-      { "character": "Howl", "line": "I was looking for you!" }
+      {
+        "illustration": "images/IAmWithHer.jpg",
+        "character": "Howl",
+        "line": "There you are. I was looking for you!"
+      }
     ]
   }
 }

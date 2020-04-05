@@ -1,9 +1,8 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
-export async function getStoryData(id: string) {
+export async function getStoryData(id: string, lineIndex: number) {
   const { data } = await axios.get("http://localhost:3000/stories");
-  return data[id];
+  return data[id][lineIndex];
 }
 
 export async function getTranslation(textToTranslate: string) {
@@ -24,7 +23,6 @@ export function getStoriesCovers(abortController: AbortController) {
 }
 
 export async function getCharacters() {
-  // const signal = abortController.signal;
   const { data } = await axios.get("http://localhost:3000/characters");
   return data;
 }

@@ -15,10 +15,9 @@ const App: React.FC = () => {
         <Switch>
           <PrivateRoute exact path="/stories/:id" children={<StoryPage />} />
           <PrivateRoute exact path="/stories" children={<StoriesListPage />} />
-          <PrivateRoute exact path="/test" children={<Test />} />
           <PrivateRoute exact path="/words" />
           <PrivateRoute exact path="/profile"></PrivateRoute>
-          <Route exact path="/home">
+          <Route exact path="/">
             I am home page
           </Route>
         </Switch>
