@@ -5,7 +5,6 @@ import LandingPage from "./pages/LandingPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./Utils/PrivateRoute";
 import StoryPage from "./pages/StoryPage";
-import Test from "./pages/Test";
 
 const App: React.FC = () => {
   return (
