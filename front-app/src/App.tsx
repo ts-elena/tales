@@ -1,7 +1,6 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import StoriesListPage from "./pages/StoriesListPage";
 import NavigationPanel from "./components/NavigationPanel";
-import LandingPage from "./pages/LandingPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./Utils/PrivateRoute";
 import StoryPage from "./pages/StoryPage";
@@ -18,6 +17,12 @@ const App: React.FC = () => {
           <PrivateRoute exact path="/profile"></PrivateRoute>
           <Route exact path="/">
             I am home page
+          </Route>
+          <Route exact path="/login">
+            I am login page
+          </Route>
+          <Route exact path="*">
+            Sorry, the page is not found
           </Route>
         </Switch>
       </Router>

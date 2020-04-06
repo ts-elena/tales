@@ -4,7 +4,8 @@ import {
   IStory,
   ICharacter,
   IStoryPageParamTypesHook
-} from "./../Utils/Interfaces";
+} from "../Interfaces/Interfaces";
+import { findCharacterAvatarLink } from "./../Utils/UtilityFunctions";
 import CharacterLine from "./CharacterLine";
 import ContentFooter from "./ContentFooter";
 import { useParams } from "react-router-dom";
@@ -13,53 +14,32 @@ import GreenButton from "./GreenButton";
 const Story: React.FC = (IStoryProps, IStoryState) => {
   const [characters, setCharacters] = useState<Array<ICharacter>>([]);
   const [storyLines, setStoryLines] = useState<Array<IStory>>([]);
-  // Как вариант, можно вообще это не хранить и в строке 28 передавать storyLines.Length
-  // Это позволит выпилить и increaseCounter(), getLineData нврн тоже понадобится,
-  // всё можно в useEffect будет сделать но будет менее очевидно, наверное
   const [lineIndex, setLineIndex] = useState<number>(0);
 
   let { id } = useParams<IStoryPageParamTypesHook>();
 
-  function increaseCounter() {
-    let nextIndex = lineIndex + 1;
-    setLineIndex(nextIndex);
+  function increaseCounter(): void {
+    setLineIndex(lineIndex + 1);
   }
 
-  function getLineData() {
-    getStoryData(id, lineIndex).then(response => {
-      let existingLines = storyLines;
-      setStoryLines(existingLines.concat(response));
-      increaseCounter();
-    });
+  async function getLineData() {
+    const storyData = await getStoryData(id, lineIndex);
+    setStoryLines(storyLines.concat(storyData));
+    increaseCounter();
   }
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       await Promise.all([
-        getCharacters().then(response => setCharacters(response)),
+        (async () => {
+          const allCharacters = await getCharacters();
+          setCharacters(allCharacters);
+        })(),
         getLineData()
       ]);
-      increaseCounter();
-    };
+    }
     fetchData();
   }, []);
-
-  function findCharacterAvatarLink(characterName: string): string {
-    let avatarLink: string = "";
-    try {
-      let avatarLinkSearchResult = characters.find((element: any) =>
-        element.hasOwnProperty(characterName)
-      );
-      avatarLinkSearchResult
-        ? (avatarLink = avatarLinkSearchResult[characterName])
-        : (avatarLink = "Not found");
-    } catch (e) {
-      console.log(
-        "Error during the search. Seems there's no key " + characterName
-      );
-    }
-    return avatarLink;
-  }
 
   return (
     <div className="story">
@@ -67,7 +47,7 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
         return (
           <CharacterLine
             lineText={story.line}
-            imageLink={findCharacterAvatarLink(story.character)}
+            imageLink={findCharacterAvatarLink(story.character, characters)}
           />
         );
       })}

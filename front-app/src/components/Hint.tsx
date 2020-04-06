@@ -1,10 +1,6 @@
-import React, { useEffect, useState, Ref, ReactNode } from "react";
+import React from "react";
+import { IHintProps } from "../Interfaces/Interfaces";
 
-interface IHintProps {
-  hintText: string;
-  style: object;
-  className: string;
-}
 const Hint: React.FC<IHintProps> = props => {
   return <div style={props.style}>{props.hintText}</div>;
 };

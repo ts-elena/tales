@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StoryCover from "../components/StoryCover";
+import { IStoryCover } from "../Interfaces/Interfaces";
 
-interface StoryCover {
-  name: string;
-  image: string;
-  id: string;
-}
 const StoriesListPage: React.FC = () => {
   const [storyCover, setStoryCover] = useState([]);
 
@@ -26,7 +22,7 @@ const StoriesListPage: React.FC = () => {
   return (
     <div className="stories-list">
       <div className="stories-list__container">
-        {storyCover.map((story: StoryCover) => (
+        {storyCover.map((story: IStoryCover) => (
           <StoryCover
             key={story.id}
             id={story.id}

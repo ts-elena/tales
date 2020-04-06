@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { IAvatar } from "./../Utils/Interfaces";
+import React from "react";
+import { IAvatar } from "../Interfaces/Interfaces";
 
 const CharacterLine: React.FC<IAvatar> = props => {
   return (
     <span className="avatar">
-      <img src={props.image} alt="avatar" className="avatar__image" />
+      <img src={props.imageUri} alt="avatar" className="avatar__image" />
     </span>
   );
 };

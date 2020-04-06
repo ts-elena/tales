@@ -1,20 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import IconedText from "./IconedText";
+import IconedLink from "./IconedLink";
 
 const NavigationPanel: React.FC = () => {
   return (
     <ul className="navigation clearfix">
       <div className="navigation-link-box">
-        <Link className="navigation-link-box__link" to="/stories">
-          <IconedText image="/icons/story.svg" text="Stories" />
-        </Link>
-        <Link className="navigation-link-box__link" to="/words">
-          <IconedText image="/icons/dictionary.svg" text="Words" />
-        </Link>
-        <Link className="navigation-link-box__link" to="/profile">
-          <IconedText image="/icons/student.svg" text="Profile" />
-        </Link>
+        <IconedLink path="/stories" icon="/icons/story.svg" text="Stories" />
+        <IconedLink path="/words" icon="/icons/dictionary.svg" text="Words" />
+        <IconedLink path="/profile" icon="/icons/student.svg" text="Profile" />
       </div>
     </ul>
   );

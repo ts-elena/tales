@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import InteractiveElement from "./InteractiveLineElement";
 import LineElement from "./LineElement";
+import { ICharacterLine } from "../Interfaces/Interfaces";
 import {
   wordsWithApostrofies,
   wordsWithPunctuationExpression,
@@ -9,11 +10,7 @@ import {
   punctuationMarks
 } from "./../Utils/RegexExpressions";
 
-interface CharacterLine {
-  lineText: string;
-  imageLink: string;
-}
-const CharacterLine: React.FC<CharacterLine> = props => {
+const CharacterLine: React.FC<ICharacterLine> = props => {
   const [lineWords, setLineWords] = useState<JSX.Element[]>();
 
   function createLine() {
@@ -63,7 +60,7 @@ const CharacterLine: React.FC<CharacterLine> = props => {
 
   return (
     <div className="character-line">
-      <Avatar image={props.imageLink} />
+      <Avatar imageUri={props.imageLink} />
       <span className="character-line__text">{lineWords}</span>
     </div>
   );
