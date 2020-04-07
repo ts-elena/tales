@@ -16,7 +16,7 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
   const [storyLines, setStoryLines] = useState<Array<IStory>>([]);
   const [lineIndex, setLineIndex] = useState<number>(0);
 
-  let { id } = useParams<IStoryPageParamTypesHook>();
+  const { id } = useParams<IStoryPageParamTypesHook>();
 
   function increaseCounter(): void {
     setLineIndex(lineIndex + 1);

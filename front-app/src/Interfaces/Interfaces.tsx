@@ -1,14 +1,23 @@
 export interface IStory {
+  id: string;
+  image: string;
   line: string;
   character: string;
 }
 
 export interface ICharacter {
-  [character: string]: string;
+  id: string;
+  name: string;
+  image: string;
 }
 
 export interface IStoryPageParamTypesHook {
   id: string;
+}
+
+export interface IAxesValues {
+  x: string;
+  y: string;
 }
 
 export interface IAvatar {

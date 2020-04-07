@@ -6,12 +6,9 @@ export function findCharacterAvatarLink(
 ): string {
   let avatarLink: string = "";
   try {
-    let avatarLinkSearchResult = characters.find((element: any) =>
-      element.hasOwnProperty(characterName)
-    );
-    avatarLinkSearchResult
-      ? (avatarLink = avatarLinkSearchResult[characterName])
-      : (avatarLink = "Not found");
+    avatarLink =
+      characters.find((element: ICharacter) => element.name === characterName)
+        ?.image || "Not Found";
   } catch (e) {
     console.log(
       "Error during the search. Seems there's no key " + characterName

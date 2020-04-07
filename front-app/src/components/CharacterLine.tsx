@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Avatar from "./Avatar";
 import InteractiveElement from "./InteractiveLineElement";
 import LineElement from "./LineElement";
@@ -11,12 +11,10 @@ import {
 } from "./../Utils/RegexExpressions";
 
 const CharacterLine: React.FC<ICharacterLine> = props => {
-  const [lineWords, setLineWords] = useState<JSX.Element[]>();
-
   function createLine() {
-    let wordsSplitedBySpace = props.lineText.split(" ");
+    const wordsSplitedBySpace: string[] = props.lineText.split(" ");
     let lineElements = [];
-    let spaceElement = <span>&nbsp;</span>;
+    const spaceElement: JSX.Element = <span>&nbsp;</span>;
 
     for (let word of wordsSplitedBySpace) {
       if (wordsWithApostrofies.test(word)) {
@@ -51,17 +49,13 @@ const CharacterLine: React.FC<ICharacterLine> = props => {
         continue;
       }
     }
-    setLineWords(lineElements);
+    return lineElements;
   }
-
-  useEffect(() => {
-    createLine();
-  }, []);
 
   return (
     <div className="character-line">
       <Avatar imageUri={props.imageLink} />
-      <span className="character-line__text">{lineWords}</span>
+      <span className="character-line__text">{createLine()}</span>
     </div>
   );
 };

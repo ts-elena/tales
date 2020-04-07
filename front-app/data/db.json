@@ -1,11 +1,30 @@
 {
   "characters": [
-    { "Girl_1": "/images/Girl_1.jfif" },
-    { "Girl_2": "/images/Girl_2.jfif" },
-    { "Girl_3": "/images/Girl_3.jfif" },
-    { "Bettie_Sophie": "/images/Bettie_Sophie.jfif" },
-    { "Mouse_Moving_Castle": "/images/Mouse_Moving_Castle.jpeg" },
-    { "Howl": "/images/Howl.jfif" }
+    {
+      "id": "1",
+      "name": "Girl_1",
+      "image": "/images/Girl_1.jfif"
+    },
+    {
+      "id": "2",
+      "name": "Girl_2",
+      "image": "/images/Girl_2.jfif"
+    },
+    {
+      "id": "3",
+      "name": "Girl_3",
+      "image": "/images/Girl_3.jfif"
+    },
+    {
+      "id": "4",
+      "name": "Sophie",
+      "image": "/images/Sophie.jfif"
+    },
+    {
+      "id": "5",
+      "name": "Howl",
+      "image": "/images/Howl.jfif"
+    }
   ],
   "stories-covers": [
     {
@@ -52,82 +71,107 @@
   "stories": {
     "moving-castle-opening": [
       {
+        "id": "1",
         "illustration": "images/IJustClosedTheShop.jpg",
         "character": "Girl_1",
         "line": "Bettie Sophie, I just closed the shop."
       },
       {
+        "id": "2",
         "illustration": "images/YouShoulComeToo.jpg",
         "character": "Girl_1",
         "line": "I thought you were coming?"
       },
       {
-        "character": "Bettie_Sophie",
+        "id": "3",
+        "character": "Sophie",
         "line": "I have to finish this. I hope you enjoy."
       },
-      { "character": "Girl_1", "line": "OK, I'm off." },
+      { "id": "4", "character": "Girl_1", "line": "OK, I'm off." },
       {
+        "id": "5",
         "illustration": "images/LookItsHowlsCastle2.jpg",
         "character": "Girl_1",
         "line": "Let's go girls. Wait up! Isn't anything wrong with my dress, is it? Check it out! Howl's castle is there."
       },
       {
+        "id": "6",
         "character": "Girl_2",
         "line": "Yeah? The castle? Where? It's over there! Wow! So close!"
       },
       {
+        "id": "7",
         "illustration": "images/IWonderIfHowlsInTown.jpg",
         "character": "Girl_3",
         "line": "Oh, my... I wonder if Howl is in town."
       },
       {
+        "id": "8",
         "character": "Girl_1",
         "line": "Oh, it's gone! It just hidden in the mist. Didn't you see those battle ships just passed in front of the window?"
       },
       {
+        "id": "9",
         "character": "Girl_2",
         "line": "Have you heard of a girl, Martha, who lives in South town? Her heart was stolen by Howl."
       },
       {
+        "id": "10",
         "illustration": "images/HeIsNotGoingToWantYours.jpg",
         "character": "Girl_3",
         "line": "I'm scared... Don't worry. He won't go after yours."
       },
-      { "character": "Girl_1", "line": "Come on, girls! Hurry up!" },
       {
+        "id": "11",
+        "character": "Girl_1",
+        "line": "Come on, girls! Hurry up!"
+      },
+      {
+        "id": "12",
         "illustration": "images/BettieLeaves.jpg",
         "character": "Soldier_1",
         "line": "Hey, you, little mouse. Are you looking for something?"
       },
       {
+        "id": "13",
         "illustration": "images/HeyThereLittleMouse.jpg",
-        "character": "Bettie_Sophie",
+        "character": "Sophie",
         "line": "No, sir. Nothing."
       },
       {
+        "id": "14",
         "character": "Soldier_2",
         "line": "Then, how about having a cup of tea with us?"
       },
       {
-        "character": "Bettie_Sophie",
+        "id": "15",
+        "character": "Sophie",
         "line": "No thanks. I'm in a hurry"
       },
-      { "character": "Soldier_2", "line": "She is really a little mouse!" },
       {
+        "id": "16",
+        "character": "Soldier_2",
+        "line": "She is really a little mouse!"
+      },
+      {
+        "id": "17",
         "illustration": "images/HowOldAreYou.jpg",
         "character": "Soldier_1",
         "line": "Yes.. How old are you? You live in this town?"
       },
-      { "character": "Bettie_Sophie", "line": "Please let me go!" },
+      { "id": "18", "character": "Sophie", "line": "Please let me go!" },
       {
+        "id": "19",
         "character": "Soldier_2",
         "line": "You scared her, it's because of your mustache mate."
       },
       {
+        "id": "20",
         "character": "Soldier_1",
         "line": "She is cute especially when she gets angry."
       },
       {
+        "id": "21",
         "illustration": "images/IAmWithHer.jpg",
         "character": "Howl",
         "line": "There you are. I was looking for you!"
