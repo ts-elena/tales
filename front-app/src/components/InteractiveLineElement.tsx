@@ -33,7 +33,7 @@ const InteractiveLineElement: React.FC<any> = props => {
     setIsHintVisible(true);
   }
 
-  const handleMouseEnter = () => {
+  function handleMouseEnter() {
     if (hintText === "") {
       filterTimeout = setInterval(() => {
         getTranslation(props.word).then(data => setHintText(data[0]));
@@ -43,12 +43,12 @@ const InteractiveLineElement: React.FC<any> = props => {
     } else {
       revealHint();
     }
-  };
+  }
 
-  const handleMouseLeave = () => {
+  function handleMouseLeave() {
     clearInterval(filterTimeout);
     setIsHintVisible(false);
-  };
+  }
 
   return (
     <span className="interactive-element">

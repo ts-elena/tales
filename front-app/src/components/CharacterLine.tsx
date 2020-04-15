@@ -7,10 +7,10 @@ import {
   wordsWithApostrofies,
   wordsWithPunctuationExpression,
   wordWithNoPunctuationExpression,
-  punctuationMarks
+  punctuationMarks,
 } from "./../Utils/RegexExpressions";
 
-const CharacterLine: React.FC<ICharacterLine> = props => {
+const CharacterLine: React.FC<ICharacterLine> = (props) => {
   function createLine() {
     const wordsSplitedBySpace: string[] = props.lineText.split(" ");
     let lineElements = [];

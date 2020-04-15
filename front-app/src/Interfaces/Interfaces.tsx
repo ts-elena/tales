@@ -5,6 +5,12 @@ export interface IStory {
   character: string;
 }
 
+export interface IStoryProps {
+  id: string;
+  name: string;
+  image: string;
+}
+
 export interface ICharacter {
   id: string;
   name: string;
@@ -49,4 +55,8 @@ export interface IIconedLink {
   path: string;
   icon: string;
   text: string;
+}
+
+export interface IErrorBoundaryState {
+  hasError: boolean;
 }

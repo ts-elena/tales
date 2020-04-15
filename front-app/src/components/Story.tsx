@@ -43,14 +43,12 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
 
   return (
     <div className="story">
-      {storyLines.map((story: any) => {
-        return (
-          <CharacterLine
-            lineText={story.line}
-            imageLink={findCharacterAvatarLink(story.character, characters)}
-          />
-        );
-      })}
+      {storyLines.map((story: any) => (
+        <CharacterLine
+          lineText={story.line}
+          imageLink={findCharacterAvatarLink(story.character, characters)}
+        />
+      ))}
       <ContentFooter children={<GreenButton onClick={() => getLineData()} />} />
     </div>
   );
