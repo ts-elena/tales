@@ -53,8 +53,13 @@ export interface IHintProps {
 
 export interface IIconedLink {
   path: string;
-  icon: string;
+  icon: IIconSet;
   text: string;
+}
+
+interface IIconSet {
+  monoIconPath: string;
+  coloredIconPath: string;
 }
 
 export interface IErrorBoundaryState {

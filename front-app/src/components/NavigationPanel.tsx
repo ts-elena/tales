@@ -5,9 +5,30 @@ const NavigationPanel: React.FC = () => {
   return (
     <ul className="navigation clearfix">
       <div className="navigation-link-box">
-        <IconedLink path="/stories" icon="/icons/story.svg" text="Stories" />
-        <IconedLink path="/words" icon="/icons/dictionary.svg" text="Words" />
-        <IconedLink path="/profile" icon="/icons/student.svg" text="Profile" />
+        <IconedLink
+          path="/stories"
+          icon={{
+            monoIconPath: "/icons/story_mono.svg",
+            coloredIconPath: "/icons/story.svg",
+          }}
+          text="Stories"
+        />
+        <IconedLink
+          path="/words"
+          icon={{
+            monoIconPath: "/icons/dictionary_mono.svg",
+            coloredIconPath: "/icons/dictionary.svg",
+          }}
+          text="Words"
+        />
+        <IconedLink
+          path="/profile"
+          icon={{
+            monoIconPath: "/icons/student_mono.svg",
+            coloredIconPath: "/icons/student.svg",
+          }}
+          text="Profile"
+        />
       </div>
     </ul>
   );

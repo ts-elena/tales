@@ -1,15 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useHistory } from "react-router";
 import { IIconedLink } from "../Interfaces/Interfaces";
 
-const IconedLink: React.FC<IIconedLink> = props => {
+const IconedLink: React.FC<IIconedLink> = (props) => {
+  const [location, setLocation] = useState(useLocation());
+  const history = useHistory();
+
+  history.listen((location) => setLocation(location));
+
   return (
-    <Link className="navigation-link-box__link" to={props.path}>
+    <NavLink
+      className="navigation-link-box__link"
+      to={props.path}
+      activeClassName="active"
+    >
       <div>
-        <img className="link_icon" src={props.icon} alt="icon" />
+        <img
+          className="link_icon"
+          src={
+            location.pathname === props.path
+              ? props.icon.coloredIconPath
+              : props.icon.monoIconPath
+          }
+          alt="icon"
+        />
         {props.text}
       </div>
-    </Link>
+    </NavLink>
   );
 };
 

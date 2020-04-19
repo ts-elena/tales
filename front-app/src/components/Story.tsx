@@ -3,7 +3,7 @@ import { getStoryData, getCharacters } from "./../Utils/WebRequests";
 import {
   IStory,
   ICharacter,
-  IStoryPageParamTypesHook
+  IStoryPageParamTypesHook,
 } from "../Interfaces/Interfaces";
 import { findCharacterAvatarLink } from "./../Utils/UtilityFunctions";
 import CharacterLine from "./CharacterLine";
@@ -15,6 +15,7 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
   const [characters, setCharacters] = useState<Array<ICharacter>>([]);
   const [storyLines, setStoryLines] = useState<Array<IStory>>([]);
   const [lineIndex, setLineIndex] = useState<number>(0);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const { id } = useParams<IStoryPageParamTypesHook>();
 
@@ -23,9 +24,13 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
   }
 
   async function getLineData() {
-    const storyData = await getStoryData(id, lineIndex);
-    setStoryLines(storyLines.concat(storyData));
-    increaseCounter();
+    const storyData: IStory = await getStoryData(id, lineIndex);
+    if (storyData !== undefined) {
+      setStoryLines(storyLines.concat(storyData));
+      increaseCounter();
+    } else {
+      setErrorMessage("Something went wrong");
+    }
   }
 
   useEffect(() => {
@@ -35,7 +40,7 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
           const allCharacters = await getCharacters();
           setCharacters(allCharacters);
         })(),
-        getLineData()
+        getLineData(),
       ]);
     }
     fetchData();
@@ -49,7 +54,12 @@ const Story: React.FC = (IStoryProps, IStoryState) => {
           imageLink={findCharacterAvatarLink(story.character, characters)}
         />
       ))}
-      <ContentFooter children={<GreenButton onClick={() => getLineData()} />} />
+      {storyLines.length !== 0 && (
+        <ContentFooter
+          children={<GreenButton onClick={() => getLineData()} />}
+        />
+      )}
+      {errorMessage && <div>{errorMessage}</div>}
     </div>
   );
 };

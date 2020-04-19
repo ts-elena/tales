@@ -12,10 +12,16 @@ const StoriesListPage: React.FC = () => {
     const signal = abortController.signal;
     fetch(`http://localhost:3000/stories-covers`, { signal: signal })
       .then((response) => {
+        if (!response.ok) {
+          setErrorMessage(response.statusText);
+          throw Error(response.statusText);
+        }
         return response.json();
       })
       .then((data) => setStoryCover(data))
-      .catch((error) => setErrorMessage(error));
+      .catch((error: Error) =>
+        console.log(`The server responded with: ${error.name} ${error.message}`)
+      );
     return () => {
       abortController.abort();
     };
