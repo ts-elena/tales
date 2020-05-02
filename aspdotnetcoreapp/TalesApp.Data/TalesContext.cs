@@ -49,14 +49,14 @@ namespace TalesApp.Data
                 new StorySetsSequence
                 {
                     SetNumber = 0,
-                    StorySetId = storyGuid
+                    StorySetId = storySetGuid
                 }
             );
 
             modelBuilder.Entity<Story>().HasData(
                 new Story
                 {
-                    StorySetId = storyGuid,
+                    StorySetId = storySetGuid,
                     StoryCoverImage = "/images/howls-moving-castle.jfif",
                     StoryName = "Opening Story of Howl's Moving Castle",
                     StoryId = storyGuid
