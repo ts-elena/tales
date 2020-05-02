@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200501184109_addstoryOpeningMovingCastle.cs" />
+    <Compile Remove="Migrations\20200501184109_addstoryOpeningMovingCastle.Designer.cs" />
+    <Compile Remove="Migrations\20200501185859_addstoryOpeningMovingCastle.cs" />
+    <Compile Remove="Migrations\20200501185859_addstoryOpeningMovingCastle.Designer.cs" />
+    <Compile Remove="Migrations\20200502091345_addstoryOpeningMovingCastle.cs" />
+    <Compile Remove="Migrations\20200502091345_addstoryOpeningMovingCastle.Designer.cs" />
+    <Compile Remove="Migrations\20200502092759_fixRelationship.cs" />
+    <Compile Remove="Migrations\20200502092759_fixRelationship.Designer.cs" />
+    <Compile Remove="Migrations\20200502093631_addStory.cs" />
+    <Compile Remove="Migrations\20200502093631_addStory.Designer.cs" />
+    <Compile Remove="Migrations\20200502093759_addStory.cs" />
+    <Compile Remove="Migrations\20200502093759_addStory.Designer.cs" />
+    <Compile Remove="Migrations\20200502093930_addStory.cs" />
+    <Compile Remove="Migrations\20200502093930_addStory.Designer.cs" />
+    <Compile Remove="Migrations\20200502100420_addNewTableSetSequence.cs" />
+    <Compile Remove="Migrations\20200502100420_addNewTableSetSequence.Designer.cs" />
+    <Compile Remove="Migrations\20200502101423_addStory.cs" />
+    <Compile Remove="Migrations\20200502101423_addStory.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TalesApp.Domain\TalesApp.Domain.csproj" />
+  </ItemGroup>
+</Project>
