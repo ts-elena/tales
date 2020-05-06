@@ -10,8 +10,8 @@ using TalesApp.Data;
 namespace TalesApp.Data.Migrations
 {
     [DbContext(typeof(TalesContext))]
-    [Migration("20200501115811_initial")]
-    partial class initial
+    [Migration("20200503195428_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,19 +52,13 @@ namespace TalesApp.Data.Migrations
                     b.Property<Guid>("LineId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("LineId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LineStoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("WordAddedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.HasKey("DictionaryWordId");
 
-                    b.HasIndex("LineId1", "LineStoryId");
+                    b.HasIndex("LineId");
 
                     b.ToTable("DictionaryWords");
                 });
@@ -75,9 +69,6 @@ namespace TalesApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("StoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("CharacterId")
                         .HasColumnType("uniqueidentifier");
 
@@ -85,7 +76,10 @@ namespace TalesApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LineId", "StoryId");
+                    b.Property<Guid>("StoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LineId");
 
                     b.HasIndex("CharacterId");
 
@@ -97,21 +91,12 @@ namespace TalesApp.Data.Migrations
             modelBuilder.Entity("TalesApp.Domain.LineSequence", b =>
                 {
                     b.Property<Guid>("LineId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("LineId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("LineNumber")
+                    b.Property<int>("SequenceNumber")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("LineStoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("LineId");
-
-                    b.HasIndex("LineId1", "LineStoryId");
 
                     b.ToTable("LineSequences");
                 });
@@ -154,11 +139,24 @@ namespace TalesApp.Data.Migrations
                     b.ToTable("StorySets");
                 });
 
+            modelBuilder.Entity("TalesApp.Domain.StorySetsSequence", b =>
+                {
+                    b.Property<Guid>("StorySetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SetNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("StorySetId");
+
+                    b.ToTable("StorySetsSequences");
+                });
+
             modelBuilder.Entity("TalesApp.Domain.DictionaryWord", b =>
                 {
                     b.HasOne("TalesApp.Domain.Line", "Line")
-                        .WithMany("DictionaryWords")
-                        .HasForeignKey("LineId1", "LineStoryId")
+                        .WithMany("DictionaryWord")
+                        .HasForeignKey("LineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -181,8 +179,8 @@ namespace TalesApp.Data.Migrations
             modelBuilder.Entity("TalesApp.Domain.LineSequence", b =>
                 {
                     b.HasOne("TalesApp.Domain.Line", "Line")
-                        .WithMany()
-                        .HasForeignKey("LineId1", "LineStoryId")
+                        .WithOne("LineSequence")
+                        .HasForeignKey("TalesApp.Domain.LineSequence", "LineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -192,6 +190,15 @@ namespace TalesApp.Data.Migrations
                     b.HasOne("TalesApp.Domain.StorySet", "StorySet")
                         .WithMany("Stories")
                         .HasForeignKey("StorySetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TalesApp.Domain.StorySetsSequence", b =>
+                {
+                    b.HasOne("TalesApp.Domain.StorySet", "StorySet")
+                        .WithOne("StorySetsSequence")
+                        .HasForeignKey("TalesApp.Domain.StorySetsSequence", "StorySetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -8,6 +8,10 @@ namespace TalesApp.Domain
 {
     public class Character
     {
+        // Navigation properties
+        public List<Line> Lines { get; set; }
+
+        // Table Columns
         [Key]
         public Guid CharacterId { get; set; }
 
@@ -15,7 +19,5 @@ namespace TalesApp.Domain
         public string CharacterName { get; set; }
 
         public string CharacterAvatar { get; set; }
-
-        public List<Line> Lines { get; set; }
     }
 }

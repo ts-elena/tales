@@ -7,13 +7,15 @@
 
     public class StorySet
     {
+        // Navigation properties
+        public List<Story> Stories { get; set; }
+
+        public StorySetsSequence StorySetsSequence { get; set; }
+
+        // Table Columns
         [Key]
         public Guid StorySetId { get; set; }
 
         public string StorySetName { get; set; }
-
-        public List<Story> Stories { get; set; }
-
-        public StorySetsSequence StorySetsSequence { get; set; }
     }
 }

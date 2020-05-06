@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TalesApp.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,6 +53,24 @@ namespace TalesApp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StorySetsSequences",
+                columns: table => new
+                {
+                    StorySetId = table.Column<Guid>(nullable: false),
+                    SetNumber = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StorySetsSequences", x => x.StorySetId);
+                    table.ForeignKey(
+                        name: "FK_StorySetsSequences_StorySets_StorySetId",
+                        column: x => x.StorySetId,
+                        principalTable: "StorySets",
+                        principalColumn: "StorySetId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Lines",
                 columns: table => new
                 {
@@ -63,7 +81,7 @@ namespace TalesApp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lines", x => new { x.LineId, x.StoryId });
+                    table.PrimaryKey("PK_Lines", x => x.LineId);
                     table.ForeignKey(
                         name: "FK_Lines_Characters_CharacterId",
                         column: x => x.CharacterId,
@@ -83,8 +101,6 @@ namespace TalesApp.Data.Migrations
                 columns: table => new
                 {
                     DictionaryWordId = table.Column<Guid>(nullable: false),
-                    LineId1 = table.Column<Guid>(nullable: false),
-                    LineStoryId = table.Column<Guid>(nullable: false),
                     LineId = table.Column<Guid>(nullable: false),
                     DictionaryWordText = table.Column<string>(nullable: false),
                     WordAddedTime = table.Column<DateTime>(nullable: false)
@@ -93,10 +109,10 @@ namespace TalesApp.Data.Migrations
                 {
                     table.PrimaryKey("PK_DictionaryWords", x => x.DictionaryWordId);
                     table.ForeignKey(
-                        name: "FK_DictionaryWords_Lines_LineId1_LineStoryId",
-                        columns: x => new { x.LineId1, x.LineStoryId },
+                        name: "FK_DictionaryWords_Lines_LineId",
+                        column: x => x.LineId,
                         principalTable: "Lines",
-                        principalColumns: new[] { "LineId", "StoryId" },
+                        principalColumn: "LineId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -105,25 +121,23 @@ namespace TalesApp.Data.Migrations
                 columns: table => new
                 {
                     LineId = table.Column<Guid>(nullable: false),
-                    LineNumber = table.Column<int>(nullable: false),
-                    LineId1 = table.Column<Guid>(nullable: false),
-                    LineStoryId = table.Column<Guid>(nullable: false)
+                    SequenceNumber = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LineSequences", x => x.LineId);
                     table.ForeignKey(
-                        name: "FK_LineSequences_Lines_LineId1_LineStoryId",
-                        columns: x => new { x.LineId1, x.LineStoryId },
+                        name: "FK_LineSequences_Lines_LineId",
+                        column: x => x.LineId,
                         principalTable: "Lines",
-                        principalColumns: new[] { "LineId", "StoryId" },
+                        principalColumn: "LineId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DictionaryWords_LineId1_LineStoryId",
+                name: "IX_DictionaryWords_LineId",
                 table: "DictionaryWords",
-                columns: new[] { "LineId1", "LineStoryId" });
+                column: "LineId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lines_CharacterId",
@@ -134,11 +148,6 @@ namespace TalesApp.Data.Migrations
                 name: "IX_Lines_StoryId",
                 table: "Lines",
                 column: "StoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LineSequences_LineId1_LineStoryId",
-                table: "LineSequences",
-                columns: new[] { "LineId1", "LineStoryId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stories_StorySetId",
@@ -153,6 +162,9 @@ namespace TalesApp.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "LineSequences");
+
+            migrationBuilder.DropTable(
+                name: "StorySetsSequences");
 
             migrationBuilder.DropTable(
                 name: "Lines");

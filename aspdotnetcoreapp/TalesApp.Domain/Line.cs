@@ -8,9 +8,16 @@ namespace TalesApp.Domain
 {
     public class Line
     {
+        // Navigation properties
+        public LineSequence LineSequence { get; set; }
+
         public Story Story { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Character Character { get; set; }
+
+        public List<DictionaryWord> DictionaryWord { get; set; }
+
+        // Table Columns
         [Key]
         public Guid LineId { get; set; }
 
@@ -21,9 +28,5 @@ namespace TalesApp.Domain
         public string LineContent { get; set; }
 
         public Guid CharacterId { get; set; }
-
-        public Character Character { get; set; }
-
-        public List<DictionaryWord> DictionaryWords { get; set; }
     }
 }

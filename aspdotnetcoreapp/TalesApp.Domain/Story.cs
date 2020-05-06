@@ -7,6 +7,12 @@ namespace TalesApp.Domain
 {
     public class Story
     {
+        // Navigation Properties
+        public StorySet StorySet { get; set; }
+
+        public List<Line> Lines { get; set; }
+
+        // Table Columns
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Guid StoryId { get; set; }
@@ -18,9 +24,5 @@ namespace TalesApp.Domain
         public string StoryCoverImage { get; set; }
 
         public Guid StorySetId { get; set; }
-
-        public StorySet StorySet { get; set; }
-
-        public List<Line> Lines { get; set; }
     }
 }

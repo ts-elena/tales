@@ -32,36 +32,7 @@ namespace TalesApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Line>().HasKey(line => new { line.LineId, line.StoryId });
-
-            var storySetGuid = Guid.NewGuid();
-
-            var storyGuid = Guid.NewGuid();
-
-
-            modelBuilder.Entity<StorySet>().HasData(new StorySet
-            {
-                StorySetId = storySetGuid,
-                StorySetName = "Set 1"
-            });
-
-            modelBuilder.Entity<StorySetsSequence>().HasData(
-                new StorySetsSequence
-                {
-                    SetNumber = 0,
-                    StorySetId = storySetGuid
-                }
-            );
-
-            modelBuilder.Entity<Story>().HasData(
-                new Story
-                {
-                    StorySetId = storySetGuid,
-                    StoryCoverImage = "/images/howls-moving-castle.jfif",
-                    StoryName = "Opening Story of Howl's Moving Castle",
-                    StoryId = storyGuid
-                }
-            );
+            // modelBuilder.Seed();
         }
     }
 }

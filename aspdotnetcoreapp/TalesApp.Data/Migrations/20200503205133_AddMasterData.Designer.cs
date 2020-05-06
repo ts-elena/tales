@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalesApp.Data;
 
 namespace TalesApp.Data.Migrations
 {
     [DbContext(typeof(TalesContext))]
-    partial class TalesContextModelSnapshot : ModelSnapshot
+    [Migration("20200503205133_AddMasterData")]
+    partial class AddMasterData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

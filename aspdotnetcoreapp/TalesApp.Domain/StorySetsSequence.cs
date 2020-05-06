@@ -10,7 +10,7 @@ namespace TalesApp.Domain
         [Required]
         public int SetNumber { get; set; }
 
-        public List<StorySet> StorySets { get; set; }
+        public StorySet StorySet { get; set; }
 
         [Key]
         public Guid StorySetId { get; set; }

@@ -74,30 +74,24 @@
         "id": "1",
         "illustration": "images/IJustClosedTheShop.jpg",
         "character": "Girl_1",
-        "line": "Bettie Sophie, I just closed the shop."
-      },
-      {
-        "id": "2",
-        "illustration": "images/YouShoulComeToo.jpg",
-        "character": "Girl_1",
-        "line": "I thought you were coming?"
+        "line": "Sophie, We have just closed the shop. You have done enough work, why won't you come out with us this time?"
       },
       {
         "id": "3",
         "character": "Sophie",
-        "line": "I have to finish this. I hope you enjoy."
+        "line": "No, I would better finish this. Go have some fun."
       },
-      { "id": "4", "character": "Girl_1", "line": "OK, I'm off." },
+      { "id": "4", "character": "Girl_1", "line": "Alright, suit yourself! Let's go girls!" },
       {
         "id": "5",
         "illustration": "images/LookItsHowlsCastle2.jpg",
         "character": "Girl_1",
-        "line": "Let's go girls. Wait up! Isn't anything wrong with my dress, is it? Check it out! Howl's castle is there."
+        "line": "Look, it is Howl's castle!"
       },
       {
         "id": "6",
         "character": "Girl_2",
-        "line": "Yeah? The castle? Where? It's over there! Wow! So close!"
+        "line": "Never seen it so close before!"
       },
       {
         "id": "7",
@@ -108,73 +102,34 @@
       {
         "id": "8",
         "character": "Girl_1",
-        "line": "Oh, it's gone! It just hidden in the mist. Didn't you see those battle ships just passed in front of the window?"
+        "line": "Oh, he is gone!"
+      },
+      {
+        "id": "8",
+        "character": "Girl_1",
+        "line": "No, he is just hiding in the fog from all of those planes. "
       },
       {
         "id": "9",
         "character": "Girl_2",
-        "line": "Have you heard of a girl, Martha, who lives in South town? Her heart was stolen by Howl."
+        "line": "Remember Martha, from South Heaven? They say Howl tore her heart out."
       },
       {
         "id": "10",
         "illustration": "images/HeIsNotGoingToWantYours.jpg",
         "character": "Girl_3",
-        "line": "I'm scared... Don't worry. He won't go after yours."
+        "line": "Now I am scared to go out!"
+      },
+      {
+        "id": "10",
+        "illustration": "images/HeIsNotGoingToWantYours.jpg",
+        "character": "Girl_3",
+        "line": "Don't worry, he only prays on pretty girls!"
       },
       {
         "id": "11",
         "character": "Girl_1",
         "line": "Come on, girls! Hurry up!"
-      },
-      {
-        "id": "12",
-        "illustration": "images/BettieLeaves.jpg",
-        "character": "Soldier_1",
-        "line": "Hey, you, little mouse. Are you looking for something?"
-      },
-      {
-        "id": "13",
-        "illustration": "images/HeyThereLittleMouse.jpg",
-        "character": "Sophie",
-        "line": "No, sir. Nothing."
-      },
-      {
-        "id": "14",
-        "character": "Soldier_2",
-        "line": "Then, how about having a cup of tea with us?"
-      },
-      {
-        "id": "15",
-        "character": "Sophie",
-        "line": "No thanks. I'm in a hurry"
-      },
-      {
-        "id": "16",
-        "character": "Soldier_2",
-        "line": "She is really a little mouse!"
-      },
-      {
-        "id": "17",
-        "illustration": "images/HowOldAreYou.jpg",
-        "character": "Soldier_1",
-        "line": "Yes.. How old are you? You live in this town?"
-      },
-      { "id": "18", "character": "Sophie", "line": "Please let me go!" },
-      {
-        "id": "19",
-        "character": "Soldier_2",
-        "line": "You scared her, it's because of your mustache mate."
-      },
-      {
-        "id": "20",
-        "character": "Soldier_1",
-        "line": "She is cute especially when she gets angry."
-      },
-      {
-        "id": "21",
-        "illustration": "images/IAmWithHer.jpg",
-        "character": "Howl",
-        "line": "There you are. I was looking for you!"
       }
     ]
   }
