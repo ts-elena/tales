@@ -10,6 +10,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using TalesApp.Data;
+using AutoMapper;
+using TalesApp.Domain.Services;
+using aspdotnetcoreapp.Persistence.Repositories;
+using aspdotnetcoreapp.Services;
+using TalesApp.Domain;
 
 namespace aspdotnetcoreapp
 {
@@ -25,11 +30,20 @@ namespace aspdotnetcoreapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllers();
+
             services.AddDbContext<TalesContext>(options => options
                 .UseSqlServer(Configuration.GetConnectionString("TalesContext"))
                 .EnableSensitiveDataLogging()
                 );
+
+            services.AddScoped<IRepository<StorySetsSequence>, StorySetsSequenceRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IService<StorySetsSequence>, StorySetsSequenceService>();
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

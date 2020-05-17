@@ -19,6 +19,7 @@ namespace TalesApp.Domain
 
         // Table Columns
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid LineId { get; set; }
 
         [Required]

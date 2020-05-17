@@ -13,6 +13,7 @@ namespace TalesApp.Domain
 
         // Table Columns
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid CharacterId { get; set; }
 
         [Required]

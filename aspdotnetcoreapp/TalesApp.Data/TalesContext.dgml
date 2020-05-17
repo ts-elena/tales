@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" ZoomLevel="1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Character" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Characters" BaseClass="" Bounds="41.2033333333335,527.68,214.64,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Character" Name="Character" />
+    <Node Id="Character.CharacterAvatar" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="61.2033333333335,679.6,104.373333333333,25.9599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="CharacterAvatar" MaxLength="None" Name="CharacterAvatar" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Character.CharacterId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="154.916666666667,567.68,80.9266666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CharacterId" MaxLength="None" Name="CharacterId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Character.CharacterName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="61.2033333333335,623.64,102.363333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CharacterName" MaxLength="None" Name="CharacterName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Character.Lines" Category="Navigation Property" Bounds="61.2033333333335,567.68,63.7133333333333,25.96" Dependent="Line" Field="List&lt;Line&gt;" Inverse="Character" Label="Lines (1)" Name="Lines" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="Collectio" />
+    <Node Id="DictionaryWord" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: DictionaryWords" BaseClass="" Bounds="20.0000000000001,40.0006385196664,293.046666666666,198.879561480334" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="DictionaryWord" Name="DictionaryWord" />
+    <Node Id="DictionaryWord.DictionaryWordId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="180.033333333333,135.96,113.013333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="DictionaryWordId" MaxLength="None" Name="DictionaryWordId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="DictionaryWord.DictionaryWordText" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="40,192.9201,123.72,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="DictionaryWordText" MaxLength="None" Name="DictionaryWordText" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="DictionaryWord.Line" Category="Navigation Property" Bounds="121.883333333333,80,58.62,25.96" Dependent="" Field="Line" Inverse="DictionaryWord" Label="Line (1)" Name="Line" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToPrincipa" />
+    <Node Id="DictionaryWord.LineId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="40,80,51.8833333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LineId" MaxLength="None" Name="LineId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="None" />
+    <Node Id="DictionaryWord.WordAddedTime" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDateTimeTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="40.0000000000001,136.96,110.033333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="WordAddedTime" MaxLength="None" Name="WordAddedTime" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" UseManualLocation="True" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="IModel" Category="Model" Annotations="Relational:MaxIdentifierLength: 128 SqlServer:ValueGenerationStrategy: IdentityColumn" Bounds="0,0,855.705,989.400000000001" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" Label="TalesContext" ProductVersion="3.1.3" PropertyAccessMode="PropertyAccessMode.Default" />
+    <Node Id="Line" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Lines" BaseClass="" Bounds="257.191666666667,283.84,352.663333333333,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Line" Name="Line" />
+    <Node Id="Line.Character" Category="Navigation Property" Bounds="502.191666666667,379.8,87.6633333333334,25.96" Dependent="" Field="Character" Inverse="Lines" Label="Character (1)" Name="Character" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToPrincipa" />
+    <Node Id="Line.CharacterId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="277.191666666667,379.8,80.9266666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CharacterId" MaxLength="None" Name="CharacterId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="None" />
+    <Node Id="Line.DictionaryWord" Category="Navigation Property" Bounds="417.205,435.76,119.75,25.96" Dependent="DictionaryWord" Field="List&lt;DictionaryWord&gt;" Inverse="Line" Label="DictionaryWord (1)" Name="DictionaryWord" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="Collectio" />
+    <Node Id="Line.LineContent" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="388.118333333333,379.8,84.0733333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LineContent" MaxLength="None" Name="LineContent" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Line.LineId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="277.191666666667,323.84,51.8833333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LineId" MaxLength="None" Name="LineId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Line.LineSequence" Category="Navigation Property" Bounds="277.191666666667,435.76,110.013333333333,25.96" Dependent="" Field="LineSequence" Inverse="Line" Label="LineSequence (1)" Name="LineSequence" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToDependen" />
+    <Node Id="Line.Story" Category="Navigation Property" Bounds="446.398333333333,323.84,64.0600000000001,25.96" Dependent="" Field="Story" Inverse="Lines" Label="Story (1)" Name="Story" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToPrincipa" />
+    <Node Id="Line.StoryId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="359.075,323.84,57.3233333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StoryId" MaxLength="None" Name="StoryId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="None" />
+    <Node Id="LineSequence" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: LineSequences" BaseClass="" Bounds="343.271666666667,67.98,180.503333333333,141.92" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="LineSequence" Name="LineSequence" />
+    <Node Id="LineSequence.Line" Category="Navigation Property" Bounds="445.155,107.98,58.6199999999999,25.96" Dependent="" Field="Line" Inverse="LineSequence" Label="Line (1)" Name="Line" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToPrincipa" />
+    <Node Id="LineSequence.LineId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="363.271666666667,107.98,51.8833333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LineId" MaxLength="None" Name="LineId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="None" />
+    <Node Id="LineSequence.SequenceNumber" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="363.271666666667,163.94,115,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="SequenceNumber" MaxLength="None" Name="SequenceNumber" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Story" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Stories" BaseClass="" Bounds="285.985,527.68,295.076666666667,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Story" Name="Story" />
+    <Node Id="Story.Lines" Category="Navigation Property" Bounds="393.308333333333,567.68,63.7133333333334,25.96" Dependent="Line" Field="List&lt;Line&gt;" Inverse="Story" Label="Lines (1)" Name="Lines" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="Collectio" />
+    <Node Id="Story.StoryCoverImage" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="305.985,679.6,110.7,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StoryCoverImage" MaxLength="None" Name="StoryCoverImage" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Story.StoryId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="305.985,567.68,57.3233333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StoryId" MaxLength="None" Name="StoryId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Story.StoryName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="305.985,623.64,78.76,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StoryName" MaxLength="None" Name="StoryName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Story.StorySet" Category="Navigation Property" Bounds="414.745,623.64,80.7766666666666,25.96" Dependent="" Field="StorySet" Inverse="Stories" Label="StorySet (1)" Name="StorySet" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToPrincipa" />
+    <Node Id="Story.StorySetId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="487.021666666667,567.68,74.04,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StorySetId" MaxLength="None" Name="StorySetId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="None" />
+    <Node Id="StorySet" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: StorySets" BaseClass="" Bounds="615.238333333333,771.52,216.57,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="StorySet" Name="StorySet" />
+    <Node Id="StorySet.Stories" Category="Navigation Property" Bounds="635.238333333333,811.52,72.53,25.96" Dependent="Story" Field="List&lt;Story&gt;" Inverse="StorySet" Label="Stories (1)" Name="Stories" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="Collectio" />
+    <Node Id="StorySet.StorySetId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="737.768333333333,811.52,74.04,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StorySetId" MaxLength="None" Name="StorySetId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="StorySet.StorySetName" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="635.238333333333,867.48,95.4766666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="StorySetName" MaxLength="None" Name="StorySetName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="StorySet.StorySetsSequence" Category="Navigation Property" Bounds="635.238333333333,923.440000000001,137.263333333333,25.96" Dependent="" Field="StorySetsSequence" Inverse="StorySet" Label="StorySetsSequence (1)" Name="StorySetsSequence" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToDependen" />
+    <Node Id="StorySetsSequence" Category="EntityType" Annotations="" BaseClass="" Bounds="611.341666666667,555.66,224.363333333333,141.92" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="StorySetsSequence" Name="StorySetsSequence" />
+    <Node Id="StorySetsSequence.SetNumber" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="735.381666666667,595.66,80.3233333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="SetNumber" MaxLength="None" Name="SetNumber" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="StorySetsSequence.StorySet" Category="Navigation Property" Bounds="631.341666666667,651.62,80.7766666666666,25.96" Dependent="" Field="StorySet" Inverse="StorySetsSequence" Label="StorySet (1)" Name="StorySet" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ToPrincipa" />
+    <Node Id="StorySetsSequence.StorySetId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.GuidTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="631.341666666667,595.66,74.04,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StorySetId" MaxLength="None" Name="StorySetId" PropertyAccessMode="PropertyAccessMode.Default" Type="Guid" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+    <Link Source="Character" Target="Character.CharacterAvatar" Category="Contains" />
+    <Link Source="Character" Target="Character.CharacterId" Category="Contains" />
+    <Link Source="Character" Target="Character.CharacterName" Category="Contains" />
+    <Link Source="Character" Target="Character.Lines" Category="Contains" />
+    <Link Source="DictionaryWord" Target="DictionaryWord.DictionaryWordId" Category="Contains" />
+    <Link Source="DictionaryWord" Target="DictionaryWord.DictionaryWordText" Category="Contains" />
+    <Link Source="DictionaryWord" Target="DictionaryWord.Line" Category="Contains" />
+    <Link Source="DictionaryWord" Target="DictionaryWord.LineId" Category="Contains" />
+    <Link Source="DictionaryWord" Target="DictionaryWord.WordAddedTime" Category="Contains" />
+    <Link Source="DictionaryWord" Target="Line" Category="Foreign Key" Annotations="" Bounds="275.63185310996,238.8802,42.6794733034426,38.8973975276061" From="DictionaryWord.LineId" IsUnique="False" Label="1:*" LabelBounds="298.318790311102,240.890707071349,14.0733333333334,15.96" Name="DictionaryWord -&gt; Line" To="Line.LineId" />
+    <Link Source="IModel" Target="Character" Category="Contains" />
+    <Link Source="IModel" Target="DictionaryWord" Category="Contains" />
+    <Link Source="IModel" Target="Line" Category="Contains" />
+    <Link Source="IModel" Target="LineSequence" Category="Contains" />
+    <Link Source="IModel" Target="Story" Category="Contains" />
+    <Link Source="IModel" Target="StorySet" Category="Contains" />
+    <Link Source="IModel" Target="StorySetsSequence" Category="Contains" />
+    <Link Source="Line" Target="Character" Category="Foreign Key" Annotations="" Bounds="262.681915283203,481.720001220703,55.2004089355469,47.2283020019531" From="Line.CharacterId" IsUnique="False" Label="1:*" LabelBounds="291.023333333333,496.72,14.0733333333334,15.96" Name="Line -&gt; Character" To="Character.CharacterId" />
+    <Link Source="Line" Target="Line.Character" Category="Contains" />
+    <Link Source="Line" Target="Line.CharacterId" Category="Contains" />
+    <Link Source="Line" Target="Line.DictionaryWord" Category="Contains" />
+    <Link Source="Line" Target="Line.LineContent" Category="Contains" />
+    <Link Source="Line" Target="Line.LineId" Category="Contains" />
+    <Link Source="Line" Target="Line.LineSequence" Category="Contains" />
+    <Link Source="Line" Target="Line.Story" Category="Contains" />
+    <Link Source="Line" Target="Line.StoryId" Category="Contains" />
+    <Link Source="Line" Target="Story" Category="Foreign Key" Annotations="" Bounds="433.523345947266,481.720001220703,0,36.9599914550781" From="Line.StoryId" IsUnique="False" Label="1:*" LabelBounds="419.45,496.72,14.0733333333334,15.96" Name="Line -&gt; Story" To="Story.StoryId" />
+    <Link Source="LineSequence" Target="Line" Category="Foreign Key" Annotations="" Bounds="433.523345947266,209.899993896484,0,64.9400024414063" From="LineSequence.LineId" IsUnique="True" Label="1:1" LabelBounds="417.983333333333,252.88,15.54,15.96" Name="LineSequence -&gt; Line" To="Line.LineId" />
+    <Link Source="LineSequence" Target="LineSequence.Line" Category="Contains" />
+    <Link Source="LineSequence" Target="LineSequence.LineId" Category="Contains" />
+    <Link Source="LineSequence" Target="LineSequence.SequenceNumber" Category="Contains" />
+    <Link Source="Story" Target="Story.Lines" Category="Contains" />
+    <Link Source="Story" Target="Story.StoryCoverImage" Category="Contains" />
+    <Link Source="Story" Target="Story.StoryId" Category="Contains" />
+    <Link Source="Story" Target="Story.StoryName" Category="Contains" />
+    <Link Source="Story" Target="Story.StorySet" Category="Contains" />
+    <Link Source="Story" Target="Story.StorySetId" Category="Contains" />
+    <Link Source="Story" Target="StorySet" Category="Foreign Key" Annotations="" Bounds="551.193115234375,725.559997558594,57.1566772460938,48.0588989257813" From="Story.StorySetId" IsUnique="False" Label="1:*" LabelBounds="578.523333333333,740.56,14.0733333333333,15.96" Name="Story -&gt; StorySet" To="StorySet.StorySetId" />
+    <Link Source="StorySet" Target="StorySet.Stories" Category="Contains" />
+    <Link Source="StorySet" Target="StorySet.StorySetId" Category="Contains" />
+    <Link Source="StorySet" Target="StorySet.StorySetName" Category="Contains" />
+    <Link Source="StorySet" Target="StorySet.StorySetsSequence" Category="Contains" />
+    <Link Source="StorySetsSequence" Target="StorySet" Category="Foreign Key" Annotations="" Bounds="723.523315429688,697.580017089844,0,64.9400024414063" From="StorySetsSequence.StorySetId" IsUnique="True" Label="1:1" LabelBounds="707.983333333333,740.56,15.54,15.96" Name="StorySetsSequence -&gt; StorySet" To="StorySet.StorySetId" />
+    <Link Source="StorySetsSequence" Target="StorySetsSequence.SetNumber" Category="Contains" />
+    <Link Source="StorySetsSequence" Target="StorySetsSequence.StorySet" Category="Contains" />
+    <Link Source="StorySetsSequence" Target="StorySetsSequence.StorySetId" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="EntityType" />
+    <Category Id="Foreign Key" />
+    <Category Id="Model" />
+    <Category Id="Navigation Property" />
+    <Category Id="Property Foreign" />
+    <Category Id="Property Optional" />
+    <Category Id="Property Primary" />
+    <Category Id="Property Required" />
+  </Categories>
+  <Properties>
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass" Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="Field" Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsAbstract" Label="IsAbstract" Description="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="MaxLength" DataType="System.String" />
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type" Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+</DirectedGraph>

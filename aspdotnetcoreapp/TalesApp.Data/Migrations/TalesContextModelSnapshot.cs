@@ -39,31 +39,31 @@ namespace TalesApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            CharacterId = new Guid("6282e937-1c9c-4c0c-bdd8-4f38edd7d1c1"),
+                            CharacterId = new Guid("8e7c45ab-6805-4c27-bb42-4be6548bdaf0"),
                             CharacterAvatar = "/images/StoriesData/MovingCastleOpeningStory/Avatars/FannyHatter.jpg",
                             CharacterName = "Fanny"
                         },
                         new
                         {
-                            CharacterId = new Guid("695dc826-8a58-4639-948f-0b11bdff91aa"),
+                            CharacterId = new Guid("a247f0d7-c23f-41e7-b66d-628dfd0d06ee"),
                             CharacterAvatar = "/images/StoriesData/MovingCastleOpeningStory/Avatars/Sophie.jfif",
                             CharacterName = "Sophie"
                         },
                         new
                         {
-                            CharacterId = new Guid("6629a74e-a5e5-43e3-9a30-d42a3821f853"),
+                            CharacterId = new Guid("b4162d1f-52e8-4872-b9dc-dc6a6fcfdf40"),
                             CharacterAvatar = "/images/StoriesData/MovingCastleOpeningStory/Avatars/SophiesSister1.jfif",
                             CharacterName = "Sophie's sister"
                         },
                         new
                         {
-                            CharacterId = new Guid("2228dd3b-287c-48cb-b236-e4bcee5b5dd9"),
+                            CharacterId = new Guid("107c0d9f-1c8d-4832-b25f-737779b4c604"),
                             CharacterAvatar = "/images/StoriesData/MovingCastleOpeningStory/Avatars/SophiesSister2.jfif",
                             CharacterName = "Sophie's sister"
                         },
                         new
                         {
-                            CharacterId = new Guid("0908d87c-b5c4-4c3a-8fc7-5ff3f54a0213"),
+                            CharacterId = new Guid("4274eaf5-de9a-4fbc-a6fd-e59f3f8158b8"),
                             CharacterAvatar = "/images/StoriesData/MovingCastleOpeningStory/Avatars/LettieHatter.png",
                             CharacterName = "Sophie's sister"
                         });
@@ -120,87 +120,87 @@ namespace TalesApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            LineId = new Guid("1b33fdf4-98d9-41c2-8919-a9c029dfe338"),
-                            CharacterId = new Guid("6282e937-1c9c-4c0c-bdd8-4f38edd7d1c1"),
+                            LineId = new Guid("b69fdb5a-19ed-4be0-a160-1d7970fe6b70"),
+                            CharacterId = new Guid("8e7c45ab-6805-4c27-bb42-4be6548bdaf0"),
                             LineContent = "Sophie, we have just closed the shop. You have done enough work, why won't you come out with us this time?",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("50cb0b90-209a-4048-8417-51367ea12c1d"),
-                            CharacterId = new Guid("695dc826-8a58-4639-948f-0b11bdff91aa"),
+                            LineId = new Guid("2ce0f84b-bf87-4c29-92ac-1b68cbbf66ba"),
+                            CharacterId = new Guid("a247f0d7-c23f-41e7-b66d-628dfd0d06ee"),
                             LineContent = "No, I would better finish this. Go have some fun.",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("4c3f51ac-176d-4c67-b320-4e4e9b26af65"),
-                            CharacterId = new Guid("6629a74e-a5e5-43e3-9a30-d42a3821f853"),
+                            LineId = new Guid("94507b55-2690-439a-bcf0-a1d0aac881f5"),
+                            CharacterId = new Guid("b4162d1f-52e8-4872-b9dc-dc6a6fcfdf40"),
                             LineContent = "Look, it is Howl's castle!",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("c9922d61-2875-437e-ad08-c52b2b8bae89"),
-                            CharacterId = new Guid("2228dd3b-287c-48cb-b236-e4bcee5b5dd9"),
+                            LineId = new Guid("ed9f81ef-8ac5-4a6c-babe-a254303059a4"),
+                            CharacterId = new Guid("107c0d9f-1c8d-4832-b25f-737779b4c604"),
                             LineContent = "Never seen it so close before!",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("a176d5df-19ea-4c6d-8397-df8c143dc256"),
-                            CharacterId = new Guid("6629a74e-a5e5-43e3-9a30-d42a3821f853"),
+                            LineId = new Guid("d726c01c-c4a1-46a0-a92d-a3e097cecfa4"),
+                            CharacterId = new Guid("b4162d1f-52e8-4872-b9dc-dc6a6fcfdf40"),
                             LineContent = "Oh, my... I wonder if Howl is in town.",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("82160a4f-846a-45cc-9a19-dfd52a1f6b1f"),
-                            CharacterId = new Guid("0908d87c-b5c4-4c3a-8fc7-5ff3f54a0213"),
+                            LineId = new Guid("ae500c1f-e734-423d-a0fa-d862f7ff69b3"),
+                            CharacterId = new Guid("4274eaf5-de9a-4fbc-a6fd-e59f3f8158b8"),
                             LineContent = "Oh, it is gone!",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("6b0588a4-ab6b-42a7-abfc-978e62f30435"),
-                            CharacterId = new Guid("6629a74e-a5e5-43e3-9a30-d42a3821f853"),
+                            LineId = new Guid("167a92c5-7f34-4be1-b6c8-ee396c7ae122"),
+                            CharacterId = new Guid("b4162d1f-52e8-4872-b9dc-dc6a6fcfdf40"),
                             LineContent = "No, he is just hiding in the fog from all of those planes.",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("d0bb3d21-24fe-400f-8e3f-4adaa599f826"),
-                            CharacterId = new Guid("2228dd3b-287c-48cb-b236-e4bcee5b5dd9"),
+                            LineId = new Guid("d5502289-46d5-4eea-aebf-7f5ef2bc64d8"),
+                            CharacterId = new Guid("107c0d9f-1c8d-4832-b25f-737779b4c604"),
                             LineContent = "Remember Martha, from South Heaven? They say Howl tore her heart out.",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("d8afac43-1ac8-4958-b3a1-a421e57f2dad"),
-                            CharacterId = new Guid("0908d87c-b5c4-4c3a-8fc7-5ff3f54a0213"),
+                            LineId = new Guid("4450397c-ebfa-4e40-98e9-83a88337bc27"),
+                            CharacterId = new Guid("4274eaf5-de9a-4fbc-a6fd-e59f3f8158b8"),
                             LineContent = "Remember Martha, from South Heaven? They say Howl tore her heart out.",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("257a8f1c-7858-41d4-b7a1-6f55e469d2c8"),
-                            CharacterId = new Guid("2228dd3b-287c-48cb-b236-e4bcee5b5dd9"),
+                            LineId = new Guid("f8bc27ca-f5d4-41e1-8a11-8ebb228654b6"),
+                            CharacterId = new Guid("107c0d9f-1c8d-4832-b25f-737779b4c604"),
                             LineContent = "Now I am scared to go out!",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("9adb5c5c-76d4-47f4-9900-34c9776d88f8"),
-                            CharacterId = new Guid("6629a74e-a5e5-43e3-9a30-d42a3821f853"),
+                            LineId = new Guid("6a23b4f0-6524-410d-8466-c8b9f0a4676c"),
+                            CharacterId = new Guid("b4162d1f-52e8-4872-b9dc-dc6a6fcfdf40"),
                             LineContent = "Don't worry, he only prays on pretty girls!",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         },
                         new
                         {
-                            LineId = new Guid("d5ed2319-6d55-47fb-b93f-3ba745c25fed"),
-                            CharacterId = new Guid("6282e937-1c9c-4c0c-bdd8-4f38edd7d1c1"),
+                            LineId = new Guid("863ee926-37ff-4ab8-97dd-94d14883f85b"),
+                            CharacterId = new Guid("8e7c45ab-6805-4c27-bb42-4be6548bdaf0"),
                             LineContent = "Come on, girls! Hurry up!",
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1")
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5")
                         });
                 });
 
@@ -219,62 +219,62 @@ namespace TalesApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            LineId = new Guid("1b33fdf4-98d9-41c2-8919-a9c029dfe338"),
+                            LineId = new Guid("b69fdb5a-19ed-4be0-a160-1d7970fe6b70"),
                             SequenceNumber = 1
                         },
                         new
                         {
-                            LineId = new Guid("50cb0b90-209a-4048-8417-51367ea12c1d"),
+                            LineId = new Guid("2ce0f84b-bf87-4c29-92ac-1b68cbbf66ba"),
                             SequenceNumber = 2
                         },
                         new
                         {
-                            LineId = new Guid("4c3f51ac-176d-4c67-b320-4e4e9b26af65"),
+                            LineId = new Guid("94507b55-2690-439a-bcf0-a1d0aac881f5"),
                             SequenceNumber = 3
                         },
                         new
                         {
-                            LineId = new Guid("c9922d61-2875-437e-ad08-c52b2b8bae89"),
+                            LineId = new Guid("ed9f81ef-8ac5-4a6c-babe-a254303059a4"),
                             SequenceNumber = 4
                         },
                         new
                         {
-                            LineId = new Guid("a176d5df-19ea-4c6d-8397-df8c143dc256"),
+                            LineId = new Guid("d726c01c-c4a1-46a0-a92d-a3e097cecfa4"),
                             SequenceNumber = 5
                         },
                         new
                         {
-                            LineId = new Guid("82160a4f-846a-45cc-9a19-dfd52a1f6b1f"),
+                            LineId = new Guid("ae500c1f-e734-423d-a0fa-d862f7ff69b3"),
                             SequenceNumber = 6
                         },
                         new
                         {
-                            LineId = new Guid("6b0588a4-ab6b-42a7-abfc-978e62f30435"),
+                            LineId = new Guid("167a92c5-7f34-4be1-b6c8-ee396c7ae122"),
                             SequenceNumber = 7
                         },
                         new
                         {
-                            LineId = new Guid("d0bb3d21-24fe-400f-8e3f-4adaa599f826"),
+                            LineId = new Guid("d5502289-46d5-4eea-aebf-7f5ef2bc64d8"),
                             SequenceNumber = 8
                         },
                         new
                         {
-                            LineId = new Guid("d8afac43-1ac8-4958-b3a1-a421e57f2dad"),
+                            LineId = new Guid("4450397c-ebfa-4e40-98e9-83a88337bc27"),
                             SequenceNumber = 9
                         },
                         new
                         {
-                            LineId = new Guid("257a8f1c-7858-41d4-b7a1-6f55e469d2c8"),
+                            LineId = new Guid("f8bc27ca-f5d4-41e1-8a11-8ebb228654b6"),
                             SequenceNumber = 10
                         },
                         new
                         {
-                            LineId = new Guid("9adb5c5c-76d4-47f4-9900-34c9776d88f8"),
+                            LineId = new Guid("6a23b4f0-6524-410d-8466-c8b9f0a4676c"),
                             SequenceNumber = 11
                         },
                         new
                         {
-                            LineId = new Guid("d5ed2319-6d55-47fb-b93f-3ba745c25fed"),
+                            LineId = new Guid("863ee926-37ff-4ab8-97dd-94d14883f85b"),
                             SequenceNumber = 12
                         });
                 });
@@ -305,10 +305,10 @@ namespace TalesApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            StoryId = new Guid("d9880c22-05b0-4fe0-b3bb-c941beaf80e1"),
+                            StoryId = new Guid("170d55ca-9254-48e9-8535-e463dde768a5"),
                             StoryCoverImage = "/images/StoriesData/MovingCastleOpeningStory/HowlsMovingCastleCover.jfif",
                             StoryName = "Opening Story of Howl's Moving Castle",
-                            StorySetId = new Guid("ddb32c39-bc4b-47ad-a932-ced444044dc6")
+                            StorySetId = new Guid("ac225e0d-ef1e-48c0-9050-5f9eda46d513")
                         });
                 });
 
@@ -328,7 +328,7 @@ namespace TalesApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            StorySetId = new Guid("ddb32c39-bc4b-47ad-a932-ced444044dc6"),
+                            StorySetId = new Guid("ac225e0d-ef1e-48c0-9050-5f9eda46d513"),
                             StorySetName = "Set One"
                         });
                 });
@@ -336,6 +336,7 @@ namespace TalesApp.Data.Migrations
             modelBuilder.Entity("TalesApp.Domain.StorySetsSequence", b =>
                 {
                     b.Property<Guid>("StorySetId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SetNumber")
@@ -348,7 +349,7 @@ namespace TalesApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            StorySetId = new Guid("ddb32c39-bc4b-47ad-a932-ced444044dc6"),
+                            StorySetId = new Guid("ac225e0d-ef1e-48c0-9050-5f9eda46d513"),
                             SetNumber = 1
                         });
                 });

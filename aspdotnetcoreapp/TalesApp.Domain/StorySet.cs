@@ -14,6 +14,7 @@
 
         // Table Columns
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid StorySetId { get; set; }
 
         public string StorySetName { get; set; }

@@ -8,6 +8,7 @@
     public class DictionaryWord
     {
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid DictionaryWordId { get; set; }
 
         public Line Line { get; set; }

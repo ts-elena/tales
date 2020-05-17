@@ -13,8 +13,8 @@ namespace TalesApp.Domain
         public List<Line> Lines { get; set; }
 
         // Table Columns
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid StoryId { get; set; }
 
         [Required]

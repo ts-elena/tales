@@ -7,6 +7,7 @@ namespace TalesApp.Data
 {
     public class TalesContext: DbContext
     {
+        public TalesContext(DbContextOptions<TalesContext> options) : base(options) { }
         public DbSet<StorySet> StorySets { get; set; }
         public DbSet<StorySetsSequence> StorySetsSequences { get; set; }
         public DbSet<Story> Stories { get; set; }
@@ -32,6 +33,7 @@ namespace TalesApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             // modelBuilder.Seed();
         }
     }

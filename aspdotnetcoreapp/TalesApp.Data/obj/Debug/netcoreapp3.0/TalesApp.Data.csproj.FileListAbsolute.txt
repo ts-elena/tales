@@ -11,3 +11,4 @@ C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Data\obj
 C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Data\obj\Debug\netcoreapp3.0\TalesApp.Data.csproj.CopyComplete
 C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Data\obj\Debug\netcoreapp3.0\TalesApp.Data.dll
 C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Data\obj\Debug\netcoreapp3.0\TalesApp.Data.pdb
+C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Data\obj\Debug\netcoreapp3.0\TalesApp.Data.genruntimeconfig.cache

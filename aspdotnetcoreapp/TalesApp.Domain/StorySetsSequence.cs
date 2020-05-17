@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace TalesApp.Domain
@@ -13,6 +14,7 @@ namespace TalesApp.Domain
         public StorySet StorySet { get; set; }
 
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid StorySetId { get; set; }
     }
 }
