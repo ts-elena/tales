@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
-namespace TalesApp.Domain
+﻿namespace TalesApp.Domain
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Line
     {
-        // Navigation properties
-        public LineSequence LineSequence { get; set; }
+        // Navigational properties
+        public LineNumber LineNumber { get; set; }
 
         public Story Story { get; set; }
 
         public Character Character { get; set; }
 
-        public List<DictionaryWord> DictionaryWord { get; set; }
+        public List<DictionaryWord> DictionaryWords { get; set; }
 
         // Table Columns
         [Key]

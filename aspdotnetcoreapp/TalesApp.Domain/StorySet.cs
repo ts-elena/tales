@@ -7,16 +7,17 @@
 
     public class StorySet
     {
-        // Navigation properties
+        // Navigational properties
         public List<Story> Stories { get; set; }
 
-        public StorySetsSequence StorySetsSequence { get; set; }
+        public StorySetNumber StorySetNumber { get; set; }
 
         // Table Columns
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid StorySetId { get; set; }
 
+        [Required]
         public string StorySetName { get; set; }
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TalesApp.Data;
-
-namespace aspdotnetcoreapp.Persistence.Repositories
+﻿namespace aspdotnetcoreapp.Persistence.Repositories
 {
+    using TalesApp.Data;
+
     public abstract class BaseRepository
     {
         protected readonly TalesContext _context;

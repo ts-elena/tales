@@ -1,10 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using TalesApp.Data;
-using TalesApp.Domain.Services;
-
-namespace aspdotnetcoreapp.Persistence.Repositories
+﻿namespace aspdotnetcoreapp.Persistence.Repositories
 {
+    using System.Threading.Tasks;
+    using TalesApp.Data;
+    using TalesApp.Domain.Services;
+
     public class UnitOfWork: IUnitOfWork
     {
         private readonly TalesContext _context;

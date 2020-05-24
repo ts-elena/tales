@@ -1,20 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using TalesApp.Domain;
-
-namespace TalesApp.Data
+﻿namespace TalesApp.Data
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+    using TalesApp.Domain;
+
     public class TalesContext: DbContext
     {
         public TalesContext(DbContextOptions<TalesContext> options) : base(options) { }
-        public DbSet<StorySet> StorySets { get; set; }
-        public DbSet<StorySetsSequence> StorySetsSequences { get; set; }
-        public DbSet<Story> Stories { get; set; }
-        public DbSet<Line> Lines { get; set; }
-        public DbSet<LineSequence> LineSequences { get; set; }
-        public DbSet<Character> Characters { get; set; }
-        public DbSet<DictionaryWord> DictionaryWords { get; set; }
+        public DbSet<StorySet> StorySet { get; set; }
+        public DbSet<StorySetNumber> StorySetNumber { get; set; }
+        public DbSet<Story> Story { get; set; }
+        public DbSet<Line> Line { get; set; }
+        public DbSet<LineNumber> LineNumber { get; set; }
+        public DbSet<Character> Character { get; set; }
+        public DbSet<DictionaryWord> DictionaryWord { get; set; }
 
         public static readonly ILoggerFactory ConsoleLoggerFactory
             = LoggerFactory.Create(builder =>
@@ -34,7 +33,7 @@ namespace TalesApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // modelBuilder.Seed();
+            modelBuilder.Seed();
         }
     }
 }

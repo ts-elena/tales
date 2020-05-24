@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TalesApp.Domain
+﻿namespace TalesApp.Domain
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Story
     {
-        // Navigation Properties
+        // Navigational Properties
         public StorySet StorySet { get; set; }
 
         public List<Line> Lines { get; set; }

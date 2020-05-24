@@ -42,8 +42,8 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<StorySetsSequence>().HasData(
-                new StorySetsSequence
+            modelBuilder.Entity<StorySetNumber>().HasData(
+                new StorySetNumber
                 {
                     StorySetId = storySetKey,
                     SetNumber = 1
@@ -119,11 +119,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line1key,
-                    SequenceNumber = 1
+                    Number = 1
                 }
             );
 
@@ -138,11 +138,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line2key,
-                    SequenceNumber = 2
+                    Number = 2
                 }
             );
 
@@ -158,11 +158,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line3key,
-                    SequenceNumber = 3
+                    Number = 3
                 }
             );
 
@@ -178,11 +178,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line4key,
-                    SequenceNumber = 4
+                    Number = 4
                 }
             );
 
@@ -198,11 +198,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line5key,
-                    SequenceNumber = 5
+                    Number = 5
                 }
             );
 
@@ -218,11 +218,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line6key,
-                    SequenceNumber = 6
+                    Number = 6
                 }
             );
 
@@ -238,11 +238,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line7key,
-                    SequenceNumber = 7
+                    Number = 7
                 }
             );
 
@@ -258,11 +258,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line8key,
-                    SequenceNumber = 8
+                    Number = 8
                 }
             );
 
@@ -278,11 +278,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line9key,
-                    SequenceNumber = 9
+                    Number = 9
                 }
             );
 
@@ -298,11 +298,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line10key,
-                    SequenceNumber = 10
+                    Number = 10
                 }
             );
 
@@ -318,11 +318,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line11key,
-                    SequenceNumber = 11
+                    Number = 11
                 }
             );
 
@@ -338,11 +338,11 @@ namespace TalesApp.Data
                 }
             );
 
-            modelBuilder.Entity<LineSequence>().HasData(
-                new LineSequence
+            modelBuilder.Entity<LineNumber>().HasData(
+                new LineNumber
                 {
                     LineId = line12key,
-                    SequenceNumber = 12
+                    Number = 12
                 }
             );
         }

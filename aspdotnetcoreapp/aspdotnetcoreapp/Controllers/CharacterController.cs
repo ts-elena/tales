@@ -25,14 +25,14 @@ namespace aspdotnetcoreapp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
         {
-            return await _context.Characters.ToListAsync();
+            return await _context.Character.ToListAsync();
         }
 
         // GET: api/Tales/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Character>> GetCharacter(Guid id)
         {
-            var character = await _context.Characters.FindAsync(id);
+            var character = await _context.Character.FindAsync(id);
 
             if (character == null)
             {
@@ -80,7 +80,7 @@ namespace aspdotnetcoreapp.Controllers
         [HttpPost]
         public async Task<ActionResult<Character>> PostCharacter(Character character)
         {
-            _context.Characters.Add(character);
+            _context.Character.Add(character);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCharacter", new { id = character.CharacterId }, character);
@@ -90,13 +90,13 @@ namespace aspdotnetcoreapp.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Character>> DeleteCharacter(Guid id)
         {
-            var character = await _context.Characters.FindAsync(id);
+            var character = await _context.Character.FindAsync(id);
             if (character == null)
             {
                 return NotFound();
             }
 
-            _context.Characters.Remove(character);
+            _context.Character.Remove(character);
             await _context.SaveChangesAsync();
 
             return character;
@@ -104,7 +104,7 @@ namespace aspdotnetcoreapp.Controllers
 
         private bool CharacterExists(Guid id)
         {
-            return _context.Characters.Any(e => e.CharacterId == id);
+            return _context.Character.Any(e => e.CharacterId == id);
         }
     }
 }

@@ -1,23 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using TalesApp.Data;
-using AutoMapper;
-using TalesApp.Domain.Services;
-using aspdotnetcoreapp.Persistence.Repositories;
-using aspdotnetcoreapp.Services;
-using TalesApp.Domain;
-
 namespace aspdotnetcoreapp
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using TalesApp.Data;
+    using AutoMapper;
+    using TalesApp.Domain.Services;
+    using aspdotnetcoreapp.Persistence.Repositories;
+    using aspdotnetcoreapp.Services;
+    using TalesApp.Domain;
+    using TalesApp.Domain.Repositories;
+    using aspdotnetcoreapp.Services.ServiceInterfaces;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -37,11 +34,22 @@ namespace aspdotnetcoreapp
                 .EnableSensitiveDataLogging()
                 );
 
-            services.AddScoped<IRepository<StorySetsSequence>, StorySetsSequenceRepository>();
+            services.AddScoped<IStorySetNumberRepository, StorySetNumberRepository>();
+            services.AddScoped<IStorySetRepository, StorySetRepository>();
+            services.AddScoped<IStoryRepository, StoryRepository>();
+            services.AddScoped<ILineRepository, LineRepository>();
+            services.AddScoped<ILineNumberRepository, LineNumberRepository>();
+            services.AddScoped<IDictionaryWordRepository, DictionaryWordRepository>();
+            services.AddScoped<ICharacterRepository, CharacterRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddScoped<IService<StorySetsSequence>, StorySetsSequenceService>();
+            services.AddScoped<IStorySetNumberService, StorySetNumberService>();
+            services.AddScoped<IStorySetService, StorySetService>();
+            services.AddScoped<IStoryService, StoryService>();
+            services.AddScoped<ILineService, LineService>();
+            services.AddScoped<IDictionaryWordService, DictionaryWordService>();
+            services.AddScoped<ICharacterService, CharacterService>();
 
             services.AddAutoMapper(typeof(Startup));
         }
