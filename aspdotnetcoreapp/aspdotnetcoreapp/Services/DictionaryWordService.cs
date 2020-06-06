@@ -1,6 +1,6 @@
-﻿namespace aspdotnetcoreapp.Services
+﻿namespace TalesAPI.Services
 {
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
+    using TalesAPI.Services.ServiceInterfaces;
     using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
 

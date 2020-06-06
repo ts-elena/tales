@@ -1,110 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TalesApp.Data;
-using TalesApp.Domain;
-
-namespace aspdotnetcoreapp.Controllers
+﻿namespace TalesAPI.Controllers
 {
+    using AutoMapper;
+    using Extentions;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Resources;
+    using Resources.PostResources;
+    using Resources.PutResources;
+    using Services.ServiceInterfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using TalesApp.Domain;
+
     [Route("api/[controller]")]
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private readonly TalesContext _context;
+        private readonly ICharacterService _characterService;
+        private readonly IMapper _mapper;
 
-        public CharacterController(TalesContext context)
+        public CharacterController(ICharacterService service, IMapper mapper)
         {
-            _context = context;
+            _characterService = service;
+            _mapper = mapper;
         }
 
-        // GET: api/Tales
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
+        [HttpGet("{characterId}")]
+        [ProducesResponseType(typeof(IEnumerable<StorySetNumberResource>), 200)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<CharacterResource>> GetCharacter(Guid characterId)
         {
-            return await _context.Character.ToListAsync();
+            var character = await _characterService.FindAsync(characterId);
+
+            if (character == null) return NotFound();
+
+            return Ok(_mapper.Map<Character, CharacterResource>(character));
         }
 
-        // GET: api/Tales/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(Guid id)
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PutCharactersRange([FromBody] List<UpdateCharacterResource> charactersResources)
         {
-            var character = await _context.Character.FindAsync(id);
+            if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
 
-            if (character == null)
-            {
-                return NotFound();
-            }
+            var characters =
+                _mapper.Map<List<UpdateCharacterResource>, List<Character>>(charactersResources);
+            var result = await _characterService.UpdateRangeAsync(characters);
 
-            return character;
+            if (!result.Success) return BadRequest(result.Message);
+
+            return Ok(_mapper.Map<IEnumerable<Character>, IEnumerable<CharacterResource>>(result.DbObject));
         }
 
-        // PUT: api/Tales/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(Guid id, Character character)
-        {
-            if (id != character.CharacterId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(character).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CharacterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Tales
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Character>> PostCharacter(Character character)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<LineNumberResource>> PostCharactersRange([FromBody] List<SaveCharacterResource> resource)
         {
-            _context.Character.Add(character);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
 
-            return CreatedAtAction("GetCharacter", new { id = character.CharacterId }, character);
+            var characters = _mapper.Map<List<SaveCharacterResource>, List<Character>>(resource);
+
+            var result = await _characterService.SaveRangeAsync(characters);
+
+            if (!result.Success) return BadRequest();
+
+            return Ok(_mapper.Map<IEnumerable<Character>,
+                IEnumerable<CharacterResource>>(result.DbObject));
         }
 
-        // DELETE: api/Tales/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Character>> DeleteCharacter(Guid id)
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<CharacterResource>> DeleteRange([FromBody] List<Guid> charactersIds)
         {
-            var character = await _context.Character.FindAsync(id);
-            if (character == null)
+            List<Character> characters = new List<Character>();
+
+            foreach (var characterId in charactersIds)
             {
-                return NotFound();
+                characters.Add(_characterService.FindAsync(characterId).Result);
             }
 
-            _context.Character.Remove(character);
-            await _context.SaveChangesAsync();
+            var result = await _characterService.DeleteAsync(characters);
 
-            return character;
-        }
+            if (!result.Success) return NotFound();
 
-        private bool CharacterExists(Guid id)
-        {
-            return _context.Character.Any(e => e.CharacterId == id);
+            return Ok(_mapper.Map<IEnumerable<Character>, IEnumerable<CharacterResource>>(result.DbObject));
         }
     }
 }

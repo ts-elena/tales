@@ -12,12 +12,15 @@
 
         // Table Columns
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid CharacterId { get; set; }
 
+        [MaxLength(254)]
+        [MinLength(2)]
         [Required]
         public string CharacterName { get; set; }
 
+        [MaxLength(1000)]
         public string CharacterAvatar { get; set; }
     }
 }

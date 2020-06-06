@@ -5,4 +5,3 @@ C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Domain\o
 C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Domain\obj\Debug\netcoreapp3.0\TalesApp.Domain.AssemblyInfo.cs
 C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Domain\obj\Debug\netcoreapp3.0\TalesApp.Domain.dll
 C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Domain\obj\Debug\netcoreapp3.0\TalesApp.Domain.pdb
-C:\Users\elena.tseller\Desktop\AnEnglishStory\aspdotnetcoreapp\TalesApp.Domain\obj\Debug\netcoreapp3.0\TalesApp.Domain.csprojAssemblyReference.cache

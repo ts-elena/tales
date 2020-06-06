@@ -1,4 +1,4 @@
-﻿namespace aspdotnetcoreapp.Persistence.Repositories
+﻿namespace TalesAPI.Persistence.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -10,35 +10,23 @@
 
     public class LineRepository : BaseRepository, ILineRepository
     {
-        public LineRepository(TalesContext context) : base(context)
-        {
-        }
+        public LineRepository(TalesContext context) : base(context) { }
 
-        public async Task<IEnumerable<Line>> ListAsync()
-        {
-            return await _context.Line
+        public async Task<IEnumerable<Line>> ListAsync() =>
+            await _context.Line
                 .AsNoTracking()
                 .ToListAsync();
-        }
 
-        public async Task<Line> FindAsync(Guid id)
-        {
-            return await _context.Line.FindAsync(id);
-        }
+        public async Task<Line> LineByIdOrDefault(Guid id) => await _context.Line.FirstOrDefaultAsync(line => line.LineId == id);
 
-        public void Update(Line line)
-        {
-            _context.Line.Update(line);
-        }
+        public void Update(Line line) => _context.Line.Update(line);
 
-        public async Task AddAsync(Line line)
-        {
-            await _context.Line.AddAsync(line);
-        }
+        public void UpdateRange(IEnumerable<Line> dbObjects) => _context.Line.UpdateRange(dbObjects);
 
-        public void Remove(Line line)
-        {
-            _context.Line.Remove(line);
-        }
+        public async Task AddAsync(Line line) => await _context.Line.AddAsync(line);
+
+        public async Task AddRangeAsync(IEnumerable<Line> dbObjects) => await _context.AddRangeAsync(dbObjects);
+
+        public void RemoveRange(IEnumerable<Line> dbObjects) => _context.RemoveRange(dbObjects);
     }
 }

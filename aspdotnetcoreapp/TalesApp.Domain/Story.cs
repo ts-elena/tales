@@ -23,6 +23,8 @@
         [Required]
         public string StoryCoverImage { get; set; }
 
+        public bool IsActive { get; set; }
+
         public Guid StorySetId { get; set; }
     }
 }

@@ -12,7 +12,7 @@
         // Table Columns
         [Key]
         public Guid StorySetId { get; set; }
-
+        
         [Required]
         public int SetNumber { get; set; }
     }

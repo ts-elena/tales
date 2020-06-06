@@ -1,6 +1,6 @@
-﻿namespace aspdotnetcoreapp.Services
+﻿namespace TalesAPI.Services
 {
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
+    using ServiceInterfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -14,78 +14,108 @@
         private readonly ILineNumberRepository _lineNumberRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public LineNumberService(ILineNumberRepository LineNumberNumberRepository, IUnitOfWork unitOfWork)
+        public LineNumberService(ILineNumberRepository lineNumberRepository, IUnitOfWork unitOfWork)
         {
-            _lineNumberRepository = LineNumberNumberRepository;
+            _lineNumberRepository = lineNumberRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<LineNumber>> ListAsync()
+        public async Task<IEnumerable<LineNumber>> LineNumbersOfStory(Guid storyId)
         {
-            return await _lineNumberRepository.ListAsync();
+            return await _lineNumberRepository.LineNumbersOfStory(storyId);
         }
 
-        public async Task<LineNumber> FindAsync(Guid id)
+        public async Task<Response<IEnumerable<LineNumber>>> UpdateRangeAsync(List<LineNumber> lineNumbers)
         {
-            return await _lineNumberRepository.FindAsync(id);
+            foreach (var lineNumber in lineNumbers)
+            {
+                LineNumber number = await _lineNumberRepository.LineNumberById(lineNumber.LineId);
+
+                if (number == null)
+                    return new Response<IEnumerable<LineNumber>>(
+                        $"Line with id '{lineNumber.LineId}' was not found. Update operation failed.");
+
+                number.StoryId = lineNumber.StoryId;
+                number.Number = lineNumber.Number;
+            }
+
+            try
+            {
+                await _unitOfWork.SaveChangesAsync();
+
+                return new Response<IEnumerable<LineNumber>>(lineNumbers);
+            }
+            catch (Exception ex)
+            {
+                // Do some logging stuff
+                return new Response<IEnumerable<LineNumber>>(
+                    $"An error occurred when updating the Lines': {ex.Message}");
+            }
         }
 
-        public async Task<Response<LineNumber>> SaveAsync(LineNumber lineNumber)
+        public async Task<Response<IEnumerable<LineNumber>>> AddRangeAsync(List<LineNumber> lineNumbers)
         {
             try
             {
-                await _lineNumberRepository.AddAsync(lineNumber);
+                await _lineNumberRepository.AddRangeAsync(lineNumbers);
                 await _unitOfWork.SaveChangesAsync();
-                return new Response<LineNumber>(lineNumber);
+                return new Response<IEnumerable<LineNumber>>(lineNumbers);
             }
             catch (Exception exception)
             {
-                return new Response<LineNumber>($"The line number with id '{lineNumber.LineId}' " +
-                    $"could not be saved. An error occured: {exception.Message}");
+                return new Response<IEnumerable<LineNumber>>(
+                    $"New lines could not be saved. An error occured: {exception.Message}");
             }
         }
 
-        public async Task<Response<LineNumber>> UpdateAsync(Guid id, LineNumber lineNumber)
+        public async Task<Response<IEnumerable<LineNumber>>> DeleteRangeByStoryId(Guid storyId)
         {
-            var existingLineNumber = await _lineNumberRepository.FindAsync(id);
+            List<LineNumber> lineNumbersByStoryId = await _lineNumberRepository.LineNumbersOfStory(storyId);
 
-            if (existingLineNumber == null)
-                return new Response<LineNumber>($"Line Number with id '{id}' was not found. Update operation failed.");
-
-            existingLineNumber.LineId = lineNumber.LineId;
-            existingLineNumber.Number = lineNumber.Number;
+            if (lineNumbersByStoryId == null)
+                return new Response<IEnumerable<LineNumber>>(
+                    $"Line for story with id '{storyId}' were not found. Delete operation failed.");
 
             try
             {
+                _lineNumberRepository.DeleteRange(lineNumbersByStoryId);
                 await _unitOfWork.SaveChangesAsync();
 
-                return new Response<LineNumber>(existingLineNumber);
+                return new Response<IEnumerable<LineNumber>>(lineNumbersByStoryId);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new Response<LineNumber>($"An error occurred when updating the Line Number with id '{id}': {ex.Message}");
+                return new Response<IEnumerable<LineNumber>>(
+                    $"An error occurred when deleting the Lines: {ex.Message}");
             }
         }
 
-        public async Task<Response<LineNumber>> DeleteAsync(Guid id)
+        public async Task<Response<IEnumerable<LineNumber>>> DeleteRangeByLineId(IEnumerable<Guid> lineIds)
         {
-            var existingLineNumber = await _lineNumberRepository.FindAsync(id);
+            var lineNumbersByIds = new List<LineNumber>();
+            foreach (var lineId in lineIds)
+            {
+                var lineNumbersByStoryId = await _lineNumberRepository.LineNumberById(lineId);
 
-            if (existingLineNumber == null)
-                return new Response<LineNumber>($"LineNumber with id '{id}' was not found. Delete operation failed.");
+                if (lineNumbersByStoryId == null)
+                    return new Response<IEnumerable<LineNumber>>(
+                        $"Line with id '{lineId}' was not found. Delete operation failed.");
+                lineNumbersByIds.Add(lineNumbersByStoryId);
+            }
 
             try
             {
-                _lineNumberRepository.Remove(existingLineNumber);
+                _lineNumberRepository.DeleteRange(lineNumbersByIds);
                 await _unitOfWork.SaveChangesAsync();
 
-                return new Response<LineNumber>(existingLineNumber);
+                return new Response<IEnumerable<LineNumber>>(lineNumbersByIds);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new Response<LineNumber>($"An error occurred when deleting the LineNumber with id '{id}': {ex.Message}");
+                return new Response<IEnumerable<LineNumber>>(
+                    $"An error occurred when deleting the Lines: {ex.Message}");
             }
         }
     }

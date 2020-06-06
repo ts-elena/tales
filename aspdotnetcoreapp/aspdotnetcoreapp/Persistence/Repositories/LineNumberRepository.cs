@@ -1,8 +1,9 @@
-﻿namespace aspdotnetcoreapp.Persistence.Repositories
+﻿namespace TalesAPI.Persistence.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using TalesApp.Data;
     using TalesApp.Domain;
@@ -14,31 +15,29 @@
         {
         }
 
-        public async Task<IEnumerable<LineNumber>> ListAsync()
+        public async Task<LineNumber> LineNumberById(Guid id)
         {
-            return await _context.LineNumber
-                .AsNoTracking()
-                .ToListAsync();
+            return await _context.LineNumber.FirstOrDefaultAsync(lineNumber => lineNumber.LineId == id);
         }
 
-        public async Task<LineNumber> FindAsync(Guid id)
+        public async Task<List<LineNumber>> LineNumbersOfStory(Guid id)
         {
-            return await _context.LineNumber.FindAsync(id);
+            return await _context.LineNumber.Where((LineNumber num) => num.StoryId == id).ToListAsync();
         }
 
-        public void Update(LineNumber lineNumber)
+        public void UpdateRange(IEnumerable<LineNumber> dbObjects)
         {
-            _context.LineNumber.Update(lineNumber);
+            _context.LineNumber.UpdateRange(dbObjects);
         }
 
-        public async Task AddAsync(LineNumber lineNumber)
+        public async Task AddRangeAsync(IEnumerable<LineNumber> dbObjects)
         {
-            await _context.LineNumber.AddAsync(lineNumber);
+            await _context.LineNumber.AddRangeAsync(dbObjects);
         }
 
-        public void Remove(LineNumber lineNumber)
+        public void DeleteRange(IEnumerable<LineNumber> dbObjects)
         {
-            _context.LineNumber.Remove(lineNumber);
+            _context.LineNumber.RemoveRange(dbObjects);
         }
     }
 }

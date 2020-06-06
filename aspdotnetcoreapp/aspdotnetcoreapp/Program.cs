@@ -1,4 +1,4 @@
-namespace aspdotnetcoreapp
+namespace TalesAPI
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;

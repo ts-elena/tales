@@ -1,4 +1,4 @@
-﻿namespace aspdotnetcoreapp.Persistence.Repositories
+﻿namespace TalesAPI.Persistence.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -26,19 +26,19 @@
             return await _context.Character.FindAsync(id);
         }
 
-        public void Update(Character character)
+        public void UpdateRange(IEnumerable<Character> characters)
         {
-            _context.Character.Update(character);
+            _context.Character.UpdateRange(characters);
         }
 
-        public async Task AddAsync(Character character)
+        public async Task AddRangeAsync(IEnumerable<Character> character)
         {
-            await _context.Character.AddAsync(character);
+            await _context.Character.AddRangeAsync(character);
         }
 
-        public void Remove(Character character)
+        public void RemoveRange(IEnumerable<Character> character)
         {
-            _context.Character.Remove(character);
+            _context.Character.RemoveRange(character);
         }
     }
 }

@@ -1,16 +1,17 @@
-﻿namespace aspdotnetcoreapp.Controllers
+﻿namespace TalesAPI.Controllers
 {
+    using AutoMapper;
+    using Extentions;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Resources;
+    using Resources.PostResources;
+    using Services;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using aspdotnetcoreapp.Extentions;
-    using aspdotnetcoreapp.Resourses;
-    using aspdotnetcoreapp.Resourses.PostResources;
-    using aspdotnetcoreapp.Services;
-    using AutoMapper;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
     using TalesApp.Domain;
+    using Resources.PutResources;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -29,7 +30,7 @@
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<StorySetNumberResource>), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IEnumerable<StorySetNumberResource>> GetStorySetNumber()
+        public async Task<IEnumerable<StorySetNumberResource>> GetStorySetNumbers()
         {
             var storySetNumber = await _storySetsNumberService.ListAsync();
             IEnumerable<StorySetNumberResource> storySetNumberDto = _mapper
@@ -37,22 +38,6 @@
             return storySetNumberDto;
         }
 
-        // GET: api/StorySetNumber/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<StorySetNumberResource>> GetStorySetNumber(Guid id)
-        {
-            var storySetsNumber = await _storySetsNumberService.FindAsync(id);
-
-            StorySetNumberResource storySetNumberDto = _mapper
-                .Map<StorySetNumber, StorySetNumberResource>(storySetsNumber);
-
-            if (storySetsNumber == null)
-            {
-                return NotFound();
-            }
-
-            return storySetNumberDto;
-        }
 
         [HttpPost]
         public async Task<IActionResult> PostStorySetNumber([FromBody] SaveStorySetNumberResource saveStorySetNumber)
@@ -67,7 +52,7 @@
 
             if (!result.Success)
             {
-                return BadRequest();
+                return BadRequest(result.Message);
             }
 
             var storySetsResource = _mapper.Map<StorySetNumber, StorySetNumberResource>(result.DbObject);
@@ -83,13 +68,13 @@
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(StorySetNumberResource), 200)]
         // [ProducesResponseType(typeof(ErrorResource), 400)]
-        public async Task<IActionResult> PutAsync(Guid id, [FromBody] StorySetNumberResource resource)
+        public async Task<IActionResult> PutAsync([FromBody] UpdateStorySetNumberResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var storySetNumber = _mapper.Map<StorySetNumberResource, StorySetNumber>(resource);
-            var result = await _storySetsNumberService.UpdateAsync(id, storySetNumber);
+            var storySetNumber = _mapper.Map<UpdateStorySetNumberResource, StorySetNumber>(resource);
+            var result = await _storySetsNumberService.UpdateAsync(storySetNumber);
 
             if (!result.Success)
             {

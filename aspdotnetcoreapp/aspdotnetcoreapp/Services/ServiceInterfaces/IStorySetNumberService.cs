@@ -1,4 +1,4 @@
-﻿namespace aspdotnetcoreapp.Services
+﻿namespace TalesAPI.Services
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +10,7 @@
     {
         Task<IEnumerable<StorySetNumber>> ListAsync();
         Task<StorySetNumber> FindAsync(Guid id);
-        Task<Response<StorySetNumber>> UpdateAsync(Guid id, StorySetNumber storySetsSequence);
+        Task<Response<StorySetNumber>> UpdateAsync(StorySetNumber storySetsSequence);
         Task<Response<StorySetNumber>> SaveAsync(StorySetNumber storySetsSequence);
         Task<Response<StorySetNumber>> DeleteAsync(Guid id);
     }

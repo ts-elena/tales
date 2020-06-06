@@ -2,9 +2,9 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
-    using TalesApp.Domain;
+    using Domain;
 
-    public class TalesContext: DbContext
+    public class TalesContext : DbContext
     {
         public TalesContext(DbContextOptions<TalesContext> options) : base(options) { }
         public DbSet<StorySet> StorySet { get; set; }
@@ -33,6 +33,12 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Line>()
+                .HasKey(line => new { line.LineId, line.StoryId });
+            modelBuilder.Entity<LineNumber>()
+                .HasKey(lineNumber => new {lineNumber.LineId, lineNumber.StoryId});
+
             modelBuilder.Seed();
         }
     }

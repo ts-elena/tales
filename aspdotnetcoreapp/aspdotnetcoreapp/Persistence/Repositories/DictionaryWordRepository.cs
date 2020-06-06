@@ -1,4 +1,4 @@
-﻿namespace aspdotnetcoreapp.Persistence.Repositories
+﻿namespace TalesAPI.Persistence.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using System;

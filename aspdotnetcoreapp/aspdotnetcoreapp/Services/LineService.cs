@@ -1,8 +1,9 @@
-﻿namespace aspdotnetcoreapp.Services
+﻿namespace TalesAPI.Services
 {
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
+    using ServiceInterfaces;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using TalesApp.Domain;
     using TalesApp.Domain.Repositories;
@@ -20,71 +21,76 @@
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Line>> ListAsync()
+        public async Task<Line> LineByIdOrDefault(Guid id)
         {
-            return await _lineRepository.ListAsync();
+            return await _lineRepository.LineByIdOrDefault(id);
         }
 
-        public async Task<Line> FindAsync(Guid id)
-        {
-            return await _lineRepository.FindAsync(id);
-        }
-
-        public async Task<Response<Line>> SaveAsync(Line line)
+        public async Task<Response<IEnumerable<Line>>> SaveRangeAsync(IEnumerable<Line> lines)
         {
             try
             {
-                await _lineRepository.AddAsync(line);
+                List<Line> dBObject = lines.ToList();
+                await _lineRepository.AddRangeAsync(dBObject);
                 await _unitOfWork.SaveChangesAsync();
-                return new Response<Line>(line);
+                return new Response<IEnumerable<Line>>(dBObject);
             }
             catch (Exception exception)
             {
-                return new Response<Line>($"The Line '{line.LineContent}' could not be saved. An error occured: {exception.Message}");
+                return new Response<IEnumerable<Line>>($"The Lines could not be saved. An error occured: {exception.Message}");
             }
         }
 
-        public async Task<Response<Line>> UpdateAsync(Guid id, Line line)
+        public async Task<Response<IEnumerable<Line>>> UpdateRangeAsync(IEnumerable<Line> lines)
         {
-            var existingSequence = await _lineRepository.FindAsync(id);
+            List<Line> dBObject = lines.ToList();
+            foreach (var line in dBObject)
+            {
+                Line existingLine = await _lineRepository.LineByIdOrDefault(line.LineId);
 
-            if (existingSequence == null)
-                return new Response<Line>($"Line with id '{id}' was not found. Update operation failed.");
+                if (existingLine == null)
+                    return new Response<IEnumerable<Line>>($"Line with id '{line.LineId}' was not found. Update operation failed.");
 
-            existingSequence.StoryId = line.StoryId;
-            existingSequence.LineContent = line.LineContent;
+                existingLine.StoryId = line.StoryId;
+                existingLine.LineContent = line.LineContent;
+            }
 
             try
             {
                 await _unitOfWork.SaveChangesAsync();
 
-                return new Response<Line>(existingSequence);
+                return new Response<IEnumerable<Line>>(dBObject);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new Response<Line>($"An error occurred when updating the Line with id '{id}': {ex.Message}");
+                return new Response<IEnumerable<Line>>($"An error occurred when updating the Lines': {ex.Message}");
             }
         }
 
-        public async Task<Response<Line>> DeleteAsync(Guid id)
+        public async Task<Response<IEnumerable<Line>>> DeleteRangeAsync(IEnumerable<Guid> lineIds)
         {
-            var existingCategory = await _lineRepository.FindAsync(id);
+            List<Line> linesById = new List<Line>() { };
+            foreach (Guid lineId in lineIds)
+            {
+                Line lineById = await _lineRepository.LineByIdOrDefault(lineId);
 
-            if (existingCategory == null)
-                return new Response<Line>($"Line with id '{id}' was not found. Delete operation failed.");
+                if (lineById == null)
+                    return new Response<IEnumerable<Line>>($"Line with id '{lineId}' was not found. Delete operation failed.");
+                linesById.Add(lineById);
+            }
 
             try
             {
-                _lineRepository.Remove(existingCategory);
+                _lineRepository.RemoveRange(linesById);
                 await _unitOfWork.SaveChangesAsync();
 
-                return new Response<Line>(existingCategory);
+                return new Response<IEnumerable<Line>>(linesById);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new Response<Line>($"An error occurred when deleting the Line with id '{id}': {ex.Message}");
+                return new Response<IEnumerable<Line>>($"An error occurred when deleting the Lines: {ex.Message}");
             }
         }
     }

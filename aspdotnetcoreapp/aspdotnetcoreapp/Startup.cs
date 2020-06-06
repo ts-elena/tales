@@ -1,19 +1,18 @@
-namespace aspdotnetcoreapp
+namespace TalesAPI
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.EntityFrameworkCore;
+    using Persistence.Repositories;
+    using Services;
+    using Services.ServiceInterfaces;
     using TalesApp.Data;
-    using AutoMapper;
-    using TalesApp.Domain.Services;
-    using aspdotnetcoreapp.Persistence.Repositories;
-    using aspdotnetcoreapp.Services;
-    using TalesApp.Domain;
     using TalesApp.Domain.Repositories;
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
+    using TalesApp.Domain.Services;
 
     public class Startup
     {
@@ -48,6 +47,7 @@ namespace aspdotnetcoreapp
             services.AddScoped<IStorySetService, StorySetService>();
             services.AddScoped<IStoryService, StoryService>();
             services.AddScoped<ILineService, LineService>();
+            services.AddScoped<ILineNumberService, LineNumberService>();
             services.AddScoped<IDictionaryWordService, DictionaryWordService>();
             services.AddScoped<ICharacterService, CharacterService>();
 

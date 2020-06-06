@@ -1,4 +1,4 @@
-﻿namespace aspdotnetcoreapp.Extentions
+﻿namespace TalesAPI.Extentions
 {
     using Microsoft.AspNetCore.Mvc.ModelBinding;
     using System.Collections.Generic;

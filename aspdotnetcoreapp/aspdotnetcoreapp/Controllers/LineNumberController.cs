@@ -1,123 +1,99 @@
-﻿namespace aspdotnetcoreapp.Controllers
+﻿namespace TalesAPI.Controllers
 {
+    using AutoMapper;
+    using Extentions;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Resources;
+    using Resources.PostResources;
+    using Resources.PutResources;
+    using Services.ServiceInterfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using TalesApp.Data;
     using TalesApp.Domain;
 
     [Route("api/[controller]")]
     [ApiController]
     public class LineNumberController : ControllerBase
     {
-        private readonly TalesContext _context;
+        private readonly ILineNumberService _lineNumberService;
+        private readonly IMapper _mapper;
 
-        public LineNumberController(TalesContext context)
+        public LineNumberController(ILineNumberService service, IMapper mapper)
         {
-            _context = context;
+            _lineNumberService = service;
+            _mapper = mapper;
         }
 
-        // GET: api/LineSequences
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<LineNumber>>> GetLineSequences()
+        [HttpGet("{storyId}")]
+        [ProducesResponseType(typeof(IEnumerable<LineNumber>), 200)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<LineNumber>>> GetLineNumbersOfStory(Guid storyId)
         {
-            return await _context.LineNumber.ToListAsync();
+            var lineSequence = await _lineNumberService.LineNumbersOfStory(storyId);
+
+            if (lineSequence == null) return NotFound();
+
+            return Ok(_mapper.Map<IEnumerable<LineNumber>, IEnumerable<LineNumberResource>>(lineSequence));
         }
 
-        // GET: api/LineSequences/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<LineNumber>> GetLineSequence(Guid id)
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PutLineNumbers(List<UpdateLineNumberResource> lineNumbersResources)
         {
-            var lineSequence = await _context.LineNumber.FindAsync(id);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
 
-            if (lineSequence == null)
-            {
-                return NotFound();
-            }
+            var lineNumbers =
+                _mapper.Map<List<UpdateLineNumberResource>, List<LineNumber>>(lineNumbersResources);
+            var result = await _lineNumberService.UpdateRangeAsync(lineNumbers);
 
-            return lineSequence;
+            if (!result.Success) return BadRequest();
+
+            return Ok(_mapper.Map<IEnumerable<LineNumber>,
+                IEnumerable<LineNumberResource>>(result.DbObject));
         }
 
-        // PUT: api/LineSequences/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLineSequence(Guid id, LineNumber lineSequence)
-        {
-            if (id != lineSequence.LineId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(lineSequence).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LineSequenceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/LineSequences
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<LineNumber>> PostLineSequence(LineNumber lineSequence)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<LineNumberResource>> PostLineNumbers([FromBody] IEnumerable<SaveLineNumberResource> resource)
         {
-            _context.LineNumber.Add(lineSequence);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (LineSequenceExists(lineSequence.LineId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
 
-            return CreatedAtAction("GetLineSequence", new { id = lineSequence.LineId }, lineSequence);
+            var lineNumbers = _mapper.Map<IEnumerable<SaveLineNumberResource>, IEnumerable<LineNumber>>(resource);
+            var result = await _lineNumberService.AddRangeAsync(lineNumbers.ToList());
+
+            if (!result.Success) return BadRequest();
+
+            return Ok(_mapper.Map<IEnumerable<LineNumber>, IEnumerable<LineNumberResource>>(result.DbObject));
         }
 
-        // DELETE: api/LineSequences/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<LineNumber>> DeleteLineSequence(Guid id)
+        [HttpDelete("{storyId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<LineNumberResource>> DeleteAllStoryLineNumbers(Guid storyId)
         {
-            var lineSequence = await _context.LineNumber.FindAsync(id);
-            if (lineSequence == null)
-            {
-                return NotFound();
-            }
+            var result = await _lineNumberService.DeleteRangeByStoryId(storyId);
+            if (!result.Success) return NotFound();
 
-            _context.LineNumber.Remove(lineSequence);
-            await _context.SaveChangesAsync();
-
-            return lineSequence;
+            return Ok(_mapper.Map<IEnumerable<LineNumber>,
+                IEnumerable<LineNumberResource>>(result.DbObject));
         }
 
-        private bool LineSequenceExists(Guid id)
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<LineNumberResource>> DeleteLineNumbersByIds([FromBody] IEnumerable<Guid> lineNumbersIds)
         {
-            return _context.LineNumber.Any(e => e.LineId == id);
+            var result = await _lineNumberService.DeleteRangeByLineId(lineNumbersIds);
+            if (!result.Success) return NotFound();
+
+            return Ok(_mapper.Map<IEnumerable<LineNumber>,
+                IEnumerable<LineNumberResource>>(result.DbObject));
         }
     }
 }

@@ -6,10 +6,9 @@
 
     public interface ILineRepository
     {
-        Task<IEnumerable<Line>> ListAsync();
-        Task<Line> FindAsync(Guid id);
-        void Update(Line dbObject);
-        Task AddAsync(Line dbObject);
-        void Remove(Line dbObject);
+        Task<Line> LineByIdOrDefault(Guid id);
+        void UpdateRange(IEnumerable<Line> dbObjects);
+        Task AddRangeAsync(IEnumerable<Line> dbObjects);
+        void RemoveRange(IEnumerable<Line> dbObjects);
     }
 }

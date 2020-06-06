@@ -1,4 +1,6 @@
-﻿namespace aspdotnetcoreapp.Persistence.Repositories
+﻿using System.Linq;
+
+namespace TalesAPI.Persistence.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -14,10 +16,10 @@
         {
         }
 
-        public async Task<IEnumerable<Story>> ListAsync()
+        public async Task<List<Story>> ActiveStoriesBySetId(Guid setId)
         {
             return await _context.Story
-                .AsNoTracking()
+                .Where(story => story.StorySetId == setId && story.IsActive)
                 .ToListAsync();
         }
 

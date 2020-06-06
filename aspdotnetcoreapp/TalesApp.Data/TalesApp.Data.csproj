@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200509203308_IdAutoGenerationforStorySetSequence.cs" />
-    <Compile Remove="Migrations\20200509203308_IdAutoGenerationforStorySetSequence.Designer.cs" />
+    <Compile Remove="Migrations\20200606130821_Initial.cs" />
+    <Compile Remove="Migrations\20200606130821_Initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

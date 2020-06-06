@@ -1,6 +1,6 @@
-﻿namespace aspdotnetcoreapp.Services
+﻿namespace TalesAPI.Services
 {
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
+    using ServiceInterfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -44,15 +44,15 @@
             }
         }
 
-        public async Task<Response<StorySet>> UpdateAsync(Guid id, StorySet storySetsSequence)
+        public async Task<Response<StorySet>> UpdateAsync(StorySet storySetNumber)
         {
-            var existingSequence = await _storySetRepository.FindAsync(id);
+            var existingSequence = await _storySetRepository.FindAsync(storySetNumber.StorySetId);
 
             if (existingSequence == null)
-                return new Response<StorySet>($"Story sequence with ID '{id}' not found.");
+                return new Response<StorySet>($"Story sequence with ID '{storySetNumber.StorySetId}' not found.");
 
-            existingSequence.StorySetName = storySetsSequence.StorySetName;
-            existingSequence.StorySetNumber = storySetsSequence.StorySetNumber;
+            existingSequence.StorySetName = storySetNumber.StorySetName;
+            existingSequence.StorySetNumber = storySetNumber.StorySetNumber;
 
             try
             {

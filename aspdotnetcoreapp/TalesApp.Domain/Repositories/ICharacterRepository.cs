@@ -8,8 +8,8 @@
     {
         Task<IEnumerable<Character>> ListAsync();
         Task<Character> FindAsync(Guid id);
-        void Update(Character dbObject);
-        Task AddAsync(Character dbObject);
-        void Remove(Character dbObject);
+        void UpdateRange(IEnumerable<Character> characters);
+        Task AddRangeAsync(IEnumerable<Character> character);
+        void RemoveRange(IEnumerable<Character> character);
     }
 }

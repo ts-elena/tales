@@ -1,20 +1,18 @@
-﻿namespace aspdotnetcoreapp.Controllers
+﻿namespace TalesAPI.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using aspdotnetcoreapp.Extentions;
-    using aspdotnetcoreapp.Resourses;
-    using aspdotnetcoreapp.Resourses.PostResources;
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
     using AutoMapper;
+    using Extentions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using TalesApp.Data;
+    using Resources;
+    using Resources.PostResources;
+    using Services.ServiceInterfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using TalesApp.Domain;
-    using TalesApp.Domain.Services.Communication;
+    using System.Linq;
+    using Resources.PutResources;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -29,80 +27,70 @@
             _mapper = mapper;
         }
 
-        // GET: api/Stories
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<StoryResource>), 200)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IEnumerable<StoryResource>> GetStories()
+        [HttpGet("GetStoryById/{storyId:Guid}", Name = "GetStoryById")]
+        [ProducesResponseType(typeof(StoryResource), 200)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<StoryResource>> GetStoryById(Guid storyId)
         {
-            IEnumerable<Story> stories = await _storyService.ListAsync();
-            IEnumerable<StoryResource> storiesDto = _mapper.Map<IEnumerable<Story>, IEnumerable<StoryResource>>(stories);
+            var story = await _storyService.FindAsync(storyId);
 
-            return storiesDto;
+            if (story == null) return NotFound();
+
+            return _mapper.Map<Story, StoryResource>(story);
         }
 
-        // GET: api/Stories/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<StoryResource>> GetStory(Guid id)
+        [HttpGet("{setId:Guid}")]
+        [ProducesResponseType(typeof(List<StoryResource>), 200)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<StoryResource>>> GetAllActiveStoriesOfSet(Guid setId)
         {
-            Story story = await _storyService.FindAsync(id);
-            StoryResource storyDto = _mapper.Map<Story, StoryResource>(story);
+            var stories = await _storyService.ActiveStoriesBySetId(setId);
 
-            if (storyDto == null)
-            {
-                return NotFound();
-            }
+            if (!stories.Any()) return NotFound();
 
-            return storyDto;
+            return _mapper.Map<List<Story>, List<StoryResource>>(stories);
         }
 
-        // PUT: api/Stories/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStory(Guid id, StoryResource resource)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PutStory(Guid id, UpdateStoryResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            Story story = _mapper.Map<StoryResource, Story>(resource);
-            Response<Story> result = await _storyService.UpdateAsync(id, story);
-            if(!result.Success)
-            {
-                BadRequest();
-            }
+            var story = _mapper.Map<UpdateStoryResource, Story>(resource);
+            var result = await _storyService.UpdateAsync(id, story);
+            if (!result.Success) return BadRequest();
             var storyResource = _mapper.Map<Story, StoryResource>(result.DbObject);
 
             return Ok(storyResource);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Story>> PostStory([FromBody] SaveStoryResource resource)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<StoryResource>> PostStory([FromBody] SaveStoryResource resource)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState.GetErrorMessages());
-            Story story = _mapper.Map<SaveStoryResource, Story>(resource);
-            var result = await _storyService.SaveAsync(story);
-            if (!result.Success)
-            {
-                return BadRequest();
-            }
-            var storyResource = _mapper.Map<Story, StoryResource>(result.DbObject);
+            if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
 
-            return Ok(storyResource);
+            var story = _mapper.Map<SaveStoryResource, Story>(resource);
+            var result = await _storyService.SaveAsync(story);
+            if (!result.Success) return BadRequest();
+            return Ok(_mapper.Map<Story, StoryResource>(result.DbObject));
         }
 
-        // DELETE: api/Stories/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Story>> DeleteStory(Guid id)
-        {
-            var result = await _storyService.DeleteAsync(id);
-            if (!result.Success)
-            {
-                return NotFound();
-            }
 
-            StoryResource story = _mapper.Map<Story, StoryResource>(result.DbObject);
+        [HttpDelete("{storyId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<Story>> DeleteStory(Guid storyId)
+        {
+            var result = await _storyService.DeleteAsync(storyId);
+            if (!result.Success) return NotFound();
+
+            var story = _mapper.Map<Story, StoryResource>(result.DbObject);
             return Ok(story);
         }
     }

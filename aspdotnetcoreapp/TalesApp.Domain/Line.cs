@@ -18,10 +18,10 @@
 
         // Table Columns
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid LineId { get; set; }
 
-        [Required]
+        [Key]
         public Guid StoryId { get; set; }
 
         [Required]

@@ -6,7 +6,7 @@
 
     public interface IStoryRepository
     {
-        Task<IEnumerable<Story>> ListAsync();
+        Task<List<Story>> ActiveStoriesBySetId(Guid setId);
         Task<Story> FindAsync(Guid id);
         void Update(Story dbObject);
         Task AddAsync(Story dbObject);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TalesApp.Domain.Services.Communication
+﻿namespace TalesApp.Domain.Services.Communication
 {
     public abstract class BaseResponse
     {

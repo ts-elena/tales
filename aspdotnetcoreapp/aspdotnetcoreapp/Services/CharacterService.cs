@@ -1,6 +1,6 @@
-﻿namespace aspdotnetcoreapp.Services
+﻿namespace TalesAPI.Services
 {
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
+    using ServiceInterfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -20,71 +20,55 @@
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Character>> ListAsync()
-        {
-            return await _characterRepository.ListAsync();
-        }
-
         public async Task<Character> FindAsync(Guid id)
         {
             return await _characterRepository.FindAsync(id);
         }
 
-        public async Task<Response<Character>> SaveAsync(Character character)
+        public async Task<Response<IEnumerable<Character>>> SaveRangeAsync(List<Character> character)
         {
             try
             {
-                await _characterRepository.AddAsync(character);
+                await _characterRepository.AddRangeAsync(character);
                 await _unitOfWork.SaveChangesAsync();
-                return new Response<Character>(character);
+                return new Response<IEnumerable<Character>>(character);
             }
             catch (Exception exception)
             {
-                return new Response<Character>(exception.Message);
+                return new Response<IEnumerable<Character>>(exception.Message);
             }
         }
 
-        public async Task<Response<Character>> UpdateAsync(Guid id, Character characterToUpdate)
+        public async Task<Response<IEnumerable<Character>>> UpdateRangeAsync(List<Character> charactersToUpdate)
         {
-            var characterWithId = await _characterRepository.FindAsync(id);
-
-            if (characterWithId == null)
-                return new Response<Character>($"Story sequence with ID '{id}' not found.");
-
-            characterWithId.CharacterName = characterToUpdate.CharacterName;
-            characterWithId.CharacterAvatar = characterToUpdate.CharacterAvatar;
+            _characterRepository.UpdateRange(charactersToUpdate);
 
             try
             {
                 await _unitOfWork.SaveChangesAsync();
 
-                return new Response<Character>(characterWithId);
+                return new Response<IEnumerable<Character>>(charactersToUpdate);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new Response<Character>($"An error occurred when updating the sequence: {ex.Message}");
+                return new Response<IEnumerable<Character>>($"An error occurred when updating the sequence: {ex.Message}");
             }
         }
 
-        public async Task<Response<Character>> DeleteAsync(Guid id)
+        public async Task<Response<IEnumerable<Character>>> DeleteAsync(List<Character> charactersToDelete)
         {
-            var characterById = await _characterRepository.FindAsync(id);
-
-            if (characterById == null)
-                return new Response<Character>($"Character with id '{id}' was not found.");
-
             try
             {
-                _characterRepository.Remove(characterById);
+                _characterRepository.RemoveRange(charactersToDelete);
                 await _unitOfWork.SaveChangesAsync();
 
-                return new Response<Character>(characterById);
+                return new Response<IEnumerable<Character>>(charactersToDelete);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new Response<Character>($"An error occurred when deleting the character: {ex.Message}");
+                return new Response<IEnumerable<Character>>($"An error occurred when deleting the character: {ex.Message}");
             }
         }
     }

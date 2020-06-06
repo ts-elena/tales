@@ -1,17 +1,19 @@
-﻿namespace aspdotnetcoreapp.Controllers
+﻿using TalesAPI.Resources.PutResources;
+
+namespace TalesAPI.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using aspdotnetcoreapp.Resourses;
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
     using AutoMapper;
+    using Extentions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using TalesApp.Data;
+    using Resources;
+    using Resources.PostResources;
+    using Services.ServiceInterfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using TalesApp.Domain;
+    using TalesApp.Domain.Services.Communication;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -26,95 +28,67 @@
             _mapper = mapper;
         }
 
-        // GET: api/Lines
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<LineResource>), 200)]
+
+        [HttpGet("{lineId:Guid}", Name = "GetLineById")]
+        [ProducesResponseType(typeof(LineResource), 200)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<LineResource>> GetLineById(Guid lineId)
+        {
+            Line line = await _lineService.LineByIdOrDefault(lineId);
+
+            if (line == null)
+                return NotFound();
+
+            return _mapper.Map<Line, LineResource>(line);
+        }
+
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IEnumerable<LineResource>> GetLines()
+        public async Task<IActionResult> PutLinesRange([FromBody] IEnumerable<UpdateLineResource> resource)
         {
-            IEnumerable<Line> lines = await _lineService.ListAsync();
-            IEnumerable<LineResource> linesDto = _mapper.Map<IEnumerable<Line>, IEnumerable<LineResource>>(lines);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
 
-            return linesDto;
-        }
-
-        /* // GET: api/Lines/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Line>> GetLine(Guid id)
-        {
-            var line = await _context.Line.FindAsync(id);
-
-            if (line == null)
-            {
-                return NotFound();
-            }
-
-            return line;
-        }
-
-        // PUT: api/Lines/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLine(Guid id, Line line)
-        {
-            if (id != line.LineId)
-            {
+            IEnumerable<Line> lines = _mapper.Map<IEnumerable<UpdateLineResource>, IEnumerable<Line>>(resource);
+            Response<IEnumerable<Line>> result = await _lineService.UpdateRangeAsync(lines);
+            if (!result.Success)
                 return BadRequest();
-            }
 
-            _context.Entry(line).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LineExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineResource>>(result.DbObject));
         }
 
-        // POST: api/Lines
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Line>> PostLine(Line line)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Line>> PostLinesRange([FromBody] List<SaveLineResource> resource)
         {
-            _context.Line.Add(line);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
 
-            return CreatedAtAction("GetLine", new { id = line.LineId }, line);
+            IEnumerable<Line> lines = _mapper.Map<List<SaveLineResource>, List<Line>>(resource);
+
+            Response<IEnumerable<Line>> result = await _lineService.SaveRangeAsync(lines);
+
+            if (!result.Success)
+                return BadRequest();
+
+            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineResource>>(result.DbObject));
         }
 
-        // DELETE: api/Lines/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Line>> DeleteLine(Guid id)
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<LineResource>> DeleteLinesRange([FromBody] IEnumerable<Guid> lineIds)
         {
-            var line = await _context.Line.FindAsync(id);
-            if (line == null)
-            {
+            Response<IEnumerable<Line>> result = await _lineService.DeleteRangeAsync(lineIds);
+
+            if (!result.Success)
                 return NotFound();
-            }
 
-            _context.Line.Remove(line);
-            await _context.SaveChangesAsync();
-
-            return line;
+            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineResource>>(result.DbObject));
         }
-
-        private bool LineExists(Guid id)
-        {
-            return _context.Line.Any(e => e.LineId == id);
-        }*/
     }
 }

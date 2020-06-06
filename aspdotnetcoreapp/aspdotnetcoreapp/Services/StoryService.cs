@@ -1,9 +1,9 @@
-﻿namespace aspdotnetcoreapp.Services
+﻿namespace TalesAPI.Services
 {
-    using aspdotnetcoreapp.Services.ServiceInterfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using TalesAPI.Services.ServiceInterfaces;
     using TalesApp.Domain;
     using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
@@ -20,9 +20,9 @@
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Story>> ListAsync()
+        public async Task<List<Story>> ActiveStoriesBySetId(Guid setId)
         {
-            return await _storyRepository.ListAsync();
+            return await _storyRepository.ActiveStoriesBySetId(setId);
         }
 
         public async Task<Story> FindAsync(Guid id)
@@ -32,7 +32,10 @@
 
         public async Task<Response<Story>> SaveAsync(Story story)
         {
-            try
+            await _storyRepository.AddAsync(story);
+            await _unitOfWork.SaveChangesAsync();
+            return new Response<Story>(story);
+            /*try
             {
                 await _storyRepository.AddAsync(story);
                 await _unitOfWork.SaveChangesAsync();
@@ -41,7 +44,7 @@
             catch (Exception exception)
             {
                 return new Response<Story>($"The story '{story.StoryName}' could not be saved. An error occured: {exception.Message}");
-            }
+            }*/
         }
 
         public async Task<Response<Story>> UpdateAsync(Guid id, Story story)

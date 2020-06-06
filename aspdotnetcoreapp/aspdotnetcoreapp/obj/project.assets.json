@@ -8333,9 +8333,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elena.tseller\\Desktop\\AnEnglishStory\\aspdotnetcoreapp\\aspdotnetcoreapp\\aspdotnetcoreapp.csproj",
-      "projectName": "aspdotnetcoreapp",
-      "projectPath": "C:\\Users\\elena.tseller\\Desktop\\AnEnglishStory\\aspdotnetcoreapp\\aspdotnetcoreapp\\aspdotnetcoreapp.csproj",
+      "projectUniqueName": "C:\\Users\\elena.tseller\\Desktop\\AnEnglishStory\\aspdotnetcoreapp\\aspdotnetcoreapp\\TalesAPI.csproj",
+      "projectName": "TalesAPI",
+      "projectPath": "C:\\Users\\elena.tseller\\Desktop\\AnEnglishStory\\aspdotnetcoreapp\\aspdotnetcoreapp\\TalesAPI.csproj",
       "packagesPath": "C:\\Users\\elena.tseller\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\elena.tseller\\Desktop\\AnEnglishStory\\aspdotnetcoreapp\\aspdotnetcoreapp\\obj\\",
       "projectStyle": "PackageReference",

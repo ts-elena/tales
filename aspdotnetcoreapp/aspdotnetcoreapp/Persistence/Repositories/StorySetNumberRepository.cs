@@ -1,4 +1,4 @@
-﻿namespace aspdotnetcoreapp.Persistence.Repositories
+﻿namespace TalesAPI.Persistence.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -8,9 +8,9 @@
     using TalesApp.Domain;
     using TalesApp.Domain.Services;
 
-    public class StorySetNumberRepository: BaseRepository, IStorySetNumberRepository
+    public class StorySetNumberRepository : BaseRepository, IStorySetNumberRepository
     {
-        public StorySetNumberRepository(TalesContext context): base(context) { }
+        public StorySetNumberRepository(TalesContext context) : base(context) { }
 
         public async Task<IEnumerable<StorySetNumber>> ListAsync()
         {
