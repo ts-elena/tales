@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalesAPI", "aspdotnetcoreapp\TalesAPI.csproj", "{27E49413-554A-4C9F-82AB-D63DC644C373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalesAPI", "TalesAPI\TalesAPI.csproj", "{27E49413-554A-4C9F-82AB-D63DC644C373}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalesApp.Data", "TalesApp.Data\TalesApp.Data.csproj", "{2B8F5222-C4A8-4ECD-97FF-429667641184}"
 EndProject
