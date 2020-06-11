@@ -1,7 +1,7 @@
 /*
- * TalesAPI
+ * defaultTitle
  *
- * This is the API of an app for learning English for Russian speakers
+ * defaultDescription
  *
  * OpenAPI spec version: 0.1
  * 
@@ -70,8 +70,8 @@ namespace IO.Swagger
                     c.SwaggerDoc("0.1", new Info
                     {
                         Version = "0.1",
-                        Title = "TalesAPI",
-                        Description = "TalesAPI (ASP.NET Core 2.0)",
+                        Title = "defaultTitle",
+                        Description = "defaultTitle (ASP.NET Core 2.0)",
                         Contact = new Contact()
                         {
                            Name = "Swagger Codegen Contributors",
@@ -106,10 +106,10 @@ namespace IO.Swagger
                 .UseSwaggerUI(c =>
                 {
                     //TODO: Either use the SwaggerGen generated Swagger contract (generated from C# classes)
-                    c.SwaggerEndpoint("/swagger/0.1/swagger.json", "TalesAPI");
+                    c.SwaggerEndpoint("/swagger/0.1/swagger.json", "defaultTitle");
 
                     //TODO: Or alternatively use the original Swagger contract that's included in the static files
-                    // c.SwaggerEndpoint("/swagger-original.json", "TalesAPI Original");
+                    // c.SwaggerEndpoint("/swagger-original.json", "defaultTitle Original");
                 });
 
             if (env.IsDevelopment())
