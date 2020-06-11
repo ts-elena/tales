@@ -1,7 +1,7 @@
 /*
- * defaultTitle
+ * Lines Collection
  *
- * defaultDescription
+ * Endpoints for updating Lines of Tales App
  *
  * OpenAPI spec version: 0.1
  * 
@@ -70,8 +70,8 @@ namespace IO.Swagger
                     c.SwaggerDoc("0.1", new Info
                     {
                         Version = "0.1",
-                        Title = "defaultTitle",
-                        Description = "defaultTitle (ASP.NET Core 2.0)",
+                        Title = "Lines Collection",
+                        Description = "Lines Collection (ASP.NET Core 2.0)",
                         Contact = new Contact()
                         {
                            Name = "Swagger Codegen Contributors",
@@ -106,10 +106,10 @@ namespace IO.Swagger
                 .UseSwaggerUI(c =>
                 {
                     //TODO: Either use the SwaggerGen generated Swagger contract (generated from C# classes)
-                    c.SwaggerEndpoint("/swagger/0.1/swagger.json", "defaultTitle");
+                    c.SwaggerEndpoint("/swagger/0.1/swagger.json", "Lines Collection");
 
                     //TODO: Or alternatively use the original Swagger contract that's included in the static files
-                    // c.SwaggerEndpoint("/swagger-original.json", "defaultTitle Original");
+                    // c.SwaggerEndpoint("/swagger-original.json", "Lines Collection Original");
                 });
 
             if (env.IsDevelopment())

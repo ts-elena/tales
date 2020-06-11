@@ -1,7 +1,7 @@
 /*
- * defaultTitle
+ * Lines Collection
  *
- * defaultDescription
+ * Endpoints for updating Lines of Tales App
  *
  * OpenAPI spec version: 0.1
  * 
@@ -30,94 +30,180 @@ namespace IO.Swagger.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Auto generated using Swagger Inspector</remarks>
-        /// <response code="200">Auto generated using Swagger Inspector</response>
-        [HttpGet]
-        [Route("/api/Line/659d2136-efab-43c9-c02e-08d80a57a67b")]
-        [ValidateModelState]
-        [SwaggerOperation("ApiLine659d2136Efab43c9C02e08d80a57a67bGet")]
-        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Auto generated using Swagger Inspector")]
-        public virtual IActionResult ApiLine659d2136Efab43c9C02e08d80a57a67bGet()
-        { 
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(string));
-            string exampleJson = null;
-            exampleJson = "\"\"";
-            
-                        var example = exampleJson != null
-                        ? JsonConvert.DeserializeObject<string>(exampleJson)
-                        : default(string);            //TODO: Change the data returned
-            return new ObjectResult(example);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>Auto generated using Swagger Inspector</remarks>
-        /// <response code="200">Auto generated using Swagger Inspector</response>
+        /// <remarks>Delete all lines of a story</remarks>
+        /// <param name="body"></param>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="403">Access Denied</response>
+        /// <response code="404">The resource is not found</response>
         [HttpDelete]
         [Route("/api/Line")]
         [ValidateModelState]
         [SwaggerOperation("ApiLineDelete")]
-        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Auto generated using Swagger Inspector")]
-        public virtual IActionResult ApiLineDelete()
+        [SwaggerResponse(statusCode: 200, type: typeof(ArrayOfLines), description: "OK")]
+        public virtual IActionResult ApiLineDelete([FromBody]List<string> body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(string));
+            // return StatusCode(200, default(ArrayOfLines));
+
+            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(400);
+
+            //TODO: Uncomment the next line to return response 403 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(403);
+
+            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(404);
             string exampleJson = null;
-            exampleJson = "\"\"";
+            exampleJson = "[ {\n  \"CharacterId\" : \"f89da017-05bb-48b0-c02f-08d80a57a67b\",\n  \"LineId\" : \"e520e6df-4ac0-49c8-7dcd-08d80a569eba\",\n  \"LineContent\" : \"You can't live your life for other people. You've got to do what's right for you, even if it hurts some people you love.\"\n}, {\n  \"CharacterId\" : \"a58da017-05bb-48b0-c02f-08d80a57s458\",\n  \"LineId\" : \"d589e6df-4ac0-49c8-7dcd-08d80a548lfg\",\n  \"LineContent\" : \"I'll be back!\"\n} ]";
             
                         var example = exampleJson != null
-                        ? JsonConvert.DeserializeObject<string>(exampleJson)
-                        : default(string);            //TODO: Change the data returned
+                        ? JsonConvert.DeserializeObject<ArrayOfLines>(exampleJson)
+                        : default(ArrayOfLines);            //TODO: Change the data returned
             return new ObjectResult(example);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Auto generated using Swagger Inspector</remarks>
+        /// <remarks>Delete all lines of a story</remarks>
+        /// <param name="id">An ID to look up one or more values</param>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="403">Access Denied</response>
+        /// <response code="404">The resource is not found</response>
+        [HttpDelete]
+        [Route("/api/Line/{id}")]
+        [ValidateModelState]
+        [SwaggerOperation("ApiLineIdDelete")]
+        [SwaggerResponse(statusCode: 200, type: typeof(ArrayOfLines), description: "OK")]
+        public virtual IActionResult ApiLineIdDelete([FromRoute][Required]string id)
+        { 
+            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(200, default(ArrayOfLines));
+
+            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(400);
+
+            //TODO: Uncomment the next line to return response 403 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(403);
+
+            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(404);
+            string exampleJson = null;
+            exampleJson = "[ {\n  \"CharacterId\" : \"f89da017-05bb-48b0-c02f-08d80a57a67b\",\n  \"LineId\" : \"e520e6df-4ac0-49c8-7dcd-08d80a569eba\",\n  \"LineContent\" : \"You can't live your life for other people. You've got to do what's right for you, even if it hurts some people you love.\"\n}, {\n  \"CharacterId\" : \"a58da017-05bb-48b0-c02f-08d80a57s458\",\n  \"LineId\" : \"d589e6df-4ac0-49c8-7dcd-08d80a548lfg\",\n  \"LineContent\" : \"I'll be back!\"\n} ]";
+            
+                        var example = exampleJson != null
+                        ? JsonConvert.DeserializeObject<ArrayOfLines>(exampleJson)
+                        : default(ArrayOfLines);            //TODO: Change the data returned
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Returns Line by Line ID</remarks>
+        /// <param name="id">An ID to look up one or more values</param>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="403">Access Denied</response>
+        /// <response code="404">The resource is not found</response>
+        [HttpGet]
+        [Route("/api/Line/{id}")]
+        [ValidateModelState]
+        [SwaggerOperation("ApiLineIdGet")]
+        [SwaggerResponse(statusCode: 200, type: typeof(Line), description: "OK")]
+        public virtual IActionResult ApiLineIdGet([FromRoute][Required]string id)
+        { 
+            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(200, default(Line));
+
+            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(400);
+
+            //TODO: Uncomment the next line to return response 403 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(403);
+
+            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(404);
+            string exampleJson = null;
+            exampleJson = "{\n  \"LineId\" : \"LineId\",\n  \"LineContent\" : \"LineContent\",\n  \"CharacterId\" : \"CharacterId\"\n}";
+            
+                        var example = exampleJson != null
+                        ? JsonConvert.DeserializeObject<Line>(exampleJson)
+                        : default(Line);            //TODO: Change the data returned
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Add new Lines</remarks>
         /// <param name="body"></param>
-        /// <response code="200">Auto generated using Swagger Inspector</response>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="403">Access Denied</response>
+        /// <response code="404">The resource is not found</response>
         [HttpPost]
         [Route("/api/Line")]
         [ValidateModelState]
         [SwaggerOperation("ApiLinePost")]
-        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Auto generated using Swagger Inspector")]
-        public virtual IActionResult ApiLinePost([FromBody]Object body)
+        [SwaggerResponse(statusCode: 200, type: typeof(ArrayOfLines), description: "OK")]
+        public virtual IActionResult ApiLinePost([FromBody]List<ArrayOfLinesInner> body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(string));
+            // return StatusCode(200, default(ArrayOfLines));
+
+            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(400);
+
+            //TODO: Uncomment the next line to return response 403 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(403);
+
+            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(404);
             string exampleJson = null;
-            exampleJson = "\"\"";
+            exampleJson = "[ {\n  \"CharacterId\" : \"f89da017-05bb-48b0-c02f-08d80a57a67b\",\n  \"LineId\" : \"e520e6df-4ac0-49c8-7dcd-08d80a569eba\",\n  \"LineContent\" : \"You can't live your life for other people. You've got to do what's right for you, even if it hurts some people you love.\"\n}, {\n  \"CharacterId\" : \"a58da017-05bb-48b0-c02f-08d80a57s458\",\n  \"LineId\" : \"d589e6df-4ac0-49c8-7dcd-08d80a548lfg\",\n  \"LineContent\" : \"I'll be back!\"\n} ]";
             
                         var example = exampleJson != null
-                        ? JsonConvert.DeserializeObject<string>(exampleJson)
-                        : default(string);            //TODO: Change the data returned
+                        ? JsonConvert.DeserializeObject<ArrayOfLines>(exampleJson)
+                        : default(ArrayOfLines);            //TODO: Change the data returned
             return new ObjectResult(example);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Auto generated using Swagger Inspector</remarks>
+        /// <remarks>Edit Existing Lines</remarks>
         /// <param name="body"></param>
-        /// <response code="200">Auto generated using Swagger Inspector</response>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="403">Access Denied</response>
+        /// <response code="404">The resource is not found</response>
         [HttpPut]
         [Route("/api/Line")]
         [ValidateModelState]
         [SwaggerOperation("ApiLinePut")]
-        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Auto generated using Swagger Inspector")]
-        public virtual IActionResult ApiLinePut([FromBody]Object body)
+        [SwaggerResponse(statusCode: 200, type: typeof(ArrayOfLines), description: "OK")]
+        public virtual IActionResult ApiLinePut([FromBody]List<ArrayOfLinesInner> body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(string));
+            // return StatusCode(200, default(ArrayOfLines));
+
+            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(400);
+
+            //TODO: Uncomment the next line to return response 403 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(403);
+
+            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(404);
             string exampleJson = null;
-            exampleJson = "\"\"";
+            exampleJson = "[ {\n  \"CharacterId\" : \"f89da017-05bb-48b0-c02f-08d80a57a67b\",\n  \"LineId\" : \"e520e6df-4ac0-49c8-7dcd-08d80a569eba\",\n  \"LineContent\" : \"You can't live your life for other people. You've got to do what's right for you, even if it hurts some people you love.\"\n}, {\n  \"CharacterId\" : \"a58da017-05bb-48b0-c02f-08d80a57s458\",\n  \"LineId\" : \"d589e6df-4ac0-49c8-7dcd-08d80a548lfg\",\n  \"LineContent\" : \"I'll be back!\"\n} ]";
             
                         var example = exampleJson != null
-                        ? JsonConvert.DeserializeObject<string>(exampleJson)
-                        : default(string);            //TODO: Change the data returned
+                        ? JsonConvert.DeserializeObject<ArrayOfLines>(exampleJson)
+                        : default(ArrayOfLines);            //TODO: Change the data returned
             return new ObjectResult(example);
         }
     }
