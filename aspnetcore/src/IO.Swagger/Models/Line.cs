@@ -24,8 +24,29 @@ namespace IO.Swagger.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class ArrayOfGuids : List<string>, IEquatable<ArrayOfGuids>
+    public partial class Line : IEquatable<Line>
     { 
+        /// <summary>
+        /// ID of the Line
+        /// </summary>
+        /// <value>ID of the Line</value>
+        [DataMember(Name="LineId")]
+        public string LineId { get; set; }
+
+        /// <summary>
+        /// The line that a character says
+        /// </summary>
+        /// <value>The line that a character says</value>
+        [DataMember(Name="LineContent")]
+        public string LineContent { get; set; }
+
+        /// <summary>
+        /// Character that says the line
+        /// </summary>
+        /// <value>Character that says the line</value>
+        [DataMember(Name="CharacterId")]
+        public string CharacterId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -33,7 +54,10 @@ namespace IO.Swagger.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ArrayOfGuids {\n");
+            sb.Append("class Line {\n");
+            sb.Append("  LineId: ").Append(LineId).Append("\n");
+            sb.Append("  LineContent: ").Append(LineContent).Append("\n");
+            sb.Append("  CharacterId: ").Append(CharacterId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -42,7 +66,7 @@ namespace IO.Swagger.Models
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -56,20 +80,35 @@ namespace IO.Swagger.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((ArrayOfGuids)obj);
+            return obj.GetType() == GetType() && Equals((Line)obj);
         }
 
         /// <summary>
-        /// Returns true if ArrayOfGuids instances are equal
+        /// Returns true if Line instances are equal
         /// </summary>
-        /// <param name="other">Instance of ArrayOfGuids to be compared</param>
+        /// <param name="other">Instance of Line to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ArrayOfGuids other)
+        public bool Equals(Line other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return false;
+            return 
+                (
+                    LineId == other.LineId ||
+                    LineId != null &&
+                    LineId.Equals(other.LineId)
+                ) && 
+                (
+                    LineContent == other.LineContent ||
+                    LineContent != null &&
+                    LineContent.Equals(other.LineContent)
+                ) && 
+                (
+                    CharacterId == other.CharacterId ||
+                    CharacterId != null &&
+                    CharacterId.Equals(other.CharacterId)
+                );
         }
 
         /// <summary>
@@ -82,6 +121,12 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
+                    if (LineId != null)
+                    hashCode = hashCode * 59 + LineId.GetHashCode();
+                    if (LineContent != null)
+                    hashCode = hashCode * 59 + LineContent.GetHashCode();
+                    if (CharacterId != null)
+                    hashCode = hashCode * 59 + CharacterId.GetHashCode();
                 return hashCode;
             }
         }
@@ -89,12 +134,12 @@ namespace IO.Swagger.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(ArrayOfGuids left, ArrayOfGuids right)
+        public static bool operator ==(Line left, Line right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(ArrayOfGuids left, ArrayOfGuids right)
+        public static bool operator !=(Line left, Line right)
         {
             return !Equals(left, right);
         }

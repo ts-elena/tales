@@ -1,6 +1,6 @@
 # IO.Swagger - ASP.NET Core 2.0 Server
 
-defaultDescription
+Endpoints for updating Lines of Tales App
 
 ## Run
 
