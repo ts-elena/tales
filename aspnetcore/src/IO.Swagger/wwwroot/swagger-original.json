@@ -1,17 +1,17 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "Lines Collection",
-    "description" : "Endpoints for updating Lines of Tales App",
+    "title" : "TalesAPI",
+    "description" : "This is the API of an app for learning English for Russian speakers",
     "version" : "0.1"
   },
   "servers" : [ {
     "url" : "https://localhost:44382"
   } ],
   "paths" : {
-    "/api/Line/{id}" : {
+    "/api/Character/{id}" : {
       "get" : {
-        "description" : "Returns Line by Line ID",
+        "description" : "Get Character by ID",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -29,268 +29,12 @@
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Line"
-                }
+                  "type" : "string",
+                  "x-content-type" : "application/json; charset=utf-8"
+                },
+                "examples" : { }
               }
             }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        }
-      },
-      "delete" : {
-        "description" : "Delete all lines of a story",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "An ID to look up one or more values",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        }
-      }
-    },
-    "/api/Line" : {
-      "put" : {
-        "description" : "Edit Existing Lines",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfLines"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        }
-      },
-      "post" : {
-        "description" : "Add new Lines",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfLines"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        }
-      },
-      "delete" : {
-        "description" : "Delete all lines of a story",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfGuids"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        }
-      }
-    },
-    "/api/LineNumber" : {
-      "put" : {
-        "description" : "Update Line Numbers of a Line to describe in what sequence they need to be in the story",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfLineNumbers"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLineNumbers"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        },
-        "servers" : [ {
-          "url" : "https://localhost:44382"
-        } ]
-      },
-      "post" : {
-        "description" : "Add new Line Numbers",
-        "requestBody" : {
-          "description" : "Provide an array of Line Numbers to create",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfLineNumbers"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLineNumbers"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        },
-        "servers" : [ {
-          "url" : "https://localhost:44382"
-        } ]
-      },
-      "delete" : {
-        "description" : "Delete Line Numbers",
-        "requestBody" : {
-          "description" : "Provide an array of Line Numbers IDs to delete",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfGuids"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "The Line Numbers were successfully deleted",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLineNumbers"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
           }
         },
         "servers" : [ {
@@ -301,27 +45,60 @@
         "url" : "https://localhost:44382"
       } ]
     },
-    "/api/LineNumber/{id}" : {
-      "get" : {
-        "description" : "Get Line by its Id",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "An ID to look up one or more values",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
+    "/api/Character" : {
+      "put" : {
+        "description" : "Edit existing characters",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ArrayOfCharacters"
+              }
+            }
+          },
+          "required" : true
+        },
         "responses" : {
           "200" : {
             "description" : "OK",
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/LineNumber"
+                  "$ref" : "#/components/schemas/ArrayOfCharacters"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      },
+      "post" : {
+        "description" : "Add new Characters",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ArrayOfCharacters"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ArrayOfCharacters"
                 }
               }
             }
@@ -338,37 +115,27 @@
         }
       },
       "delete" : {
-        "description" : "Delete all Line Numbers of a Story",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "An ID to look up one or more values",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
+        "description" : "Delete characters",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ArrayOfGuids"
+              }
+            }
+          },
+          "required" : true
+        },
         "responses" : {
           "200" : {
             "description" : "OK",
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLineNumbers"
+                  "$ref" : "#/components/schemas/ArrayOfCharacters"
                 }
               }
             }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
           }
         }
       }
@@ -376,23 +143,6 @@
   },
   "components" : {
     "schemas" : {
-      "ArrayOfLines" : {
-        "title" : "Line Numbers array",
-        "required" : [ "LineId LineContent CharacterId" ],
-        "type" : "array",
-        "example" : [ {
-          "CharacterId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
-          "LineId" : "e520e6df-4ac0-49c8-7dcd-08d80a569eba",
-          "LineContent" : "You can't live your life for other people. You've got to do what's right for you, even if it hurts some people you love."
-        }, {
-          "CharacterId" : "a58da017-05bb-48b0-c02f-08d80a57s458",
-          "LineId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
-          "LineContent" : "I'll be back!"
-        } ],
-        "items" : {
-          "$ref" : "#/components/schemas/ArrayOfLines_inner"
-        }
-      },
       "ArrayOfGuids" : {
         "title" : "Array of Guids",
         "type" : "array",
@@ -401,103 +151,50 @@
           "type" : "string"
         }
       },
-      "Line" : {
-        "title" : "Line",
-        "required" : [ "LineId LineContent CharacterId" ],
+      "Character" : {
+        "title" : "Character of a story",
         "type" : "object",
         "properties" : {
-          "LineId" : {
-            "type" : "string",
-            "description" : "ID of the Line"
-          },
-          "LineContent" : {
-            "type" : "string",
-            "description" : "The line that a character says"
-          },
           "CharacterId" : {
             "type" : "string",
-            "description" : "Character that says the line"
+            "description" : "Character unique identifier"
+          },
+          "CharacterName" : {
+            "type" : "string"
+          },
+          "CharacterAvatar" : {
+            "type" : "string",
+            "description" : "Avatart that appears in the story"
           }
-        },
-        "example" : {
-          "LineId" : "LineId",
-          "LineContent" : "LineContent",
-          "CharacterId" : "CharacterId"
         }
       },
-      "LineNumber" : {
-        "title" : "Line Number",
-        "required" : [ "StoryId LineId Number" ],
-        "type" : "object",
-        "properties" : {
-          "StoryId" : {
-            "type" : "string",
-            "description" : "Id of the Story to which the number's line belongs"
-          },
-          "LineId" : {
-            "type" : "string",
-            "description" : "Id of the Line to which the number belongs"
-          },
-          "Number" : {
-            "type" : "number",
-            "description" : "The number of the line in the story"
-          }
-        },
-        "example" : {
-          "LineId" : "LineId",
-          "Number" : 0.8008281904610115,
-          "StoryId" : "StoryId"
-        }
-      },
-      "ArrayOfLineNumbers" : {
-        "title" : "Line Numbers array",
+      "ArrayOfCharacters" : {
+        "title" : "Characters array",
         "type" : "array",
-        "example" : [ {
-          "StoryId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
-          "LineId" : "e520e6df-4ac0-49c8-7dcd-08d80a569eba",
-          "Number" : 1
-        }, {
-          "StoryId" : "a58da017-05bb-48b0-c02f-08d80a57s458",
-          "LineId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
-          "Number" : 2
-        } ],
         "items" : {
-          "$ref" : "#/components/schemas/ArrayOfLineNumbers_inner"
+          "$ref" : "#/components/schemas/ArrayOfCharacters_inner"
         }
       },
-      "ArrayOfLines_inner" : {
+      "ArrayOfCharacters_inner" : {
+        "required" : [ "CharacterId CharacterName CharacterAvatar" ],
         "type" : "object",
         "properties" : {
-          "LineId" : {
-            "type" : "string",
-            "description" : "ID of the Line"
-          },
-          "LineContent" : {
-            "type" : "string",
-            "description" : "The line that a character says"
-          },
           "CharacterId" : {
             "type" : "string",
-            "description" : "Character that says the line"
-          }
-        }
-      },
-      "ArrayOfLineNumbers_inner" : {
-        "required" : [ "StoryId LineId Number" ],
-        "type" : "object",
-        "properties" : {
-          "StoryId" : {
-            "type" : "string",
-            "description" : "Id of the Story to which the number's line belongs"
+            "description" : "Character unique identifier"
           },
-          "LineId" : {
-            "type" : "string",
-            "description" : "Id of the Line to which the number belongs"
+          "CharacterName" : {
+            "type" : "string"
           },
-          "Number" : {
-            "type" : "number",
-            "description" : "The number of the line in the story"
+          "CharacterAvatar" : {
+            "type" : "string",
+            "description" : "Avatart that appears in the story"
           }
+        },
+        "example" : {
+          "CharacterId" : "CharacterId",
+          "CharacterName" : "CharacterName",
+          "CharacterAvatar" : "CharacterAvatar"
         }
       }
     },

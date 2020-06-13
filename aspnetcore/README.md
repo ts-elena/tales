@@ -1,6 +1,6 @@
 # IO.Swagger - ASP.NET Core 2.0 Server
 
-Endpoints for updating Lines of Tales App
+This is the API of an app for learning English for Russian speakers
 
 ## Run
 

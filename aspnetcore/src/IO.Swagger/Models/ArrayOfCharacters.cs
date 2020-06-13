@@ -24,7 +24,7 @@ namespace IO.Swagger.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class ArrayOfGuids : List<string>, IEquatable<ArrayOfGuids>
+    public partial class ArrayOfCharacters : List<ArrayOfCharactersInner>, IEquatable<ArrayOfCharacters>
     { 
         /// <summary>
         /// Returns the string presentation of the object
@@ -33,7 +33,7 @@ namespace IO.Swagger.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ArrayOfGuids {\n");
+            sb.Append("class ArrayOfCharacters {\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -56,15 +56,15 @@ namespace IO.Swagger.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((ArrayOfGuids)obj);
+            return obj.GetType() == GetType() && Equals((ArrayOfCharacters)obj);
         }
 
         /// <summary>
-        /// Returns true if ArrayOfGuids instances are equal
+        /// Returns true if ArrayOfCharacters instances are equal
         /// </summary>
-        /// <param name="other">Instance of ArrayOfGuids to be compared</param>
+        /// <param name="other">Instance of ArrayOfCharacters to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ArrayOfGuids other)
+        public bool Equals(ArrayOfCharacters other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -89,12 +89,12 @@ namespace IO.Swagger.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(ArrayOfGuids left, ArrayOfGuids right)
+        public static bool operator ==(ArrayOfCharacters left, ArrayOfCharacters right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(ArrayOfGuids left, ArrayOfGuids right)
+        public static bool operator !=(ArrayOfCharacters left, ArrayOfCharacters right)
         {
             return !Equals(left, right);
         }
