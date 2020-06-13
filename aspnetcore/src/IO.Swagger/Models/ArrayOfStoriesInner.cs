@@ -1,5 +1,5 @@
 /*
- * Stories Collection
+ * Stories and Story Sets Collection
  *
  * Endpoints for updating Stories of Tales App
  *

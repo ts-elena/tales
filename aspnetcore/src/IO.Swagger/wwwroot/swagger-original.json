@@ -1,17 +1,87 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "TalesAPI",
-    "description" : "This is the API of an app for learning English for Russian speakers",
+    "title" : "Stories and Story Sets Collection",
+    "description" : "Endpoints for updating Stories of Tales App",
     "version" : "0.1"
   },
   "servers" : [ {
     "url" : "https://localhost:44382"
   } ],
   "paths" : {
-    "/api/Character/{id}" : {
+    "/api/Story" : {
+      "put" : {
+        "description" : "Edit existing stories",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Story"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Story"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      },
+      "post" : {
+        "description" : "Add a new story",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Story"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Story"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      }
+    },
+    "/api/Story/GetAllActiveStoriesOfSet/{id}" : {
       "get" : {
-        "description" : "Get Character by ID",
+        "description" : "Get all active stories of a set by ID",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -29,42 +99,7 @@
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "type" : "string",
-                  "x-content-type" : "application/json; charset=utf-8"
-                },
-                "examples" : { }
-              }
-            }
-          }
-        },
-        "servers" : [ {
-          "url" : "https://localhost:44382"
-        } ]
-      },
-      "servers" : [ {
-        "url" : "https://localhost:44382"
-      } ]
-    },
-    "/api/Character" : {
-      "put" : {
-        "description" : "Edit existing characters",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfCharacters"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfCharacters"
+                  "$ref" : "#/components/schemas/ArrayOfStories"
                 }
               }
             }
@@ -79,26 +114,29 @@
             "description" : "The resource is not found"
           }
         }
-      },
-      "post" : {
-        "description" : "Add new Characters",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfCharacters"
-              }
-            }
-          },
-          "required" : true
-        },
+      }
+    },
+    "/api/Story/{id}" : {
+      "get" : {
+        "description" : "Get a Story by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfCharacters"
+                  "$ref" : "#/components/schemas/Story"
                 }
               }
             }
@@ -115,12 +153,73 @@
         }
       },
       "delete" : {
-        "description" : "Delete characters",
+        "description" : "Delete a story by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Story"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      }
+    },
+    "/api/StorySet" : {
+      "get" : {
+        "description" : "Get all Story Sets",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ArrayOfStorySets"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      },
+      "put" : {
+        "description" : "Edit Existing Story Set",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfGuids"
+                "$ref" : "#/components/schemas/StorySet"
               }
             }
           },
@@ -132,10 +231,256 @@
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfCharacters"
+                  "$ref" : "#/components/schemas/StorySet"
                 }
               }
             }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      },
+      "post" : {
+        "description" : "Add Story Set",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/StorySet"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StorySet"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      }
+    },
+    "/api/StorySet/{id}" : {
+      "get" : {
+        "description" : "Get a Story Set by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StorySet"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      },
+      "delete" : {
+        "description" : "Delete a Story Set by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StorySet"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      }
+    },
+    "/api/StorySetNumber" : {
+      "get" : {
+        "description" : "Get all Story Set Numbrs",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ArrayOfStorySetNumbers"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      },
+      "put" : {
+        "description" : "Edit Story Set Number",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/StorySetNumber"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StorySetNumber"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      },
+      "post" : {
+        "description" : "Add Story Set Number",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/StorySetNumber"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StorySetNumber"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      }
+    },
+    "/api/StorySetNumber/{id}" : {
+      "delete" : {
+        "description" : "Delete a Story Set Number by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StorySetNumber"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
           }
         }
       }
@@ -143,58 +488,170 @@
   },
   "components" : {
     "schemas" : {
-      "ArrayOfGuids" : {
-        "title" : "Array of Guids",
+      "ArrayOfStories" : {
+        "title" : "Stories array",
         "type" : "array",
-        "example" : [ "f89da017-05bb-48b0-c02f-08d80a57a67b", "d589e6df-4ac0-49c8-7dcd-08d80a548lfg" ],
+        "example" : [ {
+          "StoryId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "StorySetId" : "e520e6df-4ac0-49c8-7dcd-08d80a569eba",
+          "StoryName" : "Story about childhood",
+          "StoryCoverImage" : "/kids.png",
+          "IsActive" : true
+        }, {
+          "StoryId" : "a58da017-05bb-48b0-c02f-08d80a57s458",
+          "StorySetId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
+          "StoryName" : "Story about Love",
+          "StoryCoverImage" : "/heart.png",
+          "IsActive" : true
+        } ],
         "items" : {
-          "type" : "string"
+          "$ref" : "#/components/schemas/ArrayOfStories_inner"
         }
       },
-      "Character" : {
-        "title" : "Character of a story",
+      "Story" : {
+        "title" : "Story",
+        "required" : [ "StoryId StoryName StoryCoverImage IsActive StorySetId" ],
         "type" : "object",
         "properties" : {
-          "CharacterId" : {
+          "StoryId" : {
             "type" : "string",
-            "description" : "Character unique identifier"
+            "description" : "ID of the Story"
           },
-          "CharacterName" : {
+          "StoryName" : {
             "type" : "string"
           },
-          "CharacterAvatar" : {
+          "StoryCoverImage" : {
             "type" : "string",
-            "description" : "Avatart that appears in the story"
-          }
-        }
-      },
-      "ArrayOfCharacters" : {
-        "title" : "Characters array",
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/ArrayOfCharacters_inner"
-        }
-      },
-      "ArrayOfCharacters_inner" : {
-        "required" : [ "CharacterId CharacterName CharacterAvatar" ],
-        "type" : "object",
-        "properties" : {
-          "CharacterId" : {
-            "type" : "string",
-            "description" : "Character unique identifier"
+            "description" : "Story Preview image"
           },
-          "CharacterName" : {
-            "type" : "string"
+          "IsActive" : {
+            "type" : "boolean",
+            "description" : "Defines if the story is in use"
           },
-          "CharacterAvatar" : {
+          "StorySetId" : {
             "type" : "string",
-            "description" : "Avatart that appears in the story"
+            "description" : "ID of the Story Set the story belongs to"
           }
         },
         "example" : {
-          "CharacterId" : "CharacterId",
-          "CharacterName" : "CharacterName",
-          "CharacterAvatar" : "CharacterAvatar"
+          "StoryId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "StorySetId" : "e520e6df-4ac0-49c8-7dcd-08d80a569eba",
+          "StoryName" : "Story about childhood",
+          "StoryCoverImage" : "/kids.png",
+          "IsActive" : true
+        }
+      },
+      "ArrayOfStorySets" : {
+        "title" : "Story Sets array",
+        "type" : "array",
+        "example" : [ {
+          "StorySetId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "StorySetName" : "Set 1"
+        }, {
+          "StorySetId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
+          "StorySetName" : "Set 2"
+        } ],
+        "items" : {
+          "$ref" : "#/components/schemas/ArrayOfStorySets_inner"
+        }
+      },
+      "StorySet" : {
+        "title" : "Story Set",
+        "type" : "object",
+        "properties" : {
+          "StorySetId" : {
+            "type" : "string",
+            "description" : "ID of the Story Set"
+          },
+          "StorySetName" : {
+            "type" : "string"
+          }
+        },
+        "example" : [ {
+          "StorySetId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "StorySetName" : "Set 1"
+        }, {
+          "StorySetId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
+          "StorySetName" : "Set 2"
+        } ]
+      },
+      "StorySetNumber" : {
+        "title" : "Story Set Number",
+        "type" : "object",
+        "properties" : {
+          "StorySetId" : {
+            "type" : "string",
+            "description" : "ID of the Story Set Number"
+          },
+          "SetNumber" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "StorySetId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "SetNumber" : 1
+        }
+      },
+      "ArrayOfStorySetNumbers" : {
+        "title" : "Story Set Numbers array",
+        "type" : "array",
+        "example" : [ {
+          "StorySetId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "SetNumber" : 1
+        }, {
+          "StorySetId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
+          "SetNumber" : 2
+        } ],
+        "items" : {
+          "$ref" : "#/components/schemas/ArrayOfStorySetNumbers_inner"
+        }
+      },
+      "ArrayOfStories_inner" : {
+        "type" : "object",
+        "properties" : {
+          "StoryId" : {
+            "type" : "string",
+            "description" : "ID of the Story"
+          },
+          "StoryName" : {
+            "type" : "string"
+          },
+          "StoryCoverImage" : {
+            "type" : "string",
+            "description" : "Story Preview image"
+          },
+          "IsActive" : {
+            "type" : "boolean",
+            "description" : "Defines if the story is in use"
+          },
+          "StorySetId" : {
+            "type" : "string",
+            "description" : "ID of the Story Set the story belongs to"
+          }
+        }
+      },
+      "ArrayOfStorySets_inner" : {
+        "type" : "object",
+        "properties" : {
+          "StorySetId" : {
+            "type" : "string",
+            "description" : "ID of the Story Set"
+          },
+          "StorySetName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ArrayOfStorySetNumbers_inner" : {
+        "type" : "object",
+        "properties" : {
+          "StorySetId" : {
+            "type" : "string",
+            "description" : "ID of the Story Set Number"
+          },
+          "SetNumber" : {
+            "type" : "number"
+          }
         }
       }
     },
