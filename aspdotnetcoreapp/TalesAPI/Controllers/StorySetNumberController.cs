@@ -64,7 +64,6 @@
         /// <summary>
         /// Updates an existing story sets sequence according to an identifier.
         /// </summary>
-        /// <param name="id">Sequence identifier.</param>
         /// <param name="resource">Updated sequence data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPut]
@@ -83,8 +82,7 @@
                 return BadRequest();
             }
 
-            var storySetNumberResource = _mapper.Map<StorySetNumber, StorySetNumberResource>(result.DbObject);
-            return Ok(storySetNumberResource);
+            return Ok(_mapper.Map<StorySetNumber, StorySetNumberResource>(result.DbObject));
         }
 
 

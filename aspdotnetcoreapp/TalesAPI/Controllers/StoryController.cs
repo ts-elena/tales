@@ -27,7 +27,7 @@
             _mapper = mapper;
         }
 
-        [HttpGet("GetStoryById/{storyId:Guid}", Name = "GetStoryById")]
+        [HttpGet("{storyId:Guid}")]
         [ProducesResponseType(typeof(StoryResource), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<StoryResource>> GetStoryById(Guid storyId)
@@ -39,7 +39,7 @@
             return _mapper.Map<Story, StoryResource>(story);
         }
 
-        [HttpGet("{setId:Guid}")]
+        [HttpGet("GetStoriesOfSet/{setId:Guid}", Name = "GetAllActiveStoriesOfSet")]
         [ProducesResponseType(typeof(List<StoryResource>), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<StoryResource>>> GetAllActiveStoriesOfSet(Guid setId)
