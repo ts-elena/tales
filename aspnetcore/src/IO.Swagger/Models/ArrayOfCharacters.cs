@@ -1,7 +1,7 @@
 /*
- * Stories and Story Sets Collection
+ * TalesAPI
  *
- * Endpoints for updating Stories of Tales App
+ * This is the API of an app for learning English for Russian speakers
  *
  * OpenAPI spec version: 0.1
  * 
@@ -24,7 +24,7 @@ namespace IO.Swagger.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class ArrayOfStories : List<ArrayOfStoriesInner>, IEquatable<ArrayOfStories>
+    public partial class ArrayOfCharacters : List<ArrayOfCharactersInner>, IEquatable<ArrayOfCharacters>
     { 
         /// <summary>
         /// Returns the string presentation of the object
@@ -33,7 +33,7 @@ namespace IO.Swagger.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ArrayOfStories {\n");
+            sb.Append("class ArrayOfCharacters {\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -56,15 +56,15 @@ namespace IO.Swagger.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((ArrayOfStories)obj);
+            return obj.GetType() == GetType() && Equals((ArrayOfCharacters)obj);
         }
 
         /// <summary>
-        /// Returns true if ArrayOfStories instances are equal
+        /// Returns true if ArrayOfCharacters instances are equal
         /// </summary>
-        /// <param name="other">Instance of ArrayOfStories to be compared</param>
+        /// <param name="other">Instance of ArrayOfCharacters to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ArrayOfStories other)
+        public bool Equals(ArrayOfCharacters other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -89,12 +89,12 @@ namespace IO.Swagger.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(ArrayOfStories left, ArrayOfStories right)
+        public static bool operator ==(ArrayOfCharacters left, ArrayOfCharacters right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(ArrayOfStories left, ArrayOfStories right)
+        public static bool operator !=(ArrayOfCharacters left, ArrayOfCharacters right)
         {
             return !Equals(left, right);
         }

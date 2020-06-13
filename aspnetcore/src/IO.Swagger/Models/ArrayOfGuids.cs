@@ -1,7 +1,7 @@
 /*
- * Lines Collection
+ * TalesAPI
  *
- * Endpoints for updating Lines of Tales App
+ * This is the API of an app for learning English for Russian speakers
  *
  * OpenAPI spec version: 0.1
  * 
