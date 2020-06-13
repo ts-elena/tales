@@ -1,94 +1,22 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "Lines Collection",
-    "description" : "Endpoints for updating Lines of Tales App",
+    "title" : "Stories Collection",
+    "description" : "Endpoints for updating Stories of Tales App",
     "version" : "0.1"
   },
   "servers" : [ {
     "url" : "https://localhost:44382"
   } ],
   "paths" : {
-    "/api/Line/{id}" : {
-      "get" : {
-        "description" : "Returns Line by Line ID",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "An ID to look up one or more values",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Line"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        }
-      },
-      "delete" : {
-        "description" : "Delete all lines of a story",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "An ID to look up one or more values",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json; charset=utf-8" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request"
-          },
-          "403" : {
-            "description" : "Access Denied"
-          },
-          "404" : {
-            "description" : "The resource is not found"
-          }
-        }
-      }
-    },
-    "/api/Line" : {
+    "/api/Story" : {
       "put" : {
-        "description" : "Edit Existing Lines",
+        "description" : "Edit existing stories",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfLines"
+                "$ref" : "#/components/schemas/Story"
               }
             }
           },
@@ -100,7 +28,7 @@
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
+                  "$ref" : "#/components/schemas/Story"
                 }
               }
             }
@@ -117,15 +45,16 @@
         }
       },
       "post" : {
-        "description" : "Add new Lines",
+        "description" : "Add a new story",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfLines"
+                "$ref" : "#/components/schemas/Story"
               }
             }
-          }
+          },
+          "required" : true
         },
         "responses" : {
           "200" : {
@@ -133,7 +62,81 @@
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
+                  "$ref" : "#/components/schemas/Story"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      }
+    },
+    "/api/Story/GetAllActiveStoriesOfSet/{id}" : {
+      "get" : {
+        "description" : "Get all active stories of a set by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ArrayOfStories"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "Access Denied"
+          },
+          "404" : {
+            "description" : "The resource is not found"
+          }
+        }
+      }
+    },
+    "/api/Story/{id}" : {
+      "get" : {
+        "description" : "Get a Story by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Story"
                 }
               }
             }
@@ -150,23 +153,25 @@
         }
       },
       "delete" : {
-        "description" : "Delete all lines of a story",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ArrayOfGuids"
-              }
-            }
+        "description" : "Delete a story by ID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "An ID to look up one or more values",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
           }
-        },
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "content" : {
               "application/json; charset=utf-8" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ArrayOfLines"
+                  "$ref" : "#/components/schemas/Story"
                 }
               }
             }
@@ -186,69 +191,80 @@
   },
   "components" : {
     "schemas" : {
-      "ArrayOfLines" : {
-        "title" : "Line Numbers array",
-        "required" : [ "LineId LineContent CharacterId" ],
+      "ArrayOfStories" : {
+        "title" : "Stories array",
         "type" : "array",
         "example" : [ {
-          "CharacterId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
-          "LineId" : "e520e6df-4ac0-49c8-7dcd-08d80a569eba",
-          "LineContent" : "You can't live your life for other people. You've got to do what's right for you, even if it hurts some people you love."
+          "StoryId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "StorySetId" : "e520e6df-4ac0-49c8-7dcd-08d80a569eba",
+          "StoryName" : "Story about childhood",
+          "StoryCoverImage" : "/kids.png",
+          "IsActive" : true
         }, {
-          "CharacterId" : "a58da017-05bb-48b0-c02f-08d80a57s458",
-          "LineId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
-          "LineContent" : "I'll be back!"
+          "StoryId" : "a58da017-05bb-48b0-c02f-08d80a57s458",
+          "StorySetId" : "d589e6df-4ac0-49c8-7dcd-08d80a548lfg",
+          "StoryName" : "Story about Love",
+          "StoryCoverImage" : "/heart.png",
+          "IsActive" : true
         } ],
         "items" : {
-          "$ref" : "#/components/schemas/ArrayOfLines_inner"
+          "$ref" : "#/components/schemas/ArrayOfStories_inner"
         }
       },
-      "ArrayOfGuids" : {
-        "title" : "Array of Guids",
-        "type" : "array",
-        "example" : [ "f89da017-05bb-48b0-c02f-08d80a57a67b", "d589e6df-4ac0-49c8-7dcd-08d80a548lfg" ],
-        "items" : {
-          "type" : "string"
-        }
-      },
-      "Line" : {
-        "title" : "Line",
-        "required" : [ "LineId LineContent CharacterId" ],
+      "Story" : {
+        "title" : "Story",
+        "required" : [ "StoryId StoryName StoryCoverImage IsActive StorySetId" ],
         "type" : "object",
         "properties" : {
-          "LineId" : {
+          "StoryId" : {
             "type" : "string",
-            "description" : "ID of the Line"
+            "description" : "ID of the Story"
           },
-          "LineContent" : {
-            "type" : "string",
-            "description" : "The line that a character says"
+          "StoryName" : {
+            "type" : "string"
           },
-          "CharacterId" : {
+          "StoryCoverImage" : {
             "type" : "string",
-            "description" : "Character that says the line"
+            "description" : "Story Preview image"
+          },
+          "IsActive" : {
+            "type" : "boolean",
+            "description" : "Defines if the story is in use"
+          },
+          "StorySetId" : {
+            "type" : "string",
+            "description" : "ID of the Story Set the story belongs to"
           }
         },
         "example" : {
-          "LineId" : "LineId",
-          "LineContent" : "LineContent",
-          "CharacterId" : "CharacterId"
+          "StoryId" : "f89da017-05bb-48b0-c02f-08d80a57a67b",
+          "StorySetId" : "e520e6df-4ac0-49c8-7dcd-08d80a569eba",
+          "StoryName" : "Story about childhood",
+          "StoryCoverImage" : "/kids.png",
+          "IsActive" : true
         }
       },
-      "ArrayOfLines_inner" : {
+      "ArrayOfStories_inner" : {
         "type" : "object",
         "properties" : {
-          "LineId" : {
+          "StoryId" : {
             "type" : "string",
-            "description" : "ID of the Line"
+            "description" : "ID of the Story"
           },
-          "LineContent" : {
-            "type" : "string",
-            "description" : "The line that a character says"
+          "StoryName" : {
+            "type" : "string"
           },
-          "CharacterId" : {
+          "StoryCoverImage" : {
             "type" : "string",
-            "description" : "Character that says the line"
+            "description" : "Story Preview image"
+          },
+          "IsActive" : {
+            "type" : "boolean",
+            "description" : "Defines if the story is in use"
+          },
+          "StorySetId" : {
+            "type" : "string",
+            "description" : "ID of the Story Set the story belongs to"
           }
         }
       }
