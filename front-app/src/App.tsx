@@ -16,7 +16,7 @@ const App: React.FC = () => {
           <PrivateRoute exact path="/words" />
           <PrivateRoute exact path="/profile"></PrivateRoute>
           <Route exact path="/">
-            I am home page
+            {process.env.REACT_APP_API_URL}
           </Route>
           <Route exact path="/login">
             I am login page
