@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "./Avatar";
 import InteractiveElement from "./InteractiveLineElement";
 import LineElement from "./LineElement";
-import { ICharacterLine } from "../Interfaces/Interfaces";
+import { ICharacterLineProps } from "../Interfaces/ICharacterLineProps";
 import {
   wordsWithApostrofies,
   wordsWithPunctuationExpression,
@@ -10,9 +10,9 @@ import {
   punctuationMarks,
 } from "./../Utils/RegexExpressions";
 
-const CharacterLine: React.FC<ICharacterLine> = (props) => {
+const CharacterLine: React.FC<ICharacterLineProps> = (props) => {
   function createLine() {
-    const wordsSplitedBySpace: string[] = props.lineText.split(" ");
+    const wordsSplitedBySpace: string[] = props.line.split(" ");
     let lineElements = [];
     const spaceElement: JSX.Element = <span>&nbsp;</span>;
 
@@ -54,7 +54,7 @@ const CharacterLine: React.FC<ICharacterLine> = (props) => {
 
   return (
     <div className="character-line">
-      <Avatar imageUri={props.imageLink} />
+      <Avatar imageUri={props.avatar} />
       <span className="character-line__text">{createLine()}</span>
     </div>
   );

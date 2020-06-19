@@ -1,0 +1,15 @@
+@function multiple-box-shadow($n) {
+  $value: "#{random(2000)}px #{random(20000)}px #f75314";
+  @for $i from 2 through $n {
+    $value: "#{$value}, #{random(2000)}px #{random(2000)}px #f4a261";
+  }
+  @return unquote($value);
+}
+
+@function hideWhenPhone($breakpoint) {
+  $value: "null";
+  @if $breakpoint == phone {
+    $value: "none";
+  }
+  @return unquote($value);
+}

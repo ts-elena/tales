@@ -14,7 +14,7 @@ export interface IAxesValues {
 }
 
 export interface IGreenButtonProps {
-  onClick: () => {};
+  onClick(): void;
 }
 
 export interface IHintProps {
@@ -27,6 +27,7 @@ export interface IIconedLink {
   path: string;
   icon: IIconSet;
   text: string;
+  isTextScreenResponsive?: boolean;
 }
 
 interface IIconSet {

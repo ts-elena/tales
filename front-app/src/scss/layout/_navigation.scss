@@ -1,26 +1,16 @@
 .navigation {
-  display: flex;
-  align-content: center;
-  justify-content: center;
   font-family: "Baloo 2", cursive;
   font-size: 2.3rem;
   height: 4rem;
-  border-bottom: 1px solid $color-grey-ligth;
-  background-color: $color-white;
+  background-color: transparent;
   padding: 1rem;
+  position: fixed;
+  left: 20vw;
+  right: 20vw;
 
   .navigation-link-box {
     display: flex;
-
-    .navigation-link-box__link {
-      .link_icon {
-        width: 3.3rem;
-        margin: 0.5rem 0.5rem 1rem 1rem;
-      }
-
-      margin: 0 1rem;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 }

@@ -12,6 +12,7 @@ const NavigationPanel: React.FC = () => {
             coloredIconPath: "/icons/story.svg",
           }}
           text="Stories"
+          isTextScreenResponsive={true}
         />
         <IconedLink
           path="/words"
@@ -20,6 +21,7 @@ const NavigationPanel: React.FC = () => {
             coloredIconPath: "/icons/dictionary.svg",
           }}
           text="Words"
+          isTextScreenResponsive={true}
         />
         <IconedLink
           path="/profile"
@@ -28,6 +30,7 @@ const NavigationPanel: React.FC = () => {
             coloredIconPath: "/icons/student.svg",
           }}
           text="Profile"
+          isTextScreenResponsive={true}
         />
       </div>
     </ul>

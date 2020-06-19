@@ -1,42 +1,34 @@
 import React, { useState, useEffect } from "react";
 import ErrorBoundary from "../components/ErrorBoundary";
 import StoryCover from "../components/StoryCover";
-import { IStoryCover } from "../Interfaces/Interfaces";
+import { getStorySets } from "../Utils/WebRequests";
+import { AxiosResponse } from "axios";
+import { IStorySet } from "../Interfaces/IStorySet";
+import { IStory } from "../Interfaces/IStory";
 
 const StoriesListPage: React.FC = () => {
-  const [storyCover, setStoryCover] = useState<Array<IStoryCover>>([]);
+  const [stories, setStories] = useState<Array<IStory>>([]);
+  const [storySets, setStorySets] = useState<Array<IStorySet>>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
-    fetch(`http://localhost:3000/stories-covers`, { signal: signal })
-      .then((response) => {
-        if (!response.ok) {
-          setErrorMessage(response.statusText);
-          throw Error(response.statusText);
-        }
-        return response.json();
+    getStorySets()
+      .then((result: IStorySet[]) => {
+        setStorySets(result);
       })
-      .then((data) => setStoryCover(data))
-      .catch((error: Error) =>
-        console.log(`The server responded with: ${error.name} ${error.message}`)
-      );
-    return () => {
-      abortController.abort();
-    };
+      .catch((error: Error) => console.log(error.message));
   }, []);
 
   return (
     <ErrorBoundary message="Somenthing went wrong">
       <div className="stories-list">
         <div className="stories-list__container">
-          {storyCover.map((story: IStoryCover) => (
+          {stories.map((story: IStory) => (
             <StoryCover
-              key={story.id}
-              id={story.id}
-              name={story.name}
-              image={story.image}
+              key={story.StoryId}
+              id={story.StoryId}
+              name={story.StoryName}
+              image={story.StoryCoverImage}
             />
           ))}
           {errorMessage && <div>{errorMessage}</div>}

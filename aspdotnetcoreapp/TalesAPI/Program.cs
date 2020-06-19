@@ -3,7 +3,6 @@ namespace TalesAPI
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using NLog;
     using TalesApp.Data;
 
     public class Program

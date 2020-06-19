@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+
 namespace TalesAPI
 {
     using AutoMapper;
@@ -16,6 +18,8 @@ namespace TalesAPI
 
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +31,23 @@ namespace TalesAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "Tales API",
+                    Version = "v1"
+                });
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000", "https://localhost:44382");
+                });
+            });
 
             services.AddDbContext<TalesContext>(options => options
                 .UseSqlServer(Configuration.GetConnectionString("TalesContext"))
@@ -67,6 +88,14 @@ namespace TalesAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(MyAllowSpecificOrigins);
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "Tales API V1");
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -1,4 +1,4 @@
-export interface IStoryData {
+export interface IStory {
   StoryId: string;
   StoryName: string;
   StoryCoverImage: string;

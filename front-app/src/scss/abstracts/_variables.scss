@@ -1,3 +1,5 @@
+@import "functions";
+
 // COLORS
 $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
@@ -7,3 +9,10 @@ $color-grey-dark: #777;
 $color-grey-ligth: #e5e5e5;
 $color-white: #fff;
 $color-black: #1b1b1b;
+
+$color-pink-background: #ffd0a6;
+
+// FUNCTIONS CALL
+$shadows-small: multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big: multiple-box-shadow(100);

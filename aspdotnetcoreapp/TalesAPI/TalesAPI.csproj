@@ -22,6 +22,7 @@
     <PackageReference Include="NLog.Config" Version="4.7.2" />
     <PackageReference Include="NLog.Schema" Version="4.7.2" />
     <PackageReference Include="Swagger-Net" Version="8.3.25.402" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TalesApp.Data\TalesApp.Data.csproj" />

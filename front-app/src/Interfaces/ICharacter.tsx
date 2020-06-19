@@ -1,5 +1,5 @@
 export interface ICharacter {
-  CharacterId: string;
-  CharacterName: string;
-  CharacterAvatar: string;
+  characterId: string;
+  characterName: string;
+  characterAvatar: string;
 }
