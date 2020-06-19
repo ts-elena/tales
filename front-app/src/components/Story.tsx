@@ -12,10 +12,8 @@ import { useParams } from "react-router-dom";
 import GreenButton from "./GreenButton";
 import { ILineNumber } from "../Interfaces/ILineNumber";
 import { ILine } from "../Interfaces/ILine";
-import { IStoryProps } from "../Interfaces/IStoryElementProps";
-import { IStoryState } from "../Interfaces/IStoryElementState";
 
-const Story: React.FC = (IStoryProps, IStoryState) => {
+const Story: React.FC = (props) => {
   const [lines, setLines] = useState<ILine[]>([]);
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [lineSequenceNumbers, setLineSequenceNumbers] = useState<

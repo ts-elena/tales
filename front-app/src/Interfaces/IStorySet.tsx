@@ -1,4 +1,4 @@
 export interface IStorySet {
-  StorySetId: string;
-  StorySetName: string;
+  storySetId: string;
+  storySetName: string;
 }

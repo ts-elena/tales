@@ -1,7 +1,7 @@
 export interface IStory {
-  StoryId: string;
-  StoryName: string;
-  StoryCoverImage: string;
-  IsActive: boolean;
-  StorySetId: string;
+  storyId: string;
+  storyName: string;
+  storyCoverImage: string;
+  isActive: boolean;
+  storySetId: string;
 }
