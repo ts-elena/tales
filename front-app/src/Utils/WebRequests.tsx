@@ -5,15 +5,18 @@ import { ILineNumber } from "../Interfaces/ILineNumber";
 import { ICharacter } from "./../Interfaces/ICharacter";
 import { IStorySet } from "../Interfaces/IStorySet";
 import { IStorySetNumber } from "../Interfaces/IStorySetNumber";
+import { ITranslatorResponse } from "../Interfaces/ITranslatorResponse";
 
-export async function getTranslation(textToTranslate: string): Promise<string> {
+export async function getTranslation(
+  textToTranslate: string
+): Promise<ITranslatorResponse> {
   return await axios
     .get(
-      `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.
-      ${process.env.REACT_APP_TRANSLATOR_API_KEY}&text=${textToTranslate}&lang=en-ru`
+      `https://translate.yandex.net/api/v1.5/tr.json/` +
+        `translate?key=trnsl.${process.env.REACT_APP_TRANSLATOR_API_KEY}&text=${textToTranslate}&lang=en-ru`
     )
     .then(
-      (result: AxiosResponse<string>): string => {
+      (result: AxiosResponse<ITranslatorResponse>): ITranslatorResponse => {
         return result.data;
       },
       (error: Error) => {

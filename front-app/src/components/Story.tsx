@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   getLine,
   getLinesSequenceNumbers,
@@ -21,6 +21,7 @@ const Story: React.FC = (props) => {
   >([]);
   const [currentLineNumber, setCurrentLineNumber] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const linesList = useRef<HTMLDivElement>(null);
 
   const { id } = useParams<IStoryPageParamTypesHook>();
 
@@ -41,6 +42,11 @@ const Story: React.FC = (props) => {
         setErrorMessage(error.message);
         return;
       });
+  }
+
+  function handleGetNextLineClick(event: React.MouseEvent) {
+    getLineData();
+    linesList.current?.scrollBy(0, 200);
   }
 
   function getLineCharacter(characterId: string): ICharacter {
@@ -82,22 +88,33 @@ const Story: React.FC = (props) => {
 
   return (
     <div className="story">
-      {lines.length !== 0 &&
-        characters.length !== 0 &&
-        lines.map((line: ILine) => (
-          <CharacterLine
-            key={line.lineId}
-            line={line.lineContent}
-            avatar={
-              characters.find(
-                (character) => character.characterId === line.characterId
-              )?.characterAvatar || ""
-            }
-          />
-        ))}
-      {lines.length !== 0 && (
+      <div className="story__content" ref={linesList}>
+        <div className="story__content__lines">
+          {lines.length !== 0 &&
+            characters.length !== 0 &&
+            lines.map((line: ILine) => (
+              <CharacterLine
+                key={line.lineId}
+                line={line.lineContent}
+                avatar={
+                  characters.find(
+                    (character) => character.characterId === line.characterId
+                  )?.characterAvatar || ""
+                }
+              />
+            ))}
+          <div id="anchor" />
+        </div>
+      </div>
+      {lineSequenceNumbers.length !== lines.length && (
         <ContentFooter
-          children={<GreenButton onClick={() => getLineData()} />}
+          children={
+            <GreenButton
+              onClick={(event: React.MouseEvent) =>
+                handleGetNextLineClick(event)
+              }
+            />
+          }
         />
       )}
       {errorMessage && <div>{errorMessage}</div>}

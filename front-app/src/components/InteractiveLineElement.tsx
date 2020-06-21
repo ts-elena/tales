@@ -3,27 +3,27 @@ import { getTranslation } from "./../Utils/WebRequests";
 import Hint from "./Hint";
 import { IAxesValues } from "../Interfaces/Interfaces";
 
-const InteractiveLineElement: React.FC<any> = props => {
+const InteractiveLineElement: React.FC<any> = (props) => {
   const [isHintVisible, setIsHintVisible] = useState<boolean>(false);
   const [hintText, setHintText] = useState<string>("");
-  const [test, setTest] = useState<IAxesValues>();
+  const [axes, setAxes] = useState<IAxesValues>();
 
   const interactiveElementRef = useRef<HTMLSpanElement>(null);
 
   const hintStyles = {
     position: "absolute",
     right: "auto",
-    left: test?.x + "px",
-    top: test?.y + "px"
+    left: axes?.x + "px",
+    top: axes?.y + "px",
   } as React.CSSProperties;
 
   const positionHint = () => {
     const wordPosition = interactiveElementRef.current?.getBoundingClientRect();
     const axesValues = {
       x: (wordPosition?.left ? wordPosition.x : 0).toString(),
-      y: (wordPosition?.top ? wordPosition.y - 30 : 0).toString()
+      y: (wordPosition?.top ? wordPosition.y - 30 : 0).toString(),
     };
-    setTest(axesValues);
+    setAxes(axesValues);
   };
 
   let filterTimeout: NodeJS.Timeout;
@@ -36,9 +36,11 @@ const InteractiveLineElement: React.FC<any> = props => {
   function handleMouseEnter() {
     if (hintText === "") {
       filterTimeout = setInterval(() => {
-        getTranslation(props.word).then(data => setHintText(data[0]));
-        revealHint();
-        clearInterval(filterTimeout);
+        getTranslation(props.word).then((data) => {
+          setHintText(data.text[0]);
+          revealHint();
+          clearInterval(filterTimeout);
+        });
       }, 500);
     } else {
       revealHint();

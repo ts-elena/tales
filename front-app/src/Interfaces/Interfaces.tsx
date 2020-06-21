@@ -14,7 +14,7 @@ export interface IAxesValues {
 }
 
 export interface IGreenButtonProps {
-  onClick(): void;
+  onClick(event: React.MouseEvent): void;
 }
 
 export interface IHintProps {

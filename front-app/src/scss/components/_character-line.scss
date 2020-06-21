@@ -1,6 +1,7 @@
 .character-line {
   margin: 3.5rem;
   display: flex;
+  overflow-anchor: none;
 
   .character-line__text {
     margin: 1rem;

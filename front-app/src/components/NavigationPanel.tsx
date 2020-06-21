@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import IconedLink from "./IconedLink";
 
 const NavigationPanel: React.FC = () => {
+  const [scrollPosition, setScrollPosition] = useState<number>(
+    window.pageYOffset
+  );
   return (
     <ul className="navigation clearfix">
       <div className="navigation-link-box">
