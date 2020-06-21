@@ -3,8 +3,6 @@
   display: flex;
   flex-wrap: nowrap;
   margin: 0 1rem;
-  text-transform: uppercase;
-  @include remove-link-styling;
 
   .link_icon {
     width: 3.3rem;
@@ -12,15 +10,8 @@
   }
 
   .link-text__responsive {
-    color: $color-black;
     @include respond(phone) {
       display: none;
-    }
-    &.white {
-      color: $color-white;
-    }
-    &:hover {
-      color: $color-grey-dark;
     }
   }
 }

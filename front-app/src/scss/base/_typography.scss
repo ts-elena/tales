@@ -14,3 +14,56 @@ body {
 .link {
   text-decoration: "none";
 }
+
+.navigation {
+  font-family: "Baloo 2", cursive;
+  font-size: 2.3rem;
+}
+
+.LandingPageContent {
+  .content {
+    font-size: 2.5rem;
+  }
+
+  .buttons-area {
+    .navigation-link-box__link {
+      color: $color-white;
+    }
+  }
+}
+
+.character-line {
+  font-size: 2rem;
+}
+
+.green_button {
+  font-size: 2.5rem;
+  font-family: inherit;
+  color: #5e5d5d;
+}
+
+.hint {
+  background-color: black;
+  font-weight: 500;
+}
+
+.navigation-link-box__link {
+  text-transform: uppercase;
+  @include remove-link-styling;
+
+  .link-text__responsive {
+    color: $color-black;
+    &.white {
+      color: $color-white;
+    }
+    &:hover {
+      color: $color-grey-dark;
+    }
+  }
+}
+
+.story-set-container {
+  .story-set-container__set-header {
+    font-size: 2rem;
+  }
+}

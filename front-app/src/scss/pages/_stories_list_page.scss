@@ -1,11 +1,14 @@
 .stories-list {
   display: flex;
   justify-content: center;
+  margin: 7rem 0 0 0;
+  width: 50%;
 
   .stories-list__container {
-    margin: 2rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 55vw;
   }
 }

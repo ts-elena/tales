@@ -1,8 +1,26 @@
 html {
   box-sizing: border-box;
 
-  // Defines what 1ram should be, not typography
-  font-size: 62.5%;
+  // This defines what 1rem is
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+
+  @include respond(phone) {
+    font-size: 30%;
+  }
+
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 40%; //1 rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12, 12/16
+  }
 }
 
 *,
@@ -14,7 +32,7 @@ html {
   padding: 0;
 }
 
-/*.image-overlay-dark{
-  opacity: 0.9;
-  background-color: black;
-} */
+.link {
+  display: inline-block;
+  @include remove-link-styling;
+}

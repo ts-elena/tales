@@ -3,19 +3,26 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin: 3rem;
-  width: 20rem;
+  width: 15rem;
+
+  &:hover {
+    .story-cover__image img {
+      filter: brightness(80%);
+    }
+  }
 
   .story-cover__image img {
     border-radius: 1rem;
+    width: 15rem;
   }
   .story-cover__text {
     margin: 1rem 0 1rem 0;
-    line-height: 2.5rem;
+    line-height: 2rem;
     color: $color-black;
     text-align: center;
     font-family: "Baloo 2", cursive;
-    font-size: 2.5rem;
-    width: 20rem;
+    width: 15rem;
     font-size: 2rem;
+    @include remove-link-styling;
   }
 }

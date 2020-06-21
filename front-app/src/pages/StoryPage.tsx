@@ -1,10 +1,10 @@
 import React from "react";
-import Story from "../components/Story";
+import StoryWithEmptySides from "../components/StoryWithEmptySides";
 
 const StoryPage: React.FC = () => {
   return (
     <div className="story-page">
-      <Story />
+      <StoryWithEmptySides />
     </div>
   );
 };

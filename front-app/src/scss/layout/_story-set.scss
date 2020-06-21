@@ -1,0 +1,20 @@
+.story-set-container {
+  .story-set-container__set-header {
+    width: 80rem;
+    @include respond(tab-port) {
+      width: 35rem;
+    }
+    &::before {
+      right: 16px;
+      @include side-vertical-lines;
+    }
+    &::after {
+      left: 16px;
+      margin-right: -50%;
+      @include side-vertical-lines;
+    }
+    .story-set-container__set-header--text {
+      margin: 1rem;
+    }
+  }
+}

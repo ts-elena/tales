@@ -16,17 +16,25 @@ const StorySet: React.FC<IStorySetProps> = (props) => {
   }, []);
 
   return (
-    <div className="story-set">
-      <div>{props.name}</div>
-      {stories.map((story: IStory, index: number) => (
-        <StoryCover
-          key={story.storyId}
-          id={story.storyId}
-          name={story.storyName}
-          image={story.storyCoverImage}
-        />
-      ))}
-    </div>
+    <>
+      {stories.length !== 0 && (
+        <div className="story-set-container">
+          <div className="story-set-container__set-header">
+            <span className="story-set-container__set-header--text">
+              {props.name}
+            </span>
+          </div>
+          {stories.map((story: IStory, index: number) => (
+            <StoryCover
+              key={story.storyId}
+              id={story.storyId}
+              name={story.storyName}
+              image={story.storyCoverImage}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

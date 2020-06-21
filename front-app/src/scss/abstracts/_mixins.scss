@@ -5,9 +5,16 @@
   }
 }
 
-@mixin dark-image-overlay {
-  opacity: 0.9;
-  background-color: black;
+@mixin side-vertical-lines {
+  background: #e5e5e5;
+  content: "";
+  display: inline-block;
+  height: 2px;
+  vertical-align: middle;
+  width: 50%;
+  @include respond(tab-port) {
+    width: 37%;
+  }
 }
 
 @mixin respond($breakpoint) {

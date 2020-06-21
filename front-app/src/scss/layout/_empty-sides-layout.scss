@@ -1,0 +1,15 @@
+.empty-sides-layout {
+  display: flex;
+  .empty-sides-layout__left {
+    width: 35rem;
+    @include respond(tab-port) {
+      width: 15rem;
+    }
+  }
+  .empty-sides-right {
+    width: 30rem;
+    @include respond(tab-port) {
+      width: 10rem;
+    }
+  }
+}
