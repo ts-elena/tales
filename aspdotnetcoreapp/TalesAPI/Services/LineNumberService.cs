@@ -22,9 +22,9 @@
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<LineNumber>> LineNumbersOfStory(Guid storyId)
+        public async Task<LineNumber> LineNumbersOfStory(Guid storyId, int lineNumber)
         {
-            return await _lineNumberRepository.LineNumbersOfStory(storyId);
+            return await _lineNumberRepository.LineNumbersOfStory(storyId, lineNumber);
         }
 
         public async Task<Response<IEnumerable<LineNumber>>> UpdateRangeAsync(List<LineNumber> lineNumbers)
@@ -68,29 +68,6 @@
                 _logger.Error(exception, $"Error saving line numbers: {exception.Message}. Inner exception: {exception.InnerException}");
                 return new Response<IEnumerable<LineNumber>>(
                     $"New lines could not be saved. An error occured: {exception.Message}");
-            }
-        }
-
-        public async Task<Response<IEnumerable<LineNumber>>> DeleteRangeByStoryId(Guid storyId)
-        {
-            List<LineNumber> lineNumbersByStoryId = await _lineNumberRepository.LineNumbersOfStory(storyId);
-
-            if (lineNumbersByStoryId == null)
-                return new Response<IEnumerable<LineNumber>>(
-                    $"Line for story with id '{storyId}' were not found. Delete operation failed.");
-
-            try
-            {
-                _lineNumberRepository.DeleteRange(lineNumbersByStoryId);
-                await _unitOfWork.SaveChangesAsync();
-
-                return new Response<IEnumerable<LineNumber>>(lineNumbersByStoryId);
-            }
-            catch (Exception exception)
-            {
-                _logger.Error(exception, $"Error deleting line numbers by story id: {exception.Message}. Inner exception: {exception.InnerException}");
-                return new Response<IEnumerable<LineNumber>>(
-                    $"An error occurred when deleting the Lines: {exception.Message}");
             }
         }
 

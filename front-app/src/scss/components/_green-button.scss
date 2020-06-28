@@ -2,5 +2,13 @@
   padding: 1rem;
   border-radius: 1rem;
   border: none;
-  background-color: #acd6a2;
+  background-color: #264653;
+  color: $color-grey-ligth;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: $color-white;
+    background-color: #2a9d8f;
+  }
 }

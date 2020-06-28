@@ -1,10 +1,13 @@
-.character-line {
-  margin: 3.5rem;
+.character-line-wrapper {
   display: flex;
-  overflow-anchor: none;
+  .character-line {
+    margin: 0.2rem 0 2rem 0;
+    overflow-anchor: none;
 
-  .character-line__text {
-    margin: 1rem;
-    display: flex;
+    .character-line__text {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 1rem;
+    }
   }
 }

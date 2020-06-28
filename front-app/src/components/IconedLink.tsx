@@ -18,11 +18,23 @@ const IconedLink: React.FC<IIconedLink> = (props) => {
     setIsLandingPage(currentLocation.pathname === "/");
   });
 
+  function handleDisabledState(event: React.MouseEvent) {
+    if (props.isDisabled) {
+      event.preventDefault();
+    }
+  }
+
   return (
     <NavLink
-      className={"navigation-link-box__link"}
+      className={
+        props.isDisabled === true
+          ? "navigation-link-box__link disabled"
+          : "navigation-link-box__link"
+      }
+      title={props.isDisabled ? "I am coming soon! Stay tuned" : props.text}
       to={props.path}
       activeClassName="active"
+      onClick={(event: React.MouseEvent) => handleDisabledState(event)}
     >
       <div>
         <img

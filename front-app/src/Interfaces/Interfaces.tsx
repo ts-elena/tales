@@ -14,6 +14,7 @@ export interface IAxesValues {
 }
 
 export interface IGreenButtonProps {
+  isDisabled: boolean;
   onClick(event: React.MouseEvent): void;
 }
 
@@ -28,6 +29,7 @@ export interface IIconedLink {
   icon: IIconSet;
   text: string;
   isTextScreenResponsive?: boolean;
+  isDisabled?: boolean;
 }
 
 interface IIconSet {

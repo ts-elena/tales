@@ -15,5 +15,8 @@
         [Required]
         [NotNull]
         public int Number { get; set; }
+
+        [Required]
+        public bool IsLast { get; set; }
     }
 }

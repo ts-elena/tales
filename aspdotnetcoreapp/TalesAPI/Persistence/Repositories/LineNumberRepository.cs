@@ -20,9 +20,10 @@
             return await _context.LineNumber.FirstOrDefaultAsync(lineNumber => lineNumber.LineId == id);
         }
 
-        public async Task<List<LineNumber>> LineNumbersOfStory(Guid id)
+        public async Task<LineNumber> LineNumbersOfStory(Guid id, int lineNumber)
         {
-            return await _context.LineNumber.Where((LineNumber num) => num.StoryId == id).ToListAsync();
+            return await _context.LineNumber.FirstOrDefaultAsync((LineNumber num) => num.StoryId == id
+                                                                       && num.Number == lineNumber);
         }
 
         public void UpdateRange(IEnumerable<LineNumber> dbObjects)

@@ -1,11 +1,12 @@
 import React from "react";
+import { IAvatarProps } from "../Interfaces/IAvatarProps";
 
-const CharacterLine: React.FC<any> = (props) => {
+const Avatar: React.FC<IAvatarProps> = (props) => {
   return (
-    <span className="avatar">
-      <img src={props.imageUri} alt="avatar" className="avatar__image" />
-    </span>
+    <>
+      <img src={props.avatar} alt="avatar" className="avatar__image" />
+    </>
   );
 };
 
-export default CharacterLine;
+export default Avatar;

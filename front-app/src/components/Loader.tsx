@@ -1,8 +1,13 @@
 import React from "react";
+import { ILoaderProps } from "../Interfaces/IloaderProps";
 
-const Loader: React.FC<any> = (props) => {
+const Loader: React.FC<ILoaderProps> = (props) => {
   return (
-    <div className="loader-container">
+    <div
+      className={
+        props.isLoading ? "loader-container visible" : "loader-container hidden"
+      }
+    >
       <div className="loader-container__space">
         <div className="stars small"></div>
         <div className="stars2 medium"></div>

@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using Microsoft.OpenApi.Models;
 
 namespace TalesAPI
@@ -73,6 +74,10 @@ namespace TalesAPI
             services.AddScoped<ICharacterService, CharacterService>();
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddSingleton(x =>
+                new BlobServiceClient(Configuration.GetConnectionString("AudioAzureBlob")));
+            services.AddSingleton<IBlobService, BlobService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

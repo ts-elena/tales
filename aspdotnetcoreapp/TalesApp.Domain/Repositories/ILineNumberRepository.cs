@@ -7,7 +7,7 @@
     public interface ILineNumberRepository
     {
         Task<LineNumber> LineNumberById(Guid id);
-        Task<List<LineNumber>> LineNumbersOfStory(Guid id);
+        Task<LineNumber> LineNumbersOfStory(Guid id, int lineNumber);
         void UpdateRange(IEnumerable<LineNumber> dbObjects);
         Task AddRangeAsync(IEnumerable<LineNumber> dbObjects);
         void DeleteRange(IEnumerable<LineNumber> dbObjects);

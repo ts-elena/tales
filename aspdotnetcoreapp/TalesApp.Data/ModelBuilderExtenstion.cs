@@ -122,7 +122,8 @@ namespace TalesApp.Data
                 {
                     LineId = line1Key,
                     StoryId = storyKey,
-                    Number = 1
+                    Number = 1,
+                    IsLast = false
                 }
             );
 
@@ -142,7 +143,8 @@ namespace TalesApp.Data
                 {
                     LineId = line2key,
                     StoryId = storyKey,
-                    Number = 2
+                    Number = 2,
+                    IsLast = false
                 }
             );
 
@@ -163,7 +165,8 @@ namespace TalesApp.Data
                 {
                     LineId = line3key,
                     StoryId = storyKey,
-                    Number = 3
+                    Number = 3,
+                    IsLast = false
                 }
             );
 
@@ -184,7 +187,8 @@ namespace TalesApp.Data
                 {
                     LineId = line4key,
                     StoryId = storyKey,
-                    Number = 4
+                    Number = 4,
+                    IsLast = false
                 }
             );
 
@@ -205,7 +209,8 @@ namespace TalesApp.Data
                 {
                     LineId = line5key,
                     StoryId = storyKey,
-                    Number = 5
+                    Number = 5,
+                    IsLast = false
                 }
             );
 
@@ -226,7 +231,8 @@ namespace TalesApp.Data
                 {
                     LineId = line6key,
                     StoryId = storyKey,
-                    Number = 6
+                    Number = 6,
+                    IsLast = false
                 }
             );
 
@@ -247,7 +253,8 @@ namespace TalesApp.Data
                 {
                     LineId = line7key,
                     StoryId = storyKey,
-                    Number = 7
+                    Number = 7,
+                    IsLast = false
                 }
             );
 
@@ -258,7 +265,7 @@ namespace TalesApp.Data
                 {
                     StoryId = storyKey,
                     LineId = line8key,
-                    LineContent = "Remember Martha, from South Heaven? They say Howl tore her heart out.",
+                    LineContent = "Ah, now I see!",
                     CharacterId = girlInAShop2
                 }
             );
@@ -268,7 +275,8 @@ namespace TalesApp.Data
                 {
                     LineId = line8key,
                     StoryId = storyKey,
-                    Number = 8
+                    Number = 8,
+                    IsLast = false
                 }
             );
 
@@ -289,7 +297,8 @@ namespace TalesApp.Data
                 {
                     LineId = line9key,
                     StoryId = storyKey,
-                    Number = 9
+                    Number = 9,
+                    IsLast = false
                 }
             );
 
@@ -310,7 +319,8 @@ namespace TalesApp.Data
                 {
                     LineId = line10key,
                     StoryId = storyKey,
-                    Number = 10
+                    Number = 10,
+                    IsLast = false
                 }
             );
 
@@ -331,7 +341,8 @@ namespace TalesApp.Data
                 {
                     LineId = line11key,
                     StoryId = storyKey,
-                    Number = 11
+                    Number = 11,
+                    IsLast = false
                 }
             );
 
@@ -352,7 +363,8 @@ namespace TalesApp.Data
                 {
                     LineId = line12key,
                     StoryId = storyKey,
-                    Number = 12
+                    Number = 12,
+                    IsLast = true
                 }
             );
         }

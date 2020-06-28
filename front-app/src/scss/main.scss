@@ -12,12 +12,16 @@
 @import "./components/hint";
 @import "./components/iconed-link";
 @import "./components/interactive-element";
+@import "./components/loader";
+@import "./components/sound-player";
 @import "./components/story-cover";
 @import "./components/stars-background";
 @import "./layout/content-footer";
 @import "./layout/empty-sides-layout";
 @import "./layout/navigation";
+@import "./layout/scroll";
 @import "./layout/story-set";
+@import "./layout/page_error";
 @import "./pages/stories_list_page";
 @import "./pages/story";
 @import "./pages/landing_page";

@@ -46,18 +46,22 @@ body {
   background-color: black;
   font-weight: 500;
 }
-
+.navigation-link-box__link.disabled .link-text__responsive {
+  color: $color-grey-dark;
+}
 .navigation-link-box__link {
   text-transform: uppercase;
   @include remove-link-styling;
 
-  .link-text__responsive {
-    color: $color-black;
-    &.white {
-      color: $color-white;
-    }
-    &:hover {
-      color: $color-grey-dark;
+  &:not(.disabled) {
+    .link-text__responsive {
+      color: $color-black;
+      &.white {
+        color: $color-white;
+      }
+      &:hover {
+        color: $color-grey-dark;
+      }
     }
   }
 }

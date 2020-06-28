@@ -1,30 +1,23 @@
 import React from "react";
-import { IErrorBoundaryState } from "../Interfaces/Interfaces";
+import { IAvatarProps } from "../Interfaces/IAvatarProps";
 
-interface IErrorBoundaryProps {
-  message: string;
+interface IErrorProps {
+  hasError: boolean;
+  error: Error;
 }
-class ErrorBoundary extends React.Component<
-  IErrorBoundaryProps,
-  IErrorBoundaryState
-> {
-  constructor(props: IErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
-  }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
+const ErrorBoundary: React.FC<IErrorProps> = (props) => {
+  return (
+    <>
+      {props.hasError && (
+        <div className="flex-center position-r full-height">
+          <div className="code">{props.error.name} </div>
 
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>{this.props.message}</h1>;
-    }
-
-    return this.props.children;
-  }
-}
+          <div className="message">{props.error.message} </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default ErrorBoundary;

@@ -76,12 +76,15 @@ export async function getCharacter(id: string): Promise<ICharacter> {
 }
 
 export async function getLinesSequenceNumbers(
-  storyId: string
-): Promise<ILineNumber[]> {
+  storyId: string,
+  lineNumber: number
+): Promise<ILineNumber> {
   return await axios
-    .get(`${process.env.REACT_APP_API_URL}/api/LineNumber/${storyId}`)
+    .get(
+      `${process.env.REACT_APP_API_URL}/api/LineNumber/${storyId}/${lineNumber}`
+    )
     .then(
-      (result: AxiosResponse<ILineNumber[]>): ILineNumber[] => {
+      (result: AxiosResponse<ILineNumber>): ILineNumber => {
         return result.data;
       },
       (error: Error) => {
@@ -103,8 +106,24 @@ export async function getLine(lineId: string): Promise<ILine> {
     );
 }
 
+export async function getLineAudioTrack(
+  storyId: string,
+  lineId: string
+): Promise<File> {
+  return await axios
+    .get(
+      `${process.env.REACT_APP_API_URL}/api/BlobExplorer/${storyId}/${lineId}.ogg`
+    )
+    .then(
+      (result: AxiosResponse<File>): File => {
+        return result.data;
+      },
+      (error: Error) => {
+        throw GetErrorWithTemplate(error);
+      }
+    );
+}
+
 function GetErrorWithTemplate(error: Error): Error {
-  return new Error(
-    `Endpoint returned '${error.name}' error with message '${error.message}'`
-  );
+  return new Error(error.message);
 }

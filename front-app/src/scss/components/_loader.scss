@@ -2,26 +2,26 @@
   margin: 0;
   padding: 0;
   background-color: #000d2b;
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
-}
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  display: block;
 
-@function box-shadow($stars) {
-  $bxshadow: ();
-  @for $i from 1 to $stars {
-    $bxshadow: append(
-      $bxshadow,
-      (random(2000) + 0px) (random(2000) + 0px) #fff,
-      comma
-    );
+  &.visible {
+    visibility: visible;
+    opacity: 1;
   }
-  @return unquote($bxshadow);
-}
 
-$bxshadow-large: box-shadow(300);
-$bxshadow-medium: box-shadow(500);
-$bxshadow-small: box-shadow(800);
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s linear;
+  }
+}
 
 .stars.large {
   height: 3px;
@@ -45,70 +45,6 @@ $bxshadow-small: box-shadow(800);
   animation: blink-small 1s infinite;
 }
 
-@keyframes blink-large {
-  0% {
-    box-shadow: $bxshadow-large;
-  }
-  70% {
-    $colors: "#fff", "transparent";
-    $stars: $bxshadow-large;
-    @for $i from 1 to length($stars) {
-      $star: set-nth(
-        nth($stars, $i),
-        3,
-        unquote(nth($colors, random(length($colors))))
-      );
-      $stars: set-nth($stars, $i, $star);
-    }
-    box-shadow: $stars;
-  }
-  100% {
-    box-shadow: $bxshadow-large;
-  }
-}
-@keyframes blink-medium {
-  0% {
-    box-shadow: $bxshadow-medium;
-  }
-  70% {
-    $colors: "#fff", "transparent";
-    $stars: $bxshadow-medium;
-    @for $i from 1 to length($stars) {
-      $star: set-nth(
-        nth($stars, $i),
-        3,
-        unquote(nth($colors, random(length($colors))))
-      );
-      $stars: set-nth($stars, $i, $star);
-    }
-    box-shadow: $stars;
-  }
-  100% {
-    box-shadow: $bxshadow-medium;
-  }
-}
-@keyframes blink-small {
-  0% {
-    box-shadow: $bxshadow-small;
-  }
-  70% {
-    $colors: "#fff", "transparent";
-    $stars: $bxshadow-small;
-    @for $i from 1 to length($stars) {
-      $star: set-nth(
-        nth($stars, $i),
-        3,
-        unquote(nth($colors, random(length($colors))))
-      );
-      $stars: set-nth($stars, $i, $star);
-    }
-    box-shadow: $stars;
-  }
-  100% {
-    box-shadow: $bxshadow-small;
-  }
-}
-
 .unicorn {
   width: 100px;
   position: absolute;
@@ -122,110 +58,11 @@ $bxshadow-small: box-shadow(800);
 }
 .unicorn img {
   width: 100px;
-  // transform: rotateY(180deg);
+  transform: rotateY(180deg);
   position: relative;
   animation-name: swing;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
-}
-
-@keyframes run {
-  0% {
-    left: 0vw;
-    bottom: 10vh;
-  }
-  5% {
-    left: 5vw;
-    bottom: 12vh;
-  }
-  10% {
-    left: 10vw;
-    bottom: 10vh;
-  }
-  15% {
-    left: 15vw;
-    bottom: 12vh;
-  }
-  20% {
-    left: 20vw;
-    bottom: 10vh;
-  }
-  25% {
-    left: 25vw;
-    bottom: 12vh;
-  }
-  30% {
-    left: 30vw;
-    bottom: 10vh;
-  }
-  35% {
-    left: 35vw;
-    bottom: 12vh;
-  }
-  40% {
-    left: 40vw;
-    bottom: 10vh;
-  }
-  45% {
-    left: 45vw;
-    bottom: 12vh;
-  }
-  50% {
-    left: 50vw;
-    bottom: 10vh;
-  }
-  55% {
-    left: 55vw;
-    bottom: 12vh;
-  }
-  60% {
-    left: 60vw;
-    bottom: 10vh;
-  }
-  65% {
-    left: 65vw;
-    bottom: 11vh;
-  }
-  70% {
-    left: 70vw;
-    bottom: 10vh;
-  }
-  75% {
-    left: 75vw;
-    bottom: 12vh;
-  }
-  80% {
-    left: 80vw;
-    bottom: 10vh;
-  }
-  85% {
-    left: 85vw;
-    bottom: 12vh;
-  }
-  90% {
-    left: 90vw;
-    bottom: 10vh;
-  }
-  95% {
-    left: 95vw;
-    bottom: 12vh;
-  }
-  100% {
-    left: 100vw;
-    bottom: 10vh;
-  }
-}
-
-@keyframes swing {
-  0% {
-    transform: rotateZ(5deg);
-  }
-  50% {
-    transform: rotateZ(5deg);
-  }
-  100% {
-    transform: rotateZ(-5deg);
-  }
 }
 
 .unicorn:after {

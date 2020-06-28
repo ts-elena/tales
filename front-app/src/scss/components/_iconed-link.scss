@@ -4,6 +4,10 @@
   flex-wrap: nowrap;
   margin: 0 1rem;
 
+  &.disabled {
+    color: $color-grey-dark;
+  }
+
   .link_icon {
     width: 3.3rem;
     margin: 0.5rem 0.5rem 1rem 1rem;

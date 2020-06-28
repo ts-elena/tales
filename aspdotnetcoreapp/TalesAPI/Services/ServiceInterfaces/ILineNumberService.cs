@@ -8,10 +8,9 @@
 
     public interface ILineNumberService
     {
-        Task<IEnumerable<LineNumber>> LineNumbersOfStory(Guid storyId);
+        Task<LineNumber> LineNumbersOfStory(Guid storyId, int lineNumber);
         Task<Response<IEnumerable<LineNumber>>> UpdateRangeAsync(List<LineNumber> lineNumbers);
         Task<Response<IEnumerable<LineNumber>>> AddRangeAsync(List<LineNumber> lineNumbers);
-        Task<Response<IEnumerable<LineNumber>>> DeleteRangeByStoryId(Guid storyNumberIds);
         Task<Response<IEnumerable<LineNumber>>> DeleteRangeByLineId(IEnumerable<Guid> lineNumberIds);
     }
 }

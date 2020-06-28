@@ -1,4 +1,7 @@
+import { ILine } from "./ILine";
+import { ICharacter } from "./ICharacter";
 export interface ICharacterLineProps {
-  line: string;
-  avatar: string;
+  line: ILine;
+  character: ICharacter | undefined;
+  audio: string;
 }

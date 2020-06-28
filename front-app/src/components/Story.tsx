@@ -1,124 +1,111 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  getLine,
   getLinesSequenceNumbers,
+  getLine,
   getCharacter,
+  getLineAudioTrack,
 } from "./../Utils/WebRequests";
 import { IStoryPageParamTypesHook } from "../Interfaces/Interfaces";
-import { ICharacter } from "./../Interfaces/ICharacter";
 import CharacterLine from "./CharacterLine";
 import ContentFooter from "./ContentFooter";
 import { useParams } from "react-router-dom";
 import GreenButton from "./GreenButton";
 import { ILineNumber } from "../Interfaces/ILineNumber";
+import Loader from "./Loader";
 import { ILine } from "../Interfaces/ILine";
+import { ICharacter } from "../Interfaces/ICharacter";
+import ErrorBoundary from "./ErrorBoundary";
 
 const Story: React.FC = (props) => {
+  const [nextLineNumber, setNextLineNumber] = useState<number>(1);
   const [lines, setLines] = useState<ILine[]>([]);
   const [characters, setCharacters] = useState<ICharacter[]>([]);
-  const [lineSequenceNumbers, setLineSequenceNumbers] = useState<
-    Array<ILineNumber>
-  >([]);
-  const [currentLineNumber, setCurrentLineNumber] = useState<number>(0);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isLastShown, setIsLastShown] = useState<boolean>(false);
+
+  const [errorMessage, setErrorMessage] = useState<Error | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLineLoading, setIsLineLoading] = useState<boolean>(true);
+
   const linesList = useRef<HTMLDivElement>(null);
 
   const { id } = useParams<IStoryPageParamTypesHook>();
 
-  function getLineData(
-    lineId: string = lineSequenceNumbers[currentLineNumber].lineId
-  ): void {
-    getLine(lineId)
-      .then((result: ILine) => {
-        setLines(lines.concat(result));
-        setCurrentLineNumber(currentLineNumber + 1);
-        return result;
-      })
-      .then((result: ILine) => {
-        return getCharacter(result.characterId);
-      })
-      .then((result: ICharacter) => setCharacters(characters.concat(result)))
-      .catch((error: Error) => {
-        setErrorMessage(error.message);
-        return;
-      });
+  function handleScroll() {
+    if (linesList.current !== null) {
+      linesList.current.scrollTop = linesList.current.scrollHeight;
+    }
   }
 
-  function handleGetNextLineClick(event: React.MouseEvent) {
-    getLineData();
-    linesList.current?.scrollBy(0, 200);
-  }
-
-  function getLineCharacter(characterId: string): ICharacter {
-    let characterData: ICharacter = {} as ICharacter;
-    getCharacter(characterId)
-      .then((result: ICharacter) => {
-        characterData = result;
-      })
-      .catch((error: Error) => {
-        setErrorMessage(error.message);
-      });
-    return characterData;
-  }
-
-  async function getLineNumbers() {
-    await getLinesSequenceNumbers(id)
-      .then((result: ILineNumber[]) => {
-        setLineSequenceNumbers(
-          result.sort((a: ILineNumber, b: ILineNumber): number => {
-            if (a.number > b.number) return 1;
-            if (a.number < b.number) return -1;
-            return 0;
-          })
-        );
-        return result;
-      })
-      .then((result: ILineNumber[]) =>
-        getLineData(result[currentLineNumber].lineId)
-      )
-      .catch((error: Error) => {
-        setErrorMessage(error.message);
-        return;
-      });
+  async function getLineContent() {
+    if (!isLastShown) {
+      await getLinesSequenceNumbers(id, nextLineNumber)
+        .then((result: ILineNumber) => {
+          if (result.isLast === true) {
+            setIsLastShown(true);
+          }
+          setNextLineNumber(nextLineNumber + 1);
+          return Promise.all([
+            getLine(result.lineId),
+            getLineAudioTrack(result.storyId, result.lineId),
+          ]);
+        })
+        .then((result: [ILine, File]) => {
+          setLines(lines.concat(result[0]));
+          setIsLineLoading(false);
+          return getCharacter(result[0].characterId);
+        })
+        .then((result: ICharacter) => {
+          setCharacters(characters.concat(result));
+          setIsLoading(false);
+          handleScroll();
+        })
+        .catch((error: Error) => {
+          setErrorMessage(error);
+        });
+    }
   }
 
   useEffect(() => {
-    getLineNumbers();
+    getLineContent();
   }, []);
 
   return (
-    <div className="story">
-      <div className="story__content" ref={linesList}>
-        <div className="story__content__lines">
-          {lines.length !== 0 &&
-            characters.length !== 0 &&
-            lines.map((line: ILine) => (
-              <CharacterLine
-                key={line.lineId}
-                line={line.lineContent}
-                avatar={
-                  characters.find(
-                    (character) => character.characterId === line.characterId
-                  )?.characterAvatar || ""
-                }
+    <>
+      <Loader isLoading={isLoading && !errorMessage} />
+      <div className="story">
+        {!errorMessage && (
+          <div className="story__content scroll" ref={linesList}>
+            <div className="story__content__lines">
+              {lines.length !== 0 &&
+                !isLoading &&
+                lines.map((line: ILine) => (
+                  <CharacterLine
+                    key={line.lineId}
+                    line={line}
+                    character={characters.find(
+                      (character) => character.characterId === line.characterId
+                    )}
+                    audio={`${process.env.REACT_APP_API_URL}/api/BlobExplorer/${id}/${line.lineId}.ogg`}
+                  />
+                ))}
+            </div>
+          </div>
+        )}
+        {lines.length !== 0 && !isLastShown && !errorMessage && (
+          <ContentFooter
+            children={
+              <GreenButton
+                isDisabled={isLoading}
+                onClick={(event: React.MouseEvent) => getLineContent()}
               />
-            ))}
-          <div id="anchor" />
-        </div>
+            }
+          />
+        )}
+        {errorMessage && (
+          <ErrorBoundary hasError={true} error={errorMessage} />
+        )}
       </div>
-      {lineSequenceNumbers.length !== lines.length && (
-        <ContentFooter
-          children={
-            <GreenButton
-              onClick={(event: React.MouseEvent) =>
-                handleGetNextLineClick(event)
-              }
-            />
-          }
-        />
-      )}
-      {errorMessage && <div>{errorMessage}</div>}
-    </div>
+    </>
   );
 };
 

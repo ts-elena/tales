@@ -24,10 +24,12 @@ const NavigationPanel: React.FC = () => {
             coloredIconPath: "/icons/dictionary.svg",
           }}
           text="Words"
+          isDisabled={true}
           isTextScreenResponsive={true}
         />
         <IconedLink
           path="/profile"
+          isDisabled={true}
           icon={{
             monoIconPath: "/icons/student_mono.svg",
             coloredIconPath: "/icons/student.svg",

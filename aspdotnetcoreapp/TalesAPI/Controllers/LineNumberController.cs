@@ -27,16 +27,16 @@
             _mapper = mapper;
         }
 
-        [HttpGet("{storyId}")]
-        [ProducesResponseType(typeof(IEnumerable<LineNumber>), 200)]
+        [HttpGet("{storyId}/{lineNumber}")]
+        [ProducesResponseType(typeof(LineNumber), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<LineNumber>>> GetLineNumbersOfStory(Guid storyId)
+        public async Task<ActionResult<LineNumber>> GetLineNumberOfStory(Guid storyId, int lineNumber)
         {
-            var lineSequence = await _lineNumberService.LineNumbersOfStory(storyId);
+            var lineSequence = await _lineNumberService.LineNumbersOfStory(storyId, lineNumber);
 
             if (lineSequence == null) return NotFound();
 
-            return Ok(_mapper.Map<IEnumerable<LineNumber>, IEnumerable<LineNumberResource>>(lineSequence));
+            return Ok(_mapper.Map<LineNumber, LineNumberResource>(lineSequence));
         }
 
         [HttpPut]
@@ -71,18 +71,6 @@
             if (!result.Success) return BadRequest();
 
             return Ok(_mapper.Map<IEnumerable<LineNumber>, IEnumerable<LineNumberResource>>(result.DbObject));
-        }
-
-        [HttpDelete("{storyId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<LineNumberResource>> DeleteAllStoryLineNumbers(Guid storyId)
-        {
-            var result = await _lineNumberService.DeleteRangeByStoryId(storyId);
-            if (!result.Success) return NotFound();
-
-            return Ok(_mapper.Map<IEnumerable<LineNumber>,
-                IEnumerable<LineNumberResource>>(result.DbObject));
         }
 
         [HttpDelete]
