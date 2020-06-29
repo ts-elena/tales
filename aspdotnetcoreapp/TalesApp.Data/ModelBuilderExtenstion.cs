@@ -54,7 +54,8 @@ namespace TalesApp.Data
                     StoryId = storyKey,
                     StorySetId = storySetKey,
                     StoryName = "Opening Story of Howl's Moving Castle",
-                    StoryCoverImage = "/images/StoriesData/MovingCastleOpeningStory/HowlsMovingCastleCover.jfif"
+                    StoryCoverImage = "/images/StoriesData/MovingCastleOpeningStory/HowlsMovingCastleCover.jfif",
+                    IsActive = true
                 }
             );
 

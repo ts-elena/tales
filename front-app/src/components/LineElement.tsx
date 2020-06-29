@@ -1,6 +1,7 @@
 import React from "react";
+import { ILineElement } from "./../Interfaces/ILineElement";
 
-const LineElement: React.FC<any> = props => {
+const LineElement: React.FC<ILineElement> = (props) => {
   return (
     <span className="word-with-hint">
       <span>{props.word}</span>

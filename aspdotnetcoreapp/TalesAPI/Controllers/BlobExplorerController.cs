@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TalesAPI.Services.ServiceInterfaces;
-
-namespace TalesAPI.Controllers
+﻿namespace TalesAPI.Controllers
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using TalesAPI.Services.ServiceInterfaces;
+
     [Route("api/[controller]")]
     [ApiController]
     public class BlobExplorerController : ControllerBase

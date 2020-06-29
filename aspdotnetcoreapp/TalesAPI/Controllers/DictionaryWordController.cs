@@ -20,14 +20,12 @@
             _context = context;
         }
 
-        // GET: api/DictionaryWords
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DictionaryWord>>> GetDictionaryWords()
         {
             return await _context.DictionaryWord.ToListAsync();
         }
 
-        // GET: api/DictionaryWords/5
         [HttpGet("{id}")]
         public async Task<ActionResult<DictionaryWord>> GetDictionaryWord(Guid id)
         {
@@ -41,9 +39,6 @@
             return dictionaryWord;
         }
 
-        // PUT: api/DictionaryWords/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDictionaryWord(Guid id, DictionaryWord dictionaryWord)
         {

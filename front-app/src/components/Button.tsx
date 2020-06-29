@@ -1,7 +1,7 @@
 import React from "react";
-import { IGreenButtonProps } from "../Interfaces/Interfaces";
+import { IButtonProps } from "../Interfaces/IButtonProps";
 
-const GreenButton: React.FC<IGreenButtonProps> = (props) => {
+const Button: React.FC<IButtonProps> = (props) => {
   return (
     <button
       className="green_button"
@@ -13,4 +13,4 @@ const GreenButton: React.FC<IGreenButtonProps> = (props) => {
   );
 };
 
-export default GreenButton;
+export default Button;

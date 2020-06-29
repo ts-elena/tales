@@ -1,8 +1,7 @@
-using Azure.Storage.Blobs;
-using Microsoft.OpenApi.Models;
-
 namespace TalesAPI
 {
+    using Azure.Storage.Blobs;
+    using Microsoft.OpenApi.Models;
     using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

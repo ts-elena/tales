@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IStoryProps } from "../Interfaces/Interfaces";
+import { IStoryProps } from "../Interfaces/IStoryProps";
 
 const StoryCover: React.FC<IStoryProps> = (props) => {
   return (

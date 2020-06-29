@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useLocation, useHistory } from "react-router-dom";
-import { IIconedLink } from "../Interfaces/Interfaces";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { IIconedLink } from "../Interfaces/IIconedLink";
 
 const IconedLink: React.FC<IIconedLink> = (props) => {
   const [location, setLocation] = useState(useHistory().location);

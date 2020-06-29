@@ -6,7 +6,9 @@
 
     public class TalesContext : DbContext
     {
-        public TalesContext(DbContextOptions<TalesContext> options) : base(options) { }
+        public TalesContext(DbContextOptions<TalesContext> options) : base(options) {
+            Database.EnsureCreated();
+        }
         public DbSet<StorySet> StorySet { get; set; }
         public DbSet<StorySetNumber> StorySetNumber { get; set; }
         public DbSet<Story> Story { get; set; }
@@ -26,8 +28,7 @@
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseLoggerFactory(ConsoleLoggerFactory)
-                    .UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = TalesAppData");
+                .UseLoggerFactory(ConsoleLoggerFactory);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,7 +39,6 @@
                 .HasKey(line => new { line.LineId, line.StoryId });
             modelBuilder.Entity<LineNumber>()
                 .HasKey(lineNumber => new {lineNumber.LineId, lineNumber.StoryId});
-
             modelBuilder.Seed();
         }
     }

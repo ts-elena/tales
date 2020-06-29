@@ -8,7 +8,7 @@ import Loader from "./Loader";
 const StoriesList: React.FC<any> = () => {
   const [storySets, setStorySets] = useState<Array<IStorySet>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [error, setError] = useState<Error>();
 
   useEffect(() => {
     getStorySets()
@@ -16,7 +16,7 @@ const StoriesList: React.FC<any> = () => {
         setStorySets(result);
         setTimeout(() => setIsLoading(false), 3000);
       })
-      .catch((error: Error) => console.log(error.message));
+      .catch((error: Error) => setError(error));
   }, []);
 
   return (
@@ -31,7 +31,7 @@ const StoriesList: React.FC<any> = () => {
               name={storySet.storySetName}
             />
           ))}
-          {errorMessage && <div>{errorMessage}</div>}
+          {error && <ErrorBoundary hasError={true} error={error} />}
         </div>
       </div>
     </>

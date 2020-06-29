@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
 import { getTranslation } from "./../Utils/WebRequests";
 import Hint from "./Hint";
-import { IAxesValues } from "../Interfaces/Interfaces";
+import { IAxesValues } from "../Interfaces/IAxesValues";
+import { ILineElement } from "../Interfaces/ILineElement";
 
-const InteractiveLineElement: React.FC<any> = (props) => {
+const InteractiveLineElement: React.FC<ILineElement> = (props) => {
   const [isHintVisible, setIsHintVisible] = useState<boolean>(false);
   const [hintText, setHintText] = useState<string>("");
   const [axes, setAxes] = useState<IAxesValues>();

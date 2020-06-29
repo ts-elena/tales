@@ -42,9 +42,9 @@
         [HttpGet("GetStoriesOfSet/{setId:Guid}", Name = "GetAllActiveStoriesOfSet")]
         [ProducesResponseType(typeof(List<StoryResource>), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<StoryResource>>> GetAllActiveStoriesOfSet(Guid setId)
+        public async Task<ActionResult<List<StoryResource>>> GetAllStoriesOfSet(Guid setId)
         {
-            var stories = await _storyService.ActiveStoriesBySetId(setId);
+            var stories = await _storyService.StoriesBySetId(setId);
 
             if (!stories.Any()) return NotFound();
 

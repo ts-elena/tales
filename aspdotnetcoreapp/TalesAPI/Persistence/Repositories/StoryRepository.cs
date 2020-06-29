@@ -16,10 +16,10 @@ namespace TalesAPI.Persistence.Repositories
         {
         }
 
-        public async Task<List<Story>> ActiveStoriesBySetId(Guid setId)
+        public async Task<List<Story>> StoriesBySetId(Guid setId)
         {
             return await _context.Story
-                .Where(story => story.StorySetId == setId && story.IsActive)
+                .Where(story => story.StorySetId == setId)
                 .ToListAsync();
         }
 

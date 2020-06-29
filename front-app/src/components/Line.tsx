@@ -18,7 +18,9 @@ const Line: React.FC<ILineProps> = (props) => {
     for (let word of wordsSplitedBySpace) {
       if (wordsWithApostrofies.test(word)) {
         lineElements.push(
-          <InteractiveElement word={word.match(wordsWithApostrofies)?.[0]} />,
+          <InteractiveElement
+            word={word.match(wordsWithApostrofies)?.toString() || ""}
+          />,
           spaceElement
         );
         continue;
@@ -27,9 +29,9 @@ const Line: React.FC<ILineProps> = (props) => {
       if (wordsWithPunctuationExpression.test(word)) {
         lineElements.push(
           <InteractiveElement
-            word={word.match(wordWithNoPunctuationExpression)}
+            word={word.match(wordWithNoPunctuationExpression)?.toString() || ""}
           />,
-          <LineElement word={word.match(punctuationMarks)} />,
+          <LineElement word={word.match(punctuationMarks)?.toString() || ""} />,
           spaceElement
         );
         continue;
@@ -41,7 +43,7 @@ const Line: React.FC<ILineProps> = (props) => {
       ) {
         lineElements.push(
           <InteractiveElement
-            word={word.match(wordWithNoPunctuationExpression)}
+            word={word.match(wordWithNoPunctuationExpression)?.toString() || ""}
           />,
           spaceElement
         );

@@ -8,7 +8,7 @@ namespace TalesAPI.Services.ServiceInterfaces
 {
     public interface IStoryService
     {
-        Task<List<Story>> ActiveStoriesBySetId(Guid id);
+        Task<List<Story>> StoriesBySetId(Guid id);
         Task<Story> FindAsync(Guid id);
         Task<Response<Story>> SaveAsync(Story story);
         Task<Response<Story>> UpdateAsync(Story story);

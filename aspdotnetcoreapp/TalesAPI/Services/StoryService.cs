@@ -22,9 +22,9 @@
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Story>> ActiveStoriesBySetId(Guid setId)
+        public async Task<List<Story>> StoriesBySetId(Guid setId)
         {
-            return await _storyRepository.ActiveStoriesBySetId(setId);
+            return await _storyRepository.StoriesBySetId(setId);
         }
 
         public async Task<Story> FindAsync(Guid id)

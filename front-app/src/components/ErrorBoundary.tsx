@@ -1,10 +1,5 @@
 import React from "react";
-import { IAvatarProps } from "../Interfaces/IAvatarProps";
-
-interface IErrorProps {
-  hasError: boolean;
-  error: Error;
-}
+import { IErrorProps } from "../Interfaces/IErrorProps";
 
 const ErrorBoundary: React.FC<IErrorProps> = (props) => {
   return (

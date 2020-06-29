@@ -5,11 +5,11 @@ import {
   getCharacter,
   getLineAudioTrack,
 } from "./../Utils/WebRequests";
-import { IStoryPageParamTypesHook } from "../Interfaces/Interfaces";
+import { IStoryPageParamTypesHook } from "../Interfaces/IStoryPageParamTypesHook";
 import CharacterLine from "./CharacterLine";
 import ContentFooter from "./ContentFooter";
 import { useParams } from "react-router-dom";
-import GreenButton from "./GreenButton";
+import GreenButton from "./Button";
 import { ILineNumber } from "../Interfaces/ILineNumber";
 import Loader from "./Loader";
 import { ILine } from "../Interfaces/ILine";
@@ -22,9 +22,8 @@ const Story: React.FC = (props) => {
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [isLastShown, setIsLastShown] = useState<boolean>(false);
 
-  const [errorMessage, setErrorMessage] = useState<Error | null>();
+  const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isLineLoading, setIsLineLoading] = useState<boolean>(true);
 
   const linesList = useRef<HTMLDivElement>(null);
 
@@ -51,7 +50,6 @@ const Story: React.FC = (props) => {
         })
         .then((result: [ILine, File]) => {
           setLines(lines.concat(result[0]));
-          setIsLineLoading(false);
           return getCharacter(result[0].characterId);
         })
         .then((result: ICharacter) => {
@@ -60,7 +58,7 @@ const Story: React.FC = (props) => {
           handleScroll();
         })
         .catch((error: Error) => {
-          setErrorMessage(error);
+          setError(error);
         });
     }
   }
@@ -71,9 +69,9 @@ const Story: React.FC = (props) => {
 
   return (
     <>
-      <Loader isLoading={isLoading && !errorMessage} />
+      <Loader isLoading={isLoading && !error} />
       <div className="story">
-        {!errorMessage && (
+        {!error && (
           <div className="story__content scroll" ref={linesList}>
             <div className="story__content__lines">
               {lines.length !== 0 &&
@@ -91,7 +89,7 @@ const Story: React.FC = (props) => {
             </div>
           </div>
         )}
-        {lines.length !== 0 && !isLastShown && !errorMessage && (
+        {lines.length !== 0 && !isLastShown && !error && (
           <ContentFooter
             children={
               <GreenButton
@@ -101,9 +99,7 @@ const Story: React.FC = (props) => {
             }
           />
         )}
-        {errorMessage && (
-          <ErrorBoundary hasError={true} error={errorMessage} />
-        )}
+        {error && <ErrorBoundary hasError={true} error={error} />}
       </div>
     </>
   );
