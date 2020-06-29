@@ -26,7 +26,6 @@
             _mapper = mapper;
         }
 
-        // GET: api/StorySetsNumber
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<StorySetNumberResource>), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

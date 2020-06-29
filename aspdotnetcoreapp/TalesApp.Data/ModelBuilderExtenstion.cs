@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using TalesApp.Domain;
-
-namespace TalesApp.Data
+﻿namespace TalesApp.Data
 {
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using TalesApp.Domain;
+
     public static class ModelBuilderExtenstion
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
             Guid storySetKey = Guid.NewGuid();
-            Guid storyKey = Guid.NewGuid();
+            Guid storyKey = Guid.Parse("99b43ca2-dcac-419a-9725-2413202bb624");
 
             // CharacterIds 
             Guid sophieKey = Guid.NewGuid();
@@ -19,18 +19,18 @@ namespace TalesApp.Data
             Guid girlInAShop3 = Guid.NewGuid();
 
             // Lines
-            var line1Key = Guid.NewGuid();
-            var line2key = Guid.NewGuid();
-            var line3key = Guid.NewGuid();
-            var line4key = Guid.NewGuid();
-            var line5key = Guid.NewGuid();
-            var line6key = Guid.NewGuid();
-            var line7key = Guid.NewGuid();
-            var line8key = Guid.NewGuid();
-            var line9key = Guid.NewGuid();
-            var line10key = Guid.NewGuid();
-            var line11key = Guid.NewGuid();
-            var line12key = Guid.NewGuid();
+            var line1Key = Guid.Parse("daa31b35-9859-4b4a-b053-b65a9ecd8d15");
+            var line2key = Guid.Parse("564d4795-ebca-4e8a-8bb5-2089c1f0e6ea");
+            var line3key = Guid.Parse("54f7cacf-b2aa-4778-92a4-8ac86fb57b3c");
+            var line4key = Guid.Parse("c8061cc0-a281-4ca4-ad3c-3edc321a6929");
+            var line5key = Guid.Parse("0b9550af-8637-4373-8873-de2cb7131b79");
+            var line6key = Guid.Parse("efc7b9c5-c16d-4d7b-b4f7-3f84eb329118");
+            var line7key = Guid.Parse("a57b5392-d025-4792-89b4-2809746371c5");
+            var line8key = Guid.Parse("6a1fde30-d496-477f-a982-7bccace88c50");
+            var line9key = Guid.Parse("c49cb2ae-b328-43ca-a968-bbaeff925f3c");
+            var line10key = Guid.Parse("1a9db9ee-c830-4cc9-811b-9a9be198d187");
+            var line11key = Guid.Parse("cef31226-c93b-4847-b8ca-fb152d7cebf1");
+            var line12key = Guid.Parse("885b77ba-8349-4640-becf-282d12404904");
 
             modelBuilder.Entity<StorySet>().HasData(
                 new StorySet
