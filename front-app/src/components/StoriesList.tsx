@@ -5,7 +5,7 @@ import { getStorySets } from "../Utils/WebRequests";
 import { IStorySet } from "../Interfaces/IStorySet";
 import Loader from "./Loader";
 
-const StoriesList: React.FC<any> = () => {
+const StoriesList: React.FC = () => {
   const [storySets, setStorySets] = useState<Array<IStorySet>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();

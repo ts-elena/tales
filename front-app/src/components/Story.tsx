@@ -16,7 +16,7 @@ import { ILine } from "../Interfaces/ILine";
 import { ICharacter } from "../Interfaces/ICharacter";
 import ErrorBoundary from "./ErrorBoundary";
 
-const Story: React.FC = (props) => {
+const Story: React.FC = () => {
   const [nextLineNumber, setNextLineNumber] = useState<number>(1);
   const [lines, setLines] = useState<ILine[]>([]);
   const [characters, setCharacters] = useState<ICharacter[]>([]);
