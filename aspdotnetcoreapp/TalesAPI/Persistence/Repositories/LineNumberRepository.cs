@@ -38,7 +38,7 @@
 
         public void DeleteRange(IEnumerable<LineNumber> dbObjects)
         {
-            _context.LineNumber.RemoveRange(dbObjects);
+            _context.LineNumber.DeleteRange(dbObjects);
         }
     }
 }

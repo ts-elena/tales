@@ -1,9 +1,9 @@
-﻿namespace TalesAPI.Resources.PostResources
+﻿namespace TalesAPI.Models.PutModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class SaveStorySetNumberResource
+    public class UpdateStorySetNumberModel
     {
         [Required]
         public Guid StorySetId { get; set; }

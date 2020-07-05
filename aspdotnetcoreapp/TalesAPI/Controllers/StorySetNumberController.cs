@@ -4,14 +4,14 @@
     using Extentions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Resources;
-    using Resources.PostResources;
+    using Models;
+    using Models.PostModels;
     using Services;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using TalesApp.Domain;
-    using Resources.PutResources;
+    using Models.PutModels;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -27,13 +27,13 @@
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<StorySetNumberResource>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<StorySetNumberModel>), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IEnumerable<StorySetNumberResource>> GetStorySetNumbers()
+        public async Task<IEnumerable<StorySetNumberModel>> GetStorySetNumbers()
         {
             var storySetNumber = await _storySetsNumberService.ListAsync();
-            IEnumerable<StorySetNumberResource> storySetNumberDto = _mapper
-                .Map<IEnumerable<StorySetNumber>, IEnumerable<StorySetNumberResource>>(storySetNumber);
+            IEnumerable<StorySetNumberModel> storySetNumberDto = _mapper
+                .Map<IEnumerable<StorySetNumber>, IEnumerable<StorySetNumberModel>>(storySetNumber);
             return storySetNumberDto;
         }
 
@@ -41,14 +41,14 @@
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PostStorySetNumber([FromBody] SaveStorySetNumberResource saveStorySetNumber)
+        public async Task<IActionResult> PostStorySetNumber([FromBody] SaveStorySetNumberModel saveStorySetNumber)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState.GetErrorMessages());
             }
 
-            var storySetSequence = _mapper.Map<SaveStorySetNumberResource, StorySetNumber>(saveStorySetNumber);
+            var storySetSequence = _mapper.Map<SaveStorySetNumberModel, StorySetNumber>(saveStorySetNumber);
             var result = await _storySetsNumberService.SaveAsync(storySetSequence);
 
             if (!result.Success)
@@ -56,24 +56,24 @@
                 return BadRequest(result.Message);
             }
 
-            var storySetsResource = _mapper.Map<StorySetNumber, StorySetNumberResource>(result.DbObject);
-            return Ok(storySetsResource);
+            var storySetsModel = _mapper.Map<StorySetNumber, StorySetNumberModel>(result.DbObject);
+            return Ok(storySetsModel);
         }
 
         /// <summary>
         /// Updates an existing story sets sequence according to an identifier.
         /// </summary>
-        /// <param name="resource">Updated sequence data.</param>
+        /// <param name="Model">Updated sequence data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutAsync([FromBody] UpdateStorySetNumberResource resource)
+        public async Task<IActionResult> PutAsync([FromBody] UpdateStorySetNumberModel Model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var storySetNumber = _mapper.Map<UpdateStorySetNumberResource, StorySetNumber>(resource);
+            var storySetNumber = _mapper.Map<UpdateStorySetNumberModel, StorySetNumber>(Model);
             var result = await _storySetsNumberService.UpdateAsync(storySetNumber);
 
             if (!result.Success)
@@ -81,7 +81,7 @@
                 return BadRequest();
             }
 
-            return Ok(_mapper.Map<StorySetNumber, StorySetNumberResource>(result.DbObject));
+            return Ok(_mapper.Map<StorySetNumber, StorySetNumberModel>(result.DbObject));
         }
 
 
@@ -95,8 +95,8 @@
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            var storySetNumberResource = _mapper.Map<StorySetNumber, StorySetNumberResource>(result.DbObject);
-            return Ok(storySetNumberResource);
+            var storySetNumberModel = _mapper.Map<StorySetNumber, StorySetNumberModel>(result.DbObject);
+            return Ok(storySetNumberModel);
         }
     }
 }

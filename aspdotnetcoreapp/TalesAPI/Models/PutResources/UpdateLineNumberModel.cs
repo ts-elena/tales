@@ -1,10 +1,10 @@
-﻿namespace TalesAPI.Resources.PutResources
+﻿namespace TalesAPI.Models.PutModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
 
-    public class UpdateLineNumberResource
+    public class UpdateLineNumberModel
     {
         [Required]
         public  Guid LineId { get; set; }

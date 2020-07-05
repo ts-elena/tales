@@ -1,9 +1,9 @@
-﻿namespace TalesAPI.Resources.PutResources
+﻿namespace TalesAPI.Models.PutModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class UpdateLineResource
+    public class UpdateLineModel
     {
         [Required]
         public Guid StoryId { get; set; }

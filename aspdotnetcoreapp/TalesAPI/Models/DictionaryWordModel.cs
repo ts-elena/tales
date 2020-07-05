@@ -1,8 +1,8 @@
-﻿namespace TalesAPI.Resources
+﻿namespace TalesAPI.Models
 {
     using System;
 
-    public class DictionaryWordResource
+    public class DictionaryWordModel
     {
         public Guid LineId { get; set; }
         public Guid DictionaryWordId { get; set; }

@@ -1,8 +1,8 @@
-﻿namespace TalesAPI.Resources
+﻿namespace TalesAPI.Models
 {
     using System;
 
-    public class LineNumberResource
+    public class LineNumberModel
     {
         public  Guid StoryId { get; set; }
         public Guid LineId { get; set; }

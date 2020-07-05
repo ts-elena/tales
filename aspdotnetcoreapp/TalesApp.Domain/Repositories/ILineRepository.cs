@@ -9,6 +9,6 @@
         Task<Line> LineByIdOrDefault(Guid id);
         void UpdateRange(IEnumerable<Line> dbObjects);
         Task AddRangeAsync(IEnumerable<Line> dbObjects);
-        void RemoveRange(IEnumerable<Line> dbObjects);
+        void DeleteRange(IEnumerable<Line> dbObjects);
     }
 }

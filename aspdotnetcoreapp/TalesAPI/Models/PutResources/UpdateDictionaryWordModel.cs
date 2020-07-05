@@ -1,11 +1,10 @@
-﻿namespace TalesAPI.Resources.PostResources
+﻿namespace TalesAPI.Models.PutModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class SaveDictionaryWordResource
+    public class UpdateDictionaryWordModel
     {
-        [Required]
         [MinLength(1)]
         public string DictionaryWordText { get; set; }
 

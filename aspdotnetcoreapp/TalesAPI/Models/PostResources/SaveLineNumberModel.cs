@@ -1,9 +1,9 @@
-﻿namespace TalesAPI.Resources.PostResources
+﻿namespace TalesAPI.Models.PostModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class SaveLineNumberResource
+    public class SaveLineNumberModel
     {
         [Required]
         public Guid StoryId { get; set; }

@@ -1,8 +1,8 @@
-﻿namespace TalesAPI.Resources
+﻿namespace TalesAPI.Models
 {
     using System;
 
-    public class LineResource
+    public class LineModel
     {
         public string LineId { get; set; }
         public string LineContent { get; set; }

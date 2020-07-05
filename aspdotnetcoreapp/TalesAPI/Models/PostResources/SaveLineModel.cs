@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TalesAPI.Resources.PostResources
+namespace TalesAPI.Models.PostModels
 {
     using System;
 
-    public class SaveLineResource
+    public class SaveLineModel
     {
         [Required]
         public Guid StoryId { get; set; }

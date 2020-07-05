@@ -61,7 +61,7 @@
         {
             try
             {
-                _characterRepository.RemoveRange(charactersToDelete);
+                _characterRepository.DeleteRange(charactersToDelete);
                 await _unitOfWork.SaveChangesAsync();
 
                 return new Response<IEnumerable<Character>>(charactersToDelete);

@@ -27,6 +27,6 @@
 
         public async Task AddRangeAsync(IEnumerable<Line> dbObjects) => await _context.AddRangeAsync(dbObjects);
 
-        public void RemoveRange(IEnumerable<Line> dbObjects) => _context.RemoveRange(dbObjects);
+        public void DeleteRange(IEnumerable<Line> dbObjects) => _context.DeleteRange(dbObjects);
     }
 }

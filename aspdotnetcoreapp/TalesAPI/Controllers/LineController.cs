@@ -4,15 +4,15 @@
     using Extentions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Resources;
-    using Resources.PostResources;
+    using Models;
+    using Models.PostModels;
     using Services.ServiceInterfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using TalesApp.Domain;
     using TalesApp.Domain.Services.Communication;
-    using Resources.PutResources;
+    using Models.PutModels;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -29,65 +29,65 @@
 
 
         [HttpGet("{lineId:Guid}", Name = "GetLineById")]
-        [ProducesResponseType(typeof(LineResource), 200)]
+        [ProducesResponseType(typeof(LineModel), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<LineResource>> GetLineById(Guid lineId)
+        public async Task<ActionResult<LineModel>> GetLineById(Guid lineId)
         {
             Line line = await _lineService.LineByIdOrDefault(lineId);
 
             if (line == null)
                 return NotFound();
 
-            return _mapper.Map<Line, LineResource>(line);
+            return _mapper.Map<Line, LineModel>(line);
         }
 
 
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutLinesRange([FromBody] IEnumerable<UpdateLineResource> resource)
+        public async Task<IActionResult> PutLinesRange([FromBody] IEnumerable<UpdateLineModel> Model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            IEnumerable<Line> lines = _mapper.Map<IEnumerable<UpdateLineResource>, IEnumerable<Line>>(resource);
+            IEnumerable<Line> lines = _mapper.Map<IEnumerable<UpdateLineModel>, IEnumerable<Line>>(Model);
             Response<IEnumerable<Line>> result = await _lineService.UpdateRangeAsync(lines);
             if (!result.Success)
                 return BadRequest();
 
-            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineResource>>(result.DbObject));
+            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineModel>>(result.DbObject));
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Line>> PostLinesRange([FromBody] List<SaveLineResource> resource)
+        public async Task<ActionResult<Line>> PostLinesRange([FromBody] List<SaveLineModel> Model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            IEnumerable<Line> lines = _mapper.Map<List<SaveLineResource>, List<Line>>(resource);
+            IEnumerable<Line> lines = _mapper.Map<List<SaveLineModel>, List<Line>>(Model);
 
             Response<IEnumerable<Line>> result = await _lineService.SaveRangeAsync(lines);
 
             if (!result.Success)
                 return BadRequest();
 
-            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineResource>>(result.DbObject));
+            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineModel>>(result.DbObject));
         }
 
 
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<LineResource>> DeleteLinesRange([FromBody] IEnumerable<Guid> lineIds)
+        public async Task<ActionResult<LineModel>> DeleteLinesRange([FromBody] IEnumerable<Guid> lineIds)
         {
             Response<IEnumerable<Line>> result = await _lineService.DeleteRangeAsync(lineIds);
 
             if (!result.Success)
                 return NotFound();
 
-            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineResource>>(result.DbObject));
+            return Ok(_mapper.Map<IEnumerable<Line>, IEnumerable<LineModel>>(result.DbObject));
         }
     }
 }

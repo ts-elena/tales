@@ -4,14 +4,14 @@
     using Extentions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Resources;
-    using Resources.PostResources;
+    using Models;
+    using Models.PostModels;
     using Services.ServiceInterfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using TalesApp.Domain;
-    using Resources.PutResources;
+    using Models.PutModels;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -27,23 +27,23 @@
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<StorySetResource>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<StorySetModel>), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IEnumerable<StorySetResource>> GetStorySets()
+        public async Task<IEnumerable<StorySetModel>> GetStorySets()
         {
             var storySets = await _storySetService.ListAsync();
             var storySetDto = _mapper
-                .Map<IEnumerable<StorySet>, IEnumerable<StorySetResource>>(storySets);
+                .Map<IEnumerable<StorySet>, IEnumerable<StorySetModel>>(storySets);
             return storySetDto;
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(StorySetResource), 200)]
+        [ProducesResponseType(typeof(StorySetModel), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<StorySetResource>> GetStorySet(Guid id)
+        public async Task<ActionResult<StorySetModel>> GetStorySet(Guid id)
         {
             var storySet = await _storySetService.FindAsync(id);
-            var storySetDto = _mapper.Map<StorySet, StorySetResource>(storySet);
+            var storySetDto = _mapper.Map<StorySet, StorySetModel>(storySet);
             if (storySet == null) return NotFound();
             return storySetDto;
         }
@@ -51,36 +51,36 @@
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutStorySet([FromBody] UpdateStorySetResource resource)
+        public async Task<IActionResult> PutStorySet([FromBody] UpdateStorySetModel Model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var storySet = _mapper.Map<UpdateStorySetResource, StorySet>(resource);
+            var storySet = _mapper.Map<UpdateStorySetModel, StorySet>(Model);
             var result = await _storySetService.UpdateAsync(storySet);
 
             if (!result.Success) return BadRequest();
 
-            var storySetResource = _mapper.Map<StorySet, StorySetResource>(result.DbObject);
+            var storySetModel = _mapper.Map<StorySet, StorySetModel>(result.DbObject);
 
-            return Ok(storySetResource);
+            return Ok(storySetModel);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(StorySetResource), 200)]
+        [ProducesResponseType(typeof(StorySetModel), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<StorySetResource>> PostStorySet([FromBody] SaveStorySetResource saveStorySetResource)
+        public async Task<ActionResult<StorySetModel>> PostStorySet([FromBody] SaveStorySetModel saveStorySetModel)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var storySet = _mapper.Map<SaveStorySetResource, StorySet>(saveStorySetResource);
+            var storySet = _mapper.Map<SaveStorySetModel, StorySet>(saveStorySetModel);
             var result = await _storySetService.SaveAsync(storySet);
 
             if (!result.Success) return BadRequest();
 
-            var storySetResource = _mapper.Map<StorySet, StorySetResource>(result.DbObject);
-            return Ok(storySetResource);
+            var storySetModel = _mapper.Map<StorySet, StorySetModel>(result.DbObject);
+            return Ok(storySetModel);
         }
 
         [HttpDelete("{id}")]
@@ -95,8 +95,8 @@
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            var storySetResource = _mapper.Map<StorySet, StorySetResource>(result.DbObject);
-            return Ok(storySetResource);
+            var storySetModel = _mapper.Map<StorySet, StorySetModel>(result.DbObject);
+            return Ok(storySetModel);
         }
     }
 }

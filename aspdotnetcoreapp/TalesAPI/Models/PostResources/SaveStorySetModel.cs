@@ -1,8 +1,8 @@
-﻿namespace TalesAPI.Resources.PostResources
+﻿namespace TalesAPI.Models.PostModels
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class SaveStorySetResource
+    public class SaveStorySetModel
     {
         [Required]
         [MinLength(3)]

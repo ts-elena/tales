@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TalesAPI.Resources
+namespace TalesAPI.Models
 {
-    public class CharacterResource
+    public class CharacterModel
     {
         public Guid CharacterId { get; set; }
         public string CharacterName { get; set; }

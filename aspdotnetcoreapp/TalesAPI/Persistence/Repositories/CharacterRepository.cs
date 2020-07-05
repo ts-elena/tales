@@ -36,9 +36,9 @@
             await _context.Character.AddRangeAsync(character);
         }
 
-        public void RemoveRange(IEnumerable<Character> character)
+        public void DeleteRange(IEnumerable<Character> character)
         {
-            _context.Character.RemoveRange(character);
+            _context.Character.DeleteRange(character);
         }
     }
 }

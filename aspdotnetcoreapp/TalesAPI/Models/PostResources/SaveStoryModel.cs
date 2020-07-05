@@ -1,15 +1,11 @@
-﻿namespace TalesAPI.Resources.PutResources
+﻿namespace TalesAPI.Models.PostModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class UpdateStoryResource
+    public class SaveStoryModel
     {
         [Required]
-        public Guid StoryId { get; set; }
-
-        [Required]
-        [MinLength(3)]
         public string StoryName { get; set; }
 
         [Required]

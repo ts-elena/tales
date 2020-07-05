@@ -10,6 +10,6 @@
         Task<Character> FindAsync(Guid id);
         void UpdateRange(IEnumerable<Character> characters);
         Task AddRangeAsync(IEnumerable<Character> character);
-        void RemoveRange(IEnumerable<Character> character);
+        void DeleteRange(IEnumerable<Character> character);
     }
 }

@@ -1,43 +1,42 @@
-﻿using TalesAPI.Resources.PutResources;
-
-namespace TalesAPI.Mapping
+﻿namespace TalesAPI.Mapping
 {
     using AutoMapper;
-    using TalesAPI.Resources;
-    using TalesAPI.Resources.PostResources;
+    using TalesAPI.Models;
+    using TalesAPI.Models.PostModels;
     using TalesApp.Domain;
+    using TalesAPI.Models.PutModels;
 
-    public class ResourceToModelProfile : Profile
+    public class ModelToModelProfile : Profile
     {
-        public ResourceToModelProfile()
+        public ModelToModelProfile()
         {
-            CreateMap<SaveStorySetNumberResource, StorySetNumber>();
-            CreateMap<StorySetNumberResource, StorySetNumber>();
-            CreateMap<UpdateStorySetNumberResource, StorySetNumber>();
+            CreateMap<SaveStorySetNumberModel, StorySetNumber>();
+            CreateMap<StorySetNumberModel, StorySetNumber>();
+            CreateMap<UpdateStorySetNumberModel, StorySetNumber>();
 
-            CreateMap<StorySetResource, StorySet>();
-            CreateMap<SaveStorySetResource, StorySet>();
-            CreateMap<UpdateStorySetResource, StorySet>();
+            CreateMap<StorySetModel, StorySet>();
+            CreateMap<SaveStorySetModel, StorySet>();
+            CreateMap<UpdateStorySetModel, StorySet>();
 
-            CreateMap<StoryResource, Story>();
-            CreateMap<SaveStoryResource, Story>();
-            CreateMap<UpdateStoryResource, Story>();
+            CreateMap<StoryModel, Story>();
+            CreateMap<SaveStoryModel, Story>();
+            CreateMap<UpdateStoryModel, Story>();
 
-            CreateMap<LineNumberResource, LineNumber>();
-            CreateMap<SaveLineNumberResource, LineNumber>();
-            CreateMap<UpdateLineNumberResource, LineNumber>();
+            CreateMap<LineNumberModel, LineNumber>();
+            CreateMap<SaveLineNumberModel, LineNumber>();
+            CreateMap<UpdateLineNumberModel, LineNumber>();
 
-            CreateMap<LineResource, Line>();
-            CreateMap<SaveLineResource, Line>();
-            CreateMap<UpdateLineResource, Line>();
+            CreateMap<LineModel, Line>();
+            CreateMap<SaveLineModel, Line>();
+            CreateMap<UpdateLineModel, Line>();
 
-            CreateMap<DictionaryWordResource, DictionaryWord>();
-            CreateMap<SaveDictionaryWordResource, DictionaryWord>();
-            CreateMap<UpdateDictionaryWordResource, DictionaryWord>();
+            CreateMap<DictionaryWordModel, DictionaryWord>();
+            CreateMap<SaveDictionaryWordModel, DictionaryWord>();
+            CreateMap<UpdateDictionaryWordModel, DictionaryWord>();
 
-            CreateMap<CharacterResource, Character>();
-            CreateMap<SaveCharacterResource, Character>();
-            CreateMap<UpdateCharacterResource, Character>();
+            CreateMap<CharacterModel, Character>();
+            CreateMap<SaveCharacterModel, Character>();
+            CreateMap<UpdateCharacterModel, Character>();
         }
     }
 }
