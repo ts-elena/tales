@@ -6,9 +6,9 @@
     using TalesApp.Domain;
     using TalesAPI.Models.PutModels;
 
-    public class ModelToModelProfile : Profile
+    public class ResourceToModelProfile : Profile
     {
-        public ModelToModelProfile()
+        public ResourceToModelProfile()
         {
             CreateMap<SaveStorySetNumberModel, StorySetNumber>();
             CreateMap<StorySetNumberModel, StorySetNumber>();

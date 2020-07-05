@@ -86,7 +86,7 @@
 
             try
             {
-                _lineNumberRepository.DeleteRange(lineNumbersByIds);
+                _lineNumberRepository.RemoveRange(lineNumbersByIds);
                 await _unitOfWork.SaveChangesAsync();
 
                 return new Response<IEnumerable<LineNumber>>(lineNumbersByIds);

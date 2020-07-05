@@ -12,11 +12,11 @@
 
     public class CharacterService : ICharacterService
     {
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<Character> _characterRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public CharacterService(ICharacterRepository characterRepository, IUnitOfWork unitOfWork)
+        public CharacterService(IRepository<Character> characterRepository, IUnitOfWork unitOfWork)
         {
             _characterRepository = characterRepository;
             _unitOfWork = unitOfWork;
@@ -61,7 +61,7 @@
         {
             try
             {
-                _characterRepository.DeleteRange(charactersToDelete);
+                _characterRepository.RemoveRange(charactersToDelete);
                 await _unitOfWork.SaveChangesAsync();
 
                 return new Response<IEnumerable<Character>>(charactersToDelete);

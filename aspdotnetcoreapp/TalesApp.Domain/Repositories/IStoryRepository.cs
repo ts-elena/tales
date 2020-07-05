@@ -4,12 +4,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IStoryRepository
+    public interface IStoryRepository: IRepository<Story>
     {
         Task<List<Story>> StoriesBySetId(Guid setId);
-        Task<Story> FindAsync(Guid id);
-        void Update(Story dbObject);
-        Task AddAsync(Story dbObject);
-        void Remove(Story dbObject);
     }
 }

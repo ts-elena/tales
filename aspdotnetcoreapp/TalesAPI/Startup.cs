@@ -54,13 +54,11 @@ namespace TalesAPI
                 .EnableSensitiveDataLogging()
                 );
 
-            services.AddScoped<IStorySetNumberRepository, StorySetNumberRepository>();
-            services.AddScoped<IStorySetRepository, StorySetRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+
             services.AddScoped<IStoryRepository, StoryRepository>();
             services.AddScoped<ILineRepository, LineRepository>();
             services.AddScoped<ILineNumberRepository, LineNumberRepository>();
-            services.AddScoped<IDictionaryWordRepository, DictionaryWordRepository>();
-            services.AddScoped<ICharacterRepository, CharacterRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -88,8 +86,6 @@ namespace TalesAPI
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

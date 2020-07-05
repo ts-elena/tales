@@ -5,16 +5,17 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using TalesApp.Domain;
+    using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
     using TalesApp.Domain.Services.Communication;
 
     public class StorySetNumberService : IStorySetNumberService
     {
-        private readonly IStorySetNumberRepository _storySetNumberRepository;
+        private readonly IRepository<StorySetNumber> _storySetNumberRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public StorySetNumberService(IStorySetNumberRepository storySetNumberRepository, IUnitOfWork unitOfWork)
+        public StorySetNumberService(IRepository<StorySetNumber> storySetNumberRepository, IUnitOfWork unitOfWork)
         {
             _storySetNumberRepository = storySetNumberRepository;
             _unitOfWork = unitOfWork;

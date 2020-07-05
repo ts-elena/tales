@@ -1,6 +1,5 @@
 ﻿namespace TalesAPI.Services
 {
-    using Microsoft.Extensions.Logging;
     using NLog;
     using ServiceInterfaces;
     using System;
@@ -13,11 +12,11 @@
 
     public class StorySetService : IStorySetService
     {
-        private readonly IStorySetRepository _storySetRepository;
+        private readonly IRepository<StorySet> _storySetRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public StorySetService(IStorySetRepository storySetRepository, IUnitOfWork unitOfWork)
+        public StorySetService(IRepository<StorySet> storySetRepository, IUnitOfWork unitOfWork)
         {
             _storySetRepository = storySetRepository;
             _unitOfWork = unitOfWork;
