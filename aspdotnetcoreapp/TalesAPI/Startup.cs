@@ -18,6 +18,7 @@ namespace TalesAPI
     using System;
     using TalesAPI.Tools;
     using TalesApp.Domain;
+    using TalesAPI.Persistence;
 
     public class Startup
     {

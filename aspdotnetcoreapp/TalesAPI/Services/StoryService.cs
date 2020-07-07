@@ -9,6 +9,8 @@
     using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
     using TalesApp.Domain.Services.Communication;
+    using TalesAPI.Persistence.Repositories;
+    using TalesAPI.Persistence;
 
     public class StoryService : IStoryService
     {
@@ -16,9 +18,9 @@
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public StoryService(IStoryRepository storyRepository, IUnitOfWork unitOfWork)
+        public StoryService(IUnitOfWork unitOfWork)
         {
-            _storyRepository = storyRepository;
+            _storyRepository = unitOfWork.Story;
             _unitOfWork = unitOfWork;
         }
 
@@ -37,7 +39,7 @@
             try
             {
                 await _storyRepository.AddAsync(story);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
                 return new Response<Story>(story);
             }
             catch (Exception exception)
@@ -59,7 +61,7 @@
 
             try
             {
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<Story>(existingSequence);
             }
@@ -80,7 +82,7 @@
             try
             {
                 _storyRepository.Remove(existingCategory);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<Story>(existingCategory);
             }

@@ -5,6 +5,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using TalesAPI.Persistence;
+    using TalesAPI.Persistence.Repositories;
     using TalesApp.Domain;
     using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
@@ -16,9 +18,9 @@
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
         
-        public LineNumberService(ILineNumberRepository lineNumberRepository, IUnitOfWork unitOfWork)
+        public LineNumberService(IUnitOfWork unitOfWork)
         {
-            _lineNumberRepository = lineNumberRepository;
+            _lineNumberRepository = unitOfWork.LineNumber;
             _unitOfWork = unitOfWork;
         }
 
@@ -43,7 +45,7 @@
 
             try
             {
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<IEnumerable<LineNumber>>(lineNumbers);
             }
@@ -60,7 +62,7 @@
             try
             {
                 await _lineNumberRepository.AddRangeAsync(lineNumbers);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
                 return new Response<IEnumerable<LineNumber>>(lineNumbers);
             }
             catch (Exception exception)
@@ -87,7 +89,7 @@
             try
             {
                 _lineNumberRepository.RemoveRange(lineNumbersByIds);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<IEnumerable<LineNumber>>(lineNumbersByIds);
             }

@@ -5,6 +5,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using TalesAPI.Persistence;
+    using TalesAPI.Persistence.Repositories;
     using TalesApp.Domain;
     using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
@@ -16,9 +18,9 @@
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public StorySetService(IRepository<StorySet> storySetRepository, IUnitOfWork unitOfWork)
+        public StorySetService(IUnitOfWork unitOfWork)
         {
-            _storySetRepository = storySetRepository;
+            _storySetRepository = unitOfWork.StorySet;
             _unitOfWork = unitOfWork;
         }
 
@@ -37,7 +39,7 @@
             try
             {
                 await _storySetRepository.AddAsync(storySetsSequence);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
                 return new Response<StorySet>(storySetsSequence);
             }
             catch (Exception exception)
@@ -59,7 +61,7 @@
 
             try
             {
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<StorySet>(existingSequence);
             }
@@ -80,7 +82,7 @@
             try
             {
                 _storySetRepository.Remove(existingCategory);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<StorySet>(existingCategory);
             }

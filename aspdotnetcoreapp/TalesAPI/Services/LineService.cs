@@ -6,6 +6,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using TalesAPI.Persistence;
+    using TalesAPI.Persistence.Repositories;
     using TalesApp.Domain;
     using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
@@ -17,9 +19,9 @@
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public LineService(ILineRepository lineRepository, IUnitOfWork unitOfWork)
+        public LineService(IUnitOfWork unitOfWork)
         {
-            _lineRepository = lineRepository;
+            _lineRepository = unitOfWork.Line;
             _unitOfWork = unitOfWork;
         }
 
@@ -34,7 +36,7 @@
             {
                 List<Line> dBObject = lines.ToList();
                 await _lineRepository.AddRangeAsync(dBObject);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
                 return new Response<IEnumerable<Line>>(dBObject);
             }
             catch (Exception exception)
@@ -60,7 +62,7 @@
 
             try
             {
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<IEnumerable<Line>>(dBObject);
             }
@@ -86,7 +88,7 @@
             try
             {
                 _lineRepository.RemoveRange(linesById);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<IEnumerable<Line>>(linesById);
             }

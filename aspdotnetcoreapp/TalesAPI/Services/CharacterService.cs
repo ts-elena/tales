@@ -5,20 +5,20 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using TalesAPI.Persistence;
+    using TalesAPI.Persistence.Repositories;
     using TalesApp.Domain;
-    using TalesApp.Domain.Repositories;
-    using TalesApp.Domain.Services;
     using TalesApp.Domain.Services.Communication;
 
     public class CharacterService : ICharacterService
     {
-        private readonly IRepository<Character> _characterRepository;
+        private readonly BaseRepository<Character> _characterRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public CharacterService(IRepository<Character> characterRepository, IUnitOfWork unitOfWork)
+        public CharacterService(IUnitOfWork unitOfWork)
         {
-            _characterRepository = characterRepository;
+            _characterRepository = unitOfWork.Character;
             _unitOfWork = unitOfWork;
         }
 
@@ -32,7 +32,7 @@
             try
             {
                 await _characterRepository.AddRangeAsync(character);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
                 return new Response<IEnumerable<Character>>(character);
             }
             catch (Exception exception)
@@ -47,7 +47,7 @@
             try
             {
                 _characterRepository.UpdateRange(charactersToUpdate);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
                 return new Response<IEnumerable<Character>>(charactersToUpdate);
             }
             catch (Exception exception)
@@ -62,7 +62,7 @@
             try
             {
                 _characterRepository.RemoveRange(charactersToDelete);
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Complete();
 
                 return new Response<IEnumerable<Character>>(charactersToDelete);
             }

@@ -1,9 +1,9 @@
 ﻿namespace TalesAPI.Services
 {
+    using TalesAPI.Persistence;
     using TalesAPI.Services.ServiceInterfaces;
     using TalesApp.Domain;
     using TalesApp.Domain.Repositories;
-    using TalesApp.Domain.Services;
 
     public class DictionaryWordService : IDictionaryWordService
     {
