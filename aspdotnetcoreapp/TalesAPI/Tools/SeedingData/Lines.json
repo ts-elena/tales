@@ -1,0 +1,74 @@
+[
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "d591a940-2d73-4bfe-a658-4b79bf408d4d",
+    "LineContent": "Sophie, we have just closed the shop. You have done enough work, why won't you come out with us this time?",
+    "CharacterId": "ad4c807d-d5a2-4d8c-b317-eac66b3b8c96"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "e3c780f5-29a5-4e1b-a91c-e6911d94c2ed",
+    "LineContent": "No, I would better finish this. Go have some fun.",
+    "CharacterId": "799c8e96-4bc4-45ab-99a7-aeea33cb1a19"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "2d7aca5e-04d8-4b3b-aee1-88cbfe2deaeb",
+    "LineContent": "Look, it is Howl's castle!",
+    "CharacterId": "6f774874-4ab3-4c3d-9c3d-7667f34676d6"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "ff1a8370-7db0-4a81-909e-f1824cf6a067",
+    "LineContent": "Never seen it so close before!",
+    "CharacterId": "c0c75600-420f-4254-9906-d2a8455f8489"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "b2e2948a-3c95-4d02-a2bb-fac287aae71c",
+    "LineContent": "Oh, my... I wonder if Howl is in town.",
+    "CharacterId": "6f774874-4ab3-4c3d-9c3d-7667f34676d6"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "e608d499-7c09-4783-8e77-a64aecfe9515",
+    "LineContent": "Oh, it is gone!",
+    "CharacterId": "2f4fee98-2a4f-499b-a256-65204e6a8cf8"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "cad65aa0-b744-400e-8028-736b1a7c3653",
+    "LineContent": "No, he is just hiding in the fog from all of those planes.",
+    "CharacterId": "6f774874-4ab3-4c3d-9c3d-7667f34676d6"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "da23cf85-22d0-4162-92cc-6ab449917858",
+    "LineContent": "Ah, now I see!",
+    "CharacterId": "c0c75600-420f-4254-9906-d2a8455f8489"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "3e2da27b-35c0-433e-86e5-f7a6abd1daea",
+    "LineContent": "Remember Martha, from South Heaven? They say Howl tore her heart out.",
+    "CharacterId": "2f4fee98-2a4f-499b-a256-65204e6a8cf8"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "fc256993-869c-41db-aad5-08da1c3e2981",
+    "LineContent": "Now I am scared to go out!",
+    "CharacterId": "c0c75600-420f-4254-9906-d2a8455f8489"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "75cd9367-7304-497d-91c2-4c939df96f93",
+    "LineContent": "Don't worry, he only prays on pretty girls!",
+    "CharacterId": "6f774874-4ab3-4c3d-9c3d-7667f34676d6"
+  },
+  {
+    "StoryId": "99b43ca2-dcac-419a-9725-2413202bb624",
+    "LineId": "a2e24b02-abc7-4f8b-a7e7-8f99701e9514",
+    "LineContent": "Come on, girls! Hurry up!",
+    "CharacterId": "ad4c807d-d5a2-4d8c-b317-eac66b3b8c96"
+  }
+]

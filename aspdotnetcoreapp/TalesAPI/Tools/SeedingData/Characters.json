@@ -1,0 +1,27 @@
+[
+  {
+    "CharacterId": "ad4c807d-d5a2-4d8c-b317-eac66b3b8c96",
+    "CharacterName": "Fanny",
+    "CharacterAvatar": "/images/StoriesData/MovingCastleOpeningStory/Avatars/FannyHatter.jpg"
+  },
+  {
+    "CharacterId": "799c8e96-4bc4-45ab-99a7-aeea33cb1a19",
+    "CharacterName": "Sophie",
+    "CharacterAvatar": "/images/StoriesData/MovingCastleOpeningStory/Avatars/Sophie.jfif"
+  },
+  {
+    "CharacterId": "6f774874-4ab3-4c3d-9c3d-7667f34676d6",
+    "CharacterName": "Sophie's sister",
+    "CharacterAvatar": "/images/StoriesData/MovingCastleOpeningStory/Avatars/SophiesSister1.jfif"
+  },
+  {
+    "CharacterId": "c0c75600-420f-4254-9906-d2a8455f8489",
+    "CharacterName": "Sophie's sister",
+    "CharacterAvatar": "/images/StoriesData/MovingCastleOpeningStory/Avatars/SophiesSister2.jfif"
+  },
+  {
+    "CharacterId": "2f4fee98-2a4f-499b-a256-65204e6a8cf8",
+    "CharacterName": "Sophie's sister",
+    "CharacterAvatar": "/images/StoriesData/MovingCastleOpeningStory/Avatars/LettieHatter.png"
+  }
+]
