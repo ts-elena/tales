@@ -15,6 +15,9 @@ namespace TalesAPI
     using TalesApp.Data;
     using TalesApp.Domain.Repositories;
     using TalesApp.Domain.Services;
+    using System;
+    using TalesAPI.Tools;
+    using TalesApp.Domain;
 
     public class Startup
     {
@@ -78,7 +81,7 @@ namespace TalesAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TalesContext context)
         {
             if (env.IsDevelopment())
             {
@@ -88,6 +91,19 @@ namespace TalesAPI
             {
                 app.UseHsts();
             }
+
+            if (!context.StorySet.AnyAsync().Result)
+                Seeder.Seedit<StorySet>(System.IO.File.ReadAllText(@"Tools/SeedingData/StorySets.json"), app.ApplicationServices);
+            if (!context.StorySetNumber.AnyAsync().Result)
+                Seeder.Seedit<StorySetNumber>(System.IO.File.ReadAllText(@"Tools/SeedingData/StorySetNumbers.json"), app.ApplicationServices);
+            if (!context.Story.AnyAsync().Result)
+                Seeder.Seedit<Story>(System.IO.File.ReadAllText(@"Tools/SeedingData/Stories.json"), app.ApplicationServices);
+            if (!context.Character.AnyAsync().Result)
+                Seeder.Seedit<Character>(System.IO.File.ReadAllText(@"Tools/SeedingData/Characters.json"), app.ApplicationServices);
+            if (!context.Line.AnyAsync().Result)
+                Seeder.Seedit<Line>(System.IO.File.ReadAllText(@"Tools/SeedingData/Lines.json"), app.ApplicationServices);
+            if (!context.LineNumber.AnyAsync().Result)
+                Seeder.Seedit<LineNumber>(System.IO.File.ReadAllText(@"Tools/SeedingData/LineNumbers.json"), app.ApplicationServices);
 
             app.UseCors(MyAllowSpecificOrigins);
             app.UseSwagger();

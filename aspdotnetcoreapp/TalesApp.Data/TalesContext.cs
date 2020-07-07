@@ -39,7 +39,6 @@
                 .HasKey(line => new { line.LineId, line.StoryId });
             modelBuilder.Entity<LineNumber>()
                 .HasKey(lineNumber => new {lineNumber.LineId, lineNumber.StoryId});
-            modelBuilder.Seed();
         }
     }
 }
